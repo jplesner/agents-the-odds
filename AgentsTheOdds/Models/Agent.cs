@@ -1,0 +1,11 @@
+using AgentsTheOdds.Strategies;
+
+namespace AgentsTheOdds.Models;
+
+public sealed class Agent
+{
+    public required string Id { get; init; }
+    public required string Name { get; init; }
+    public required string Personality { get; init; }
+    public required IPredictionStrategy Strategy { get; init; }
+}

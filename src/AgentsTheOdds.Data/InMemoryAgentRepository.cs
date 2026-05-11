@@ -1,8 +1,8 @@
-using AgentsTheOdds.Application.Agents;
 using AgentsTheOdds.Domain.Interfaces;
 using AgentsTheOdds.Domain.Models;
+using AgentsTheOdds.Domain.Strategies;
 
-namespace AgentsTheOdds.Application;
+namespace AgentsTheOdds.Data;
 
 public sealed class InMemoryAgentRepository : IAgentRepository
 {
@@ -12,30 +12,23 @@ public sealed class InMemoryAgentRepository : IAgentRepository
         {
             Id          = "statistician",
             Name        = "The Statistician",
-            Personality = "Calm, data-driven, trusts the numbers above all else.",
+            Behavior    = File.ReadAllText("./Agents/Statistician/personality.md"),
             Strategy    = new StatisticianStrategy()
         },
         new Agent
         {
             Id          = "pattern-goblin",
             Name        = "The Pattern Goblin",
-            Personality = "Sees patterns everywhere. Possibly unhinged.",
+            Behavior = File.ReadAllText("Agents/Pattern-Goblin/personality.md"),
             Strategy    = new PatternGoblinStrategy()
         },
         new Agent
         {
             Id          = "skeptic",
             Name        = "The Skeptic",
-            Personality = "Doubts everything, including itself.",
+            Behavior = File.ReadAllText("Agents/Skeptic/personality.md"),
             Strategy    = new SkepticStrategy()
-        },
-        new Agent
-        {
-            Id          = "random-baseline",
-            Name        = "Random Baseline",
-            Personality = "No personality. Pure chaos.",
-            Strategy    = new RandomBaselineStrategy()
-        },
+        }
     ];
 
     public IReadOnlyList<Agent> GetAll() => Agents;

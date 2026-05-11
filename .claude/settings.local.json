@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(dotnet --version)",
+      "Bash(Get-ChildItem -Path \"C:\\\\git\\\\John\\\\agents-the-odds\" -Recurse -Include \"*.csproj\")",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(dotnet build *)",
+      "Bash(dotnet run *)",
+      "Bash(dotnet test *)"
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 using AgentsTheOdds.Domain.Interfaces;
 using AgentsTheOdds.Domain.Models;
 
-namespace AgentsTheOdds.Application.Agents;
+namespace AgentsTheOdds.Domain.Strategies;
 
 public sealed class SkepticStrategy : IPredictionStrategy
 {

@@ -25,10 +25,10 @@ dotnet test --filter "FullyQualifiedName~ScorerTests.Score_SixMatches_Returns100
 
 Four projects under `src/`, one test project under `tests/`:
 
-- **`AgentsTheOdds.Domain`** — models, repository interfaces, `IPredictionStrategy`, `LotteryValidator`, `Scorer`
-- **`AgentsTheOdds.Application`** — strategy implementations, `InMemoryAgentRepository`, `GameRunner`
-- **`AgentsTheOdds.Data`** — `InMemoryDrawRepository`, `InMemoryPredictionRepository`
-- **`AgentsTheOdds.Cli`** — `Program.cs`, Generic Host + DI wiring
+- **`AgentsTheOdds.Domain`** — models, repository interfaces, `IPredictionStrategy`, `IGamePresenter`, `LotteryValidator`, `Scorer`, strategy implementations (`PatternGoblinStrategy`, `SkepticStrategy`, `StatisticianStrategy`)
+- **`AgentsTheOdds.Application`** — `GameRunner`, `RandomBaselineStrategy`
+- **`AgentsTheOdds.Data`** — `InMemoryDrawRepository`, `InMemoryPredictionRepository`, `InMemoryAgentRepository`, agent personality/journal files under `Agents/`
+- **`AgentsTheOdds.Cli`** — `Program.cs`, `ConsoleGamePresenter`, Generic Host + DI wiring
 
 Dependency graph: `Cli → Application → Domain`, `Cli → Data → Domain`, `Tests → Domain`.
 
@@ -44,7 +44,7 @@ Dependency graph: `Cli → Application → Domain`, `Cli → Data → Domain`, `
 
 ### Key design decisions
 
-**`IPredictionStrategy`** is the extension point. Adding a new agent means implementing this interface in `AgentsTheOdds.Application` and registering it in `InMemoryAgentRepository`. Each strategy receives a `PredictionContext` containing rules, full draw history, prior prediction results, and the current leaderboard — so Phase 2 AI strategies can use all of this context.
+**`IPredictionStrategy`** is the extension point. Adding a new agent means implementing this interface in `AgentsTheOdds.Domain` and registering it in `InMemoryAgentRepository` (in `AgentsTheOdds.Data`). Each strategy receives a `PredictionContext` containing rules, full draw history, prior prediction results, and the current leaderboard — so Phase 2 AI strategies can use all of this context.
 
 **`Prediction.Confidence`** is strategy-provided (each strategy hard-codes its own value, `[0.0, 1.0]`). The validator enforces the range. Future phases will compare declared confidence against actual match rate.
 

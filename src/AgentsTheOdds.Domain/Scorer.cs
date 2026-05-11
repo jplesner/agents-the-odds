@@ -10,6 +10,8 @@ public static class Scorer
         [5] = 100,
         [4] = 50,
         [3] = 10,
+        [2] = 5,
+        [1] = 1
     };
 
     public static PredictionResult Score(Prediction prediction, DrawResult draw)

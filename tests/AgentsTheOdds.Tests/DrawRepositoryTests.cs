@@ -26,4 +26,13 @@ public class DrawRepositoryTests
         var result = LotteryValidator.Validate(prediction, Rules);
         Assert.True(result.IsValid, result.Error);
     }
+
+    [Fact]
+    public void GetCurrent_DateIsToday()
+    {
+        var repo = new InMemoryDrawRepository();
+        var draw = repo.GetCurrent();
+
+        Assert.Equal(DateOnly.FromDateTime(DateTime.Today), draw.Date);
+    }
 }

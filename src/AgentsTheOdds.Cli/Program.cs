@@ -1,4 +1,5 @@
 using AgentsTheOdds.Application;
+using AgentsTheOdds.Cli;
 using AgentsTheOdds.Data;
 using AgentsTheOdds.Domain.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +11,7 @@ var host = Host.CreateDefaultBuilder(args)
         services.AddSingleton<IDrawRepository, InMemoryDrawRepository>();
         services.AddSingleton<IAgentRepository, InMemoryAgentRepository>();
         services.AddSingleton<IPredictionRepository, InMemoryPredictionRepository>();
+        services.AddSingleton<IGamePresenter, ConsoleGamePresenter>();
         services.AddTransient<GameRunner>();
     })
     .Build();

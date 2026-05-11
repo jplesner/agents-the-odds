@@ -6,7 +6,6 @@ namespace AgentsTheOdds.Application.Commands;
 
 public sealed class PredictCommand(
     IAgentRepository agents,
-    IDrawResultRepository draws,
     ILeaderboardRepository leaderboards,
     IEpisodePredictionRepository predictions,
     IEpisodeResultRepository episodeResults)
@@ -22,13 +21,12 @@ public sealed class PredictCommand(
         }
 
         var allAgents = agents.GetAll();
-        var drawHistory = draws.GetHistory();
+        var pastEpisodes = episodeResults.GetAll();
+        var drawHistory = pastEpisodes.Select(e => e.DrawResult).ToList();
         var leaderboard = leaderboards.Load();
         var rules = LotteryRules.Standard;
 
-        var allPastScores = episodeResults.GetAll()
-            .SelectMany(e => e.Scores)
-            .ToList();
+        var allPastScores = pastEpisodes.SelectMany(e => e.Scores).ToList();
 
         var validPredictions = new List<Prediction>();
         var hasError = false;

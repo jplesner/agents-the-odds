@@ -14,12 +14,6 @@ public class PredictCommandTests
         public IReadOnlyList<Agent> GetAll() => agents;
     }
 
-    private sealed class FakeDrawResultRepository : IDrawResultRepository
-    {
-        public IReadOnlyList<DrawResult> GetHistory() => [];
-        public DrawResult? TryGetByEpisode(int episodeNumber) => null;
-    }
-
     private sealed class FakeEpisodePredictionRepository : IEpisodePredictionRepository
     {
         private readonly Dictionary<int, EpisodePredictionSet> _store = [];
@@ -75,7 +69,7 @@ public class PredictCommandTests
     private static PredictCommand BuildCommand(
         IAgentRepository agentRepo,
         FakeEpisodePredictionRepository predRepo) =>
-        new(agentRepo, new FakeDrawResultRepository(), new FakeLeaderboardRepository(), predRepo, new FakeEpisodeResultRepository());
+        new(agentRepo, new FakeLeaderboardRepository(), predRepo, new FakeEpisodeResultRepository());
 
     // --- tests ---
 

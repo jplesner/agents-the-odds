@@ -8,7 +8,7 @@ namespace AgentsTheOdds.Application.Commands;
 public sealed class ScoreCommand(
     IAgentRepository agents,
     IEpisodePredictionRepository predictions,
-    IDrawResultRepository draws,
+    IDrawRepository draws,
     ILeaderboardRepository leaderboards,
     IEpisodeResultRepository episodeResults,
     IRecapWriter recapWriter,
@@ -24,12 +24,13 @@ public sealed class ScoreCommand(
             return 1;
         }
 
-        var draw = draws.TryGetByEpisode(episodeNumber);
-        if (draw is null)
+        DrawResult draw;
+        try { draw = draws.GetByEpisode(episodeNumber); }
+        catch (InvalidOperationException)
         {
             Console.Error.WriteLine(
-                $"Draw result for episode {episodeNumber} not found. " +
-                $"Expected: data/draws/episode-{episodeNumber:D3}.json");
+                $"Draw not found for episode {episodeNumber}. " +
+                $"Run `draw --episode {episodeNumber}` first.");
             return 1;
         }
 

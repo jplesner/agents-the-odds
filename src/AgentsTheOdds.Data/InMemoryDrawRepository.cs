@@ -24,4 +24,9 @@ public sealed class InMemoryDrawRepository : IDrawRepository
             .ToArray();
         return new DrawResult { DrawNumber = last.DrawNumber + 1, Date = DateOnly.FromDateTime(DateTime.Today), Numbers = numbers };
     }
+
+    public void RecordDraw(DrawResult draw) { }
+
+    public DrawResult GetByEpisode(int episodeNumber) =>
+        throw new NotSupportedException("GetByEpisode is not supported on the in-memory repository.");
 }

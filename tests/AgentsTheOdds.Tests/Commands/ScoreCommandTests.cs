@@ -14,10 +14,13 @@ public class ScoreCommandTests
         public IReadOnlyList<Agent> GetAll() => agents;
     }
 
-    private sealed class FakeDrawResultRepository(DrawResult? draw) : IDrawResultRepository
+    private sealed class FakeDrawRepository(DrawResult? draw = null) : IDrawRepository
     {
         public IReadOnlyList<DrawResult> GetHistory() => draw is null ? [] : [draw];
-        public DrawResult? TryGetByEpisode(int episodeNumber) => draw;
+        public DrawResult GetCurrent() => draw ?? throw new InvalidOperationException("No draw.");
+        public void RecordDraw(DrawResult d) { }
+        public DrawResult GetByEpisode(int episodeNumber) =>
+            draw ?? throw new InvalidOperationException($"Draw for episode {episodeNumber} not found.");
     }
 
     private sealed class FakeEpisodePredictionRepository(EpisodePredictionSet? set) : IEpisodePredictionRepository
@@ -81,13 +84,36 @@ public class ScoreCommandTests
     private static ScoreCommand BuildCommand(
         IAgentRepository agents,
         IEpisodePredictionRepository predictions,
-        IDrawResultRepository draws,
+        FakeDrawRepository draws,
         FakeLeaderboardRepository leaderboards,
         FakeEpisodeResultRepository episodeResults,
         FakeRecapWriter recapWriter) =>
         new(agents, predictions, draws, leaderboards, episodeResults, recapWriter, new FakeRealityCheckGenerator());
 
     // --- tests ---
+
+    [Fact]
+    public void Execute_MissingDraw_ReturnsOne()
+    {
+        var predSet = new EpisodePredictionSet
+        {
+            EpisodeNumber = 1,
+            PredictionDate = new DateOnly(2025, 1, 1),
+            Predictions = [MakePrediction("a", [1, 2, 3, 4, 5, 6])],
+        };
+        var episodeResults = new FakeEpisodeResultRepository();
+
+        var cmd = BuildCommand(
+            new FakeAgentRepository(ValidAgent("a")),
+            new FakeEpisodePredictionRepository(predSet),
+            new FakeDrawRepository(),   // no draw
+            new FakeLeaderboardRepository(),
+            episodeResults,
+            new FakeRecapWriter());
+
+        Assert.Equal(1, cmd.Execute(1));
+        Assert.Null(episodeResults.Saved);
+    }
 
     [Fact]
     public void Execute_ValidEpisode_ScoresAndSaves()
@@ -98,7 +124,6 @@ public class ScoreCommandTests
             PredictionDate = new DateOnly(2025, 1, 1),
             Predictions = [MakePrediction("a", [1, 2, 3, 4, 5, 6])],
         };
-        var draw = MakeDraw([1, 2, 3, 7, 8, 9]);
         var episodeResults = new FakeEpisodeResultRepository();
         var recapWriter = new FakeRecapWriter();
         var leaderboards = new FakeLeaderboardRepository();
@@ -106,7 +131,7 @@ public class ScoreCommandTests
         var cmd = BuildCommand(
             new FakeAgentRepository(ValidAgent("a")),
             new FakeEpisodePredictionRepository(predSet),
-            new FakeDrawResultRepository(draw),
+            new FakeDrawRepository(MakeDraw([1, 2, 3, 7, 8, 9])),
             leaderboards,
             episodeResults,
             recapWriter);
@@ -120,41 +145,14 @@ public class ScoreCommandTests
     }
 
     [Fact]
-    public void Execute_MissingDrawResult_ReturnsOne()
-    {
-        var predSet = new EpisodePredictionSet
-        {
-            EpisodeNumber = 1,
-            PredictionDate = new DateOnly(2025, 1, 1),
-            Predictions = [MakePrediction("a", [1, 2, 3, 4, 5, 6])],
-        };
-        var episodeResults = new FakeEpisodeResultRepository();
-        var recapWriter = new FakeRecapWriter();
-
-        var cmd = BuildCommand(
-            new FakeAgentRepository(ValidAgent("a")),
-            new FakeEpisodePredictionRepository(predSet),
-            new FakeDrawResultRepository(null),
-            new FakeLeaderboardRepository(),
-            episodeResults,
-            recapWriter);
-
-        var exit = cmd.Execute(1);
-
-        Assert.Equal(1, exit);
-        Assert.Null(episodeResults.Saved);
-    }
-
-    [Fact]
     public void Execute_MissingPredictions_ReturnsOne()
     {
-        var draw = MakeDraw([1, 2, 3, 4, 5, 6]);
         var episodeResults = new FakeEpisodeResultRepository();
 
         var cmd = BuildCommand(
             new FakeAgentRepository(ValidAgent("a")),
             new FakeEpisodePredictionRepository(null),
-            new FakeDrawResultRepository(draw),
+            new FakeDrawRepository(MakeDraw([1, 2, 3, 4, 5, 6])),
             new FakeLeaderboardRepository(),
             episodeResults,
             new FakeRecapWriter());
@@ -175,13 +173,12 @@ public class ScoreCommandTests
             PredictionDate = new DateOnly(2025, 1, 1),
             Predictions = [MakePrediction("a", [1, 2, 3, 4, 5, 6])],
         };
-        var draw = MakeDraw([1, 2, 3, 7, 8, 9]);
         var episodeResults = new FakeEpisodeResultRepository();
 
         var cmd = BuildCommand(
             new FakeAgentRepository(ValidAgent("a")),
             new FakeEpisodePredictionRepository(predSet),
-            new FakeDrawResultRepository(draw),
+            new FakeDrawRepository(MakeDraw([1, 2, 3, 7, 8, 9])),
             new FakeLeaderboardRepository(),
             episodeResults,
             new FakeRecapWriter());
@@ -202,13 +199,12 @@ public class ScoreCommandTests
             PredictionDate = new DateOnly(2025, 1, 1),
             Predictions = [MakePrediction("a", [1, 2, 3, 4, 5, 6])],
         };
-        var draw = MakeDraw([1, 2, 3, 4, 5, 6]); // 6 matches = 1000 pts
         var leaderboards = new FakeLeaderboardRepository();
 
         var cmd = BuildCommand(
             new FakeAgentRepository(ValidAgent("a")),
             new FakeEpisodePredictionRepository(predSet),
-            new FakeDrawResultRepository(draw),
+            new FakeDrawRepository(MakeDraw([1, 2, 3, 4, 5, 6])), // 6 matches = 1000 pts
             leaderboards,
             new FakeEpisodeResultRepository(),
             new FakeRecapWriter());
@@ -227,13 +223,12 @@ public class ScoreCommandTests
             PredictionDate = new DateOnly(2025, 1, 1),
             Predictions = [MakePrediction("a", [1, 2, 3, 4, 5, 6])],
         };
-        var draw = MakeDraw([10, 11, 12, 13, 14, 15]);
         var recapWriter = new FakeRecapWriter();
 
         var cmd = BuildCommand(
             new FakeAgentRepository(ValidAgent("a")),
             new FakeEpisodePredictionRepository(predSet),
-            new FakeDrawResultRepository(draw),
+            new FakeDrawRepository(MakeDraw([10, 11, 12, 13, 14, 15])),
             new FakeLeaderboardRepository(),
             new FakeEpisodeResultRepository(),
             recapWriter);

@@ -10,4 +10,10 @@
     <ProjectReference Include="..\AgentsTheOdds.Domain\AgentsTheOdds.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="Agents\**\*.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

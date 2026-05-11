@@ -27,6 +27,6 @@ public sealed class InMemoryDrawRepository : IDrawRepository
             .Take(6)
             .Order()
             .ToArray();
-        return new DrawResult { DrawNumber = last.DrawNumber, Date = last.Date, Numbers = numbers };
+        return new DrawResult { DrawNumber = last.DrawNumber + 1, Date = DateOnly.FromDateTime(DateTime.Today), Numbers = numbers };
     }
 }

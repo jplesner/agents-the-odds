@@ -15,7 +15,7 @@ public static class Scorer
     public static PredictionResult Score(Prediction prediction, DrawResult draw)
     {
         var matches = prediction.Numbers.Intersect(draw.Numbers).Count();
-        PointsTable.TryGetValue(matches, out var points);
+        var points = PointsFor(matches);
 
         return new PredictionResult
         {

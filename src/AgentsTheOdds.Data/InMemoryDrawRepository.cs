@@ -5,11 +5,6 @@ namespace AgentsTheOdds.Data;
 
 public sealed class InMemoryDrawRepository : IDrawRepository
 {
-    // Draw 3 is current: [7, 14, 21, 28, 35, 42]
-    // Engineered so agents score meaningfully:
-    //   Statistician   [7, 14, 21, 28, 35, 44] → 5 matches → 100 pts
-    //   Pattern Goblin [3, 14, 21, 28, 42, 47] → 4 matches →  50 pts
-    //   Skeptic        [1,  9, 22, 29, 36, 43] → 0 matches →   0 pts
     private static readonly IReadOnlyList<DrawResult> History =
     [
         new DrawResult { DrawNumber = 1, Date = new DateOnly(2025, 1,  4), Numbers = [3, 17, 22, 34, 41, 48] },

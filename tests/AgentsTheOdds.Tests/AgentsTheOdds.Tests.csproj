@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\AgentsTheOdds.Domain\AgentsTheOdds.Domain.csproj" />
+    <ProjectReference Include="..\..\src\AgentsTheOdds.Data\AgentsTheOdds.Data.csproj" />
   </ItemGroup>
 
 </Project>

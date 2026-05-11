@@ -18,5 +18,15 @@ public sealed class InMemoryDrawRepository : IDrawRepository
     ];
 
     public IReadOnlyList<DrawResult> GetHistory() => History;
-    public DrawResult GetCurrent() => History[^1];
+
+    public DrawResult GetCurrent()
+    {
+        var last = History[^1];
+        var numbers = Enumerable.Range(1, 49)
+            .OrderBy(_ => Random.Shared.Next())
+            .Take(6)
+            .Order()
+            .ToArray();
+        return new DrawResult { DrawNumber = last.DrawNumber, Date = last.Date, Numbers = numbers };
+    }
 }

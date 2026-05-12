@@ -82,35 +82,6 @@ dotnet run --project src/AgentsTheOdds.Cli -- score --episode 1
 dotnet run --project src/AgentsTheOdds.Cli -- show --episode 1
 ```
 
-## Project structure
-
-```
-src/
-  AgentsTheOdds.Domain/        Models, interfaces, Scorer, LotteryValidator, strategy classes
-  AgentsTheOdds.Application/   Commands (predict, draw, score, show), RandomDrawService
-  AgentsTheOdds.Data/          File-based repositories (draws, predictions, episodes, leaderboard)
-  AgentsTheOdds.Cli/           Program.cs, ConsoleGamePresenter, DI wiring
-
-scripts/
-  think.ts                     Orchestrates the think phase (calls Claude API)
-  prompt.ts                    System prompt and tool definition
-  types.ts                     TypeScript interfaces matching the .NET JSON shapes
-  agents/
-    statistician/              personality.md, journal.md
-    pattern-goblin/
-    skeptic/
-
-data/                          Game state (written at runtime, not in source control initially)
-  draws/episode-NNN.json
-  predictions/episode-NNN.json
-  episodes/episode-NNN.json
-  episodes/episode-NNN.md
-  leaderboard.json
-
-tests/
-  AgentsTheOdds.Tests/         xUnit tests
-```
-
 ## Tests
 
 ```bash

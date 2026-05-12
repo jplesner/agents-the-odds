@@ -233,6 +233,11 @@ Rewrite your C# strategy implementation for Episode ${episode}. Your strategy co
   fs.writeFileSync(strategyFile, input.strategy_code, "utf-8");
   console.log(`  Updated: ${path.relative(REPO_ROOT, strategyFile)}`);
 
+  const snapshotDir = path.join(REPO_ROOT, "data", "agents", agent.id, "strategies");
+  fs.mkdirSync(snapshotDir, { recursive: true });
+  fs.writeFileSync(path.join(snapshotDir, `episode-${padEpisode(episode)}.cs`), input.strategy_code, "utf-8");
+  console.log(`  Snapshot: data/agents/${agent.id}/strategies/episode-${padEpisode(episode)}.cs`);
+
   if (!journalAlreadyWritten) {
     fs.writeFileSync(journalFile, existingJournal + `\n## Episode ${episode}\n${input.journal_entry}\n`, "utf-8");
     console.log(`  Journal: ${path.relative(REPO_ROOT, journalFile)}`);

@@ -44,6 +44,21 @@ export function getEpisodeNumbers(): number[] {
   return discoverEpisodeNumbers();
 }
 
+export function readEpisodeStrategyCodes(episodeNumber: number): Record<string, string> {
+  const padded = String(episodeNumber).padStart(3, '0');
+  const agentsDir = resolve(dataRoot(), 'agents');
+  if (!existsSync(agentsDir)) return {};
+  const result: Record<string, string> = {};
+  for (const dirent of readdirSync(agentsDir, { withFileTypes: true })) {
+    if (!dirent.isDirectory()) continue;
+    const codePath = resolve(agentsDir, dirent.name, 'strategies', `episode-${padded}.cs`);
+    if (existsSync(codePath)) {
+      result[dirent.name] = readFileSync(codePath, 'utf-8');
+    }
+  }
+  return result;
+}
+
 export function readAgentProfiles(): AgentProfile[] {
   const agentsDir = resolve(dataRoot(), 'agents');
   if (!existsSync(agentsDir)) return [];

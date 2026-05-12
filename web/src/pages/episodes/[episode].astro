@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getEpisodeNumbers, readEpisode } from '../../lib/data.ts';
+import { getEpisodeNumbers, readEpisode, readEpisodeStrategyCodes } from '../../lib/data.ts';
 
 export function getStaticPaths() {
   return getEpisodeNumbers().map((n) => ({
@@ -19,6 +19,7 @@ const sortedScores = episode ? [...episode.scores].sort((a, b) => b.points - a.p
 const agentNames = episode
   ? Object.fromEntries(episode.leaderboard.map((e) => [e.agentId, e.agentName]))
   : {};
+const strategyCodes = readEpisodeStrategyCodes(episodeNumber);
 ---
 
 <Layout title={`Episode ${episodeNumber}`}>
@@ -70,6 +71,12 @@ const agentNames = episode
                 <span class="mx-1">·</span>
                 {(s.prediction.confidence * 100).toFixed(0)}% confidence
               </div>
+              {strategyCodes[s.prediction.agentId] && (
+                <details class="mt-3">
+                  <summary class="text-xs text-white/40 cursor-pointer hover:text-white/60 select-none">View strategy code</summary>
+                  <pre class="text-xs bg-black/30 border border-white/10 rounded p-3 mt-2 overflow-x-auto text-white/60 leading-relaxed whitespace-pre"><code>{strategyCodes[s.prediction.agentId]}</code></pre>
+                </details>
+              )}
             </div>
           ))}
         </div>

@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
+import crypto from "crypto";
 import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
@@ -25,6 +26,46 @@ function dataRoot(): string {
 
 function padEpisode(n: number): string {
   return String(n).padStart(3, "0");
+}
+
+function hashFile(filePath: string): string {
+  return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex");
+}
+
+function snapshotRelevantFiles(): Map<string, string> {
+  const hashes = new Map<string, string>();
+
+  const strategiesDir = path.join(REPO_ROOT, "src", "AgentsTheOdds.Domain", "Strategies");
+  for (const f of fs.readdirSync(strategiesDir)) {
+    if (f.endsWith(".cs")) {
+      const full = path.join(strategiesDir, f);
+      hashes.set(full, hashFile(full));
+    }
+  }
+
+  const agentsDir = path.join(__dirname, "agents");
+  for (const agentId of fs.readdirSync(agentsDir)) {
+    const agentDir = path.join(agentsDir, agentId);
+    if (fs.statSync(agentDir).isDirectory()) {
+      for (const f of fs.readdirSync(agentDir)) {
+        const full = path.join(agentDir, f);
+        if (fs.statSync(full).isFile()) hashes.set(full, hashFile(full));
+      }
+    }
+  }
+
+  return hashes;
+}
+
+function detectChangedFiles(before: Map<string, string>, after: Map<string, string>): string[] {
+  const changed: string[] = [];
+  for (const [p, hash] of after) {
+    if (before.get(p) !== hash) changed.push(p);
+  }
+  for (const p of before.keys()) {
+    if (!after.has(p)) changed.push(p);
+  }
+  return changed;
 }
 
 function loadDraws(upToEpisode: number): DrawResult[] {
@@ -116,6 +157,8 @@ async function thinkForAgent(
     `${agent.strategyClass}.cs`,
   );
 
+  const beforeSnapshot = snapshotRelevantFiles();
+
   const personality = fs.readFileSync(path.join(agentsDir, "personality.md"), "utf-8").trim();
   const journal = fs.readFileSync(path.join(agentsDir, "journal.md"), "utf-8").trim();
   const currentStrategy = fs.readFileSync(strategyFile, "utf-8").trim();
@@ -187,6 +230,16 @@ Update your strategy for Episode ${episode}. Study the game state and update you
   const journalContent = fs.readFileSync(journalFile, "utf-8");
   fs.writeFileSync(journalFile, journalContent + `\n## Episode ${episode}\n${input.journal_entry}\n`, "utf-8");
   console.log(`  Journal: ${path.relative(REPO_ROOT, journalFile)}`);
+
+  const afterSnapshot = snapshotRelevantFiles();
+  const changed = detectChangedFiles(beforeSnapshot, afterSnapshot);
+  const allowed = new Set([path.resolve(strategyFile), path.resolve(journalFile)]);
+  const unexpected = changed.filter((p) => !allowed.has(path.resolve(p)));
+  if (unexpected.length > 0) {
+    throw new Error(
+      `[${agent.name}] Unexpected files modified:\n${unexpected.map((p) => `  ${path.relative(REPO_ROOT, p)}`).join("\n")}`,
+    );
+  }
 }
 
 async function main(): Promise<void> {
@@ -218,8 +271,17 @@ async function main(): Promise<void> {
     await thinkForAgent(agent, episode, draws, episodeResults, leaderboard);
   }
 
+  console.log("\nValidating updated strategies...");
+  try {
+    execSync("dotnet build", { cwd: REPO_ROOT, stdio: "inherit" });
+    execSync(`dotnet test --filter "FullyQualifiedName~StrategyTests"`, { cwd: REPO_ROOT, stdio: "inherit" });
+  } catch (err) {
+    console.error("\nValidation failed. Fix the errors above before running predict.");
+    process.exit(1);
+  }
+
   console.log(
-    `\nDone. Run: dotnet build && dotnet run --project src/AgentsTheOdds.Cli -- predict --episode ${episode}`,
+    `\nDone. Run: dotnet run --project src/AgentsTheOdds.Cli -- predict --episode ${episode}`,
   );
 }
 

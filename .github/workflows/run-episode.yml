@@ -38,7 +38,7 @@ jobs:
         working-directory: scripts
 
       - name: Think
-        run: npm run think -- --episode ${{ inputs.episode }}
+        run: npm run think:ci -- --episode ${{ inputs.episode }}
         working-directory: scripts
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}

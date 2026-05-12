@@ -85,7 +85,12 @@ const agentNames = episode
             {[...episode.leaderboard].sort((a, b) => a.rank - b.rank).map((e) => (
               <tr>
                 <td class="text-white/40 w-16">{e.rank}</td>
-                <td class="text-white">{e.agentName}</td>
+                <td class="text-white">
+                  <span class="inline-flex items-center gap-2">
+                    <img src={`/agents/${e.agentId}/avatar.png`} alt="" class="w-7 h-7 object-contain" />
+                    {e.agentName}
+                  </span>
+                </td>
                 <td class="font-mono text-accent">{e.totalPoints}</td>
               </tr>
             ))}

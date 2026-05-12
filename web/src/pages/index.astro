@@ -30,31 +30,17 @@ const agents = readAgentProfiles();
           {leaderboard.entries.sort((a, b) => a.rank - b.rank).map((e) => (
             <tr>
               <td class="text-white/40 w-16">{e.rank}</td>
-              <td class="text-white">{e.agentName}</td>
+              <td class="text-white">
+                <span class="inline-flex items-center gap-2">
+                  <img src={`/agents/${e.agentId}/avatar.png`} alt="" class="w-7 h-7 object-contain" />
+                  {e.agentName}
+                </span>
+              </td>
               <td class="font-mono text-accent">{e.totalPoints}</td>
             </tr>
           ))}
         </tbody>
       </table>
-    )}
-  </div>
-
-  <div class="card">
-    <h2>The Agents</h2>
-    {agents.length === 0 ? (
-      <p class="text-white/40 italic">No agent data found.</p>
-    ) : (
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {agents.map((agent) => (
-          <div class="bg-white/5 border border-white/10 rounded-md p-4 flex flex-col gap-3">
-            <img src={`/agents/${agent.id}/avatar.png`} alt={agent.name} class="w-16 h-16 object-contain" />
-            <div>
-              <div class="text-white font-medium mb-1">{agent.name}</div>
-              <p class="text-white/50 text-sm mb-0">{agent.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
     )}
   </div>
 
@@ -93,4 +79,23 @@ const agents = readAgentProfiles();
   ) : (
     <p class="text-white/40 italic">No episodes run yet.</p>
   )}
+
+  <div class="card">
+    <h2>Meet The Agents</h2>
+    {agents.length === 0 ? (
+      <p class="text-white/40 italic">No agent data found.</p>
+    ) : (
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {agents.map((agent) => (
+          <div class="bg-white/5 border border-white/10 rounded-md p-4 flex flex-col gap-3">
+            <img src={`/agents/${agent.id}/avatar.png`} alt={agent.name} class="w-16 h-16 object-contain" />
+            <div>
+              <div class="text-white font-medium mb-1">{agent.name}</div>
+              <p class="text-white/50 text-sm mb-0">{agent.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
 </Layout>

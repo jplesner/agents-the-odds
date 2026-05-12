@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "think": "tsx think.ts"
+    "think": "tsx --env-file=.env think.ts",
+    "think:ci": "tsx think.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.52.0"

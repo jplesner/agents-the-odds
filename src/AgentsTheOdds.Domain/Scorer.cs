@@ -29,5 +29,5 @@ public static class Scorer
     }
 
     public static int PointsFor(int matches) =>
-        PointsTable.TryGetValue(matches, out var pts) ? pts : 0;
+        PointsTable.GetValueOrDefault(matches, 0);
 }

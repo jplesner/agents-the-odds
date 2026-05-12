@@ -8,9 +8,9 @@ public sealed class InMemoryAgentRepository : IAgentRepository
 {
     private static readonly IReadOnlyList<Agent> Agents =
     [
-        new Agent { Id = "statistician",   Name = "The Statistician",   Strategy = new StatisticianStrategy()  },
-        new Agent { Id = "pattern-goblin", Name = "The Pattern Goblin", Strategy = new PatternGoblinStrategy() },
-        new Agent { Id = "skeptic",        Name = "The Skeptic",        Strategy = new SkepticStrategy()       },
+        new() { Id = "statistician",   Name = "The Statistician",   Strategy = new StatisticianStrategy()  },
+        new() { Id = "pattern-goblin", Name = "The Pattern Goblin", Strategy = new PatternGoblinStrategy() },
+        new() { Id = "skeptic",        Name = "The Skeptic",        Strategy = new SkepticStrategy()       },
     ];
 
     public IReadOnlyList<Agent> GetAll() => Agents;

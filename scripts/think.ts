@@ -157,6 +157,13 @@ async function thinkForAgent(
     `${agent.strategyClass}.cs`,
   );
 
+  const journalFile = path.join(agentsDir, "journal.md");
+  const existingJournal = fs.readFileSync(journalFile, "utf-8");
+  if (new RegExp(`^## Episode ${episode}$`, "m").test(existingJournal)) {
+    console.log(`  Skipping — Episode ${episode} already in journal.`);
+    return;
+  }
+
   const beforeSnapshot = snapshotRelevantFiles();
 
   const personality = fs.readFileSync(path.join(agentsDir, "personality.md"), "utf-8").trim();
@@ -226,9 +233,7 @@ Update your strategy for Episode ${episode}. Study the game state and update you
   fs.writeFileSync(strategyFile, input.strategy_code, "utf-8");
   console.log(`  Updated: ${path.relative(REPO_ROOT, strategyFile)}`);
 
-  const journalFile = path.join(agentsDir, "journal.md");
-  const journalContent = fs.readFileSync(journalFile, "utf-8");
-  fs.writeFileSync(journalFile, journalContent + `\n## Episode ${episode}\n${input.journal_entry}\n`, "utf-8");
+  fs.writeFileSync(journalFile, existingJournal + `\n## Episode ${episode}\n${input.journal_entry}\n`, "utf-8");
   console.log(`  Journal: ${path.relative(REPO_ROOT, journalFile)}`);
 
   const afterSnapshot = snapshotRelevantFiles();

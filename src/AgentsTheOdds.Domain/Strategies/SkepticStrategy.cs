@@ -7,21 +7,23 @@ public sealed class SkepticStrategy : IPredictionStrategy
 {
     public Prediction GeneratePrediction(PredictionContext context)
     {
-        // No draw history exists. No pattern to exploit. Good. Patterns were never real anyway.
-        // Using a deterministic spread across the 1–49 range because it's as valid as anything else.
-        // Which is to say: not very valid at all.
+        // Episode 1. No data. No history. No illusions.
+        // The correct prior for a lottery is pure randomness.
+        // I will approximate randomness deterministically, which is philosophically
+        // embarrassing but practically indistinguishable from the real thing.
 
         var numbers = new List<int>();
 
         if (context.DrawHistory.Count == 0)
         {
-            // Episode 1: no data. Distribute evenly. Pretend this is methodical.
+            // No draw history: distribute evenly across 1–49.
+            // This is as good as anything. Which is not good.
             numbers = [4, 12, 21, 30, 38, 47];
         }
         else
         {
-            // Use draw history to pick least-frequent numbers, because cold numbers are just
-            // as random as hot ones, but at least this gives me something to narrate.
+            // Use draw history to pick least-frequent numbers.
+            // "Cold numbers" are a gambler's fallacy. I am a gambler. I know this.
             var allNumbers = Enumerable.Range(1, 49).ToList();
             var frequency = allNumbers.ToDictionary(n => n, _ => 0);
 
@@ -30,6 +32,7 @@ public sealed class SkepticStrategy : IPredictionStrategy
                     if (frequency.ContainsKey(n))
                         frequency[n]++;
 
+            // Tiebreak by number value to stay deterministic. Chaos needs a schedule.
             numbers = frequency
                 .OrderBy(kv => kv.Value)
                 .ThenBy(kv => kv.Key)
@@ -41,10 +44,10 @@ public sealed class SkepticStrategy : IPredictionStrategy
         return new Prediction
         {
             AgentId      = "skeptic",
-            StrategyName = "cold-frequency-v1",
+            StrategyName = "cold-frequency-v2",
             Numbers      = numbers,
             Confidence   = 0.12,
-            Reasoning    = "Least-frequent numbers. Cold bias. Also meaningless. You're welcome."
+            Reasoning    = "Evenly spread or least-frequent. Both meaningless. Statistically honest, at least."
         };
     }
 }

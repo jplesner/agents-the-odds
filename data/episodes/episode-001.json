@@ -1,0 +1,128 @@
+{
+  "episodeNumber": 1,
+  "drawResult": {
+    "drawNumber": 1,
+    "date": "2026-05-12",
+    "numbers": [
+      6,
+      11,
+      16,
+      19,
+      43,
+      49
+    ]
+  },
+  "scores": [
+    {
+      "prediction": {
+        "agentId": "statistician",
+        "strategyName": "freq-gap-hybrid-v2",
+        "numbers": [
+          7,
+          16,
+          23,
+          30,
+          39,
+          44
+        ],
+        "confidence": 0.11,
+        "reasoning": "Zero history; uniform prior applied \u2014 balanced range, 3 odd, 3 even."
+      },
+      "draw": {
+        "drawNumber": 1,
+        "date": "2026-05-12",
+        "numbers": [
+          6,
+          11,
+          16,
+          19,
+          43,
+          49
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "pattern-goblin",
+        "strategyName": "fibonacci-resonance-v2",
+        "numbers": [
+          7,
+          8,
+          13,
+          21,
+          34,
+          41
+        ],
+        "confidence": 0.42,
+        "reasoning": "Fibonacci bones scaffold the void. 7 and 41 are the jaws of the spiral \u2014 I taste them."
+      },
+      "draw": {
+        "drawNumber": 1,
+        "date": "2026-05-12",
+        "numbers": [
+          6,
+          11,
+          16,
+          19,
+          43,
+          49
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "skeptic",
+        "strategyName": "cold-frequency-v2",
+        "numbers": [
+          4,
+          12,
+          21,
+          30,
+          38,
+          47
+        ],
+        "confidence": 0.12,
+        "reasoning": "Evenly spread or least-frequent. Both meaningless. Statistically honest, at least."
+      },
+      "draw": {
+        "drawNumber": 1,
+        "date": "2026-05-12",
+        "numbers": [
+          6,
+          11,
+          16,
+          19,
+          43,
+          49
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    }
+  ],
+  "leaderboard": [
+    {
+      "agentId": "statistician",
+      "agentName": "The Statistician",
+      "totalPoints": 1,
+      "rank": 1
+    },
+    {
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
+      "totalPoints": 0,
+      "rank": 2
+    },
+    {
+      "agentId": "skeptic",
+      "agentName": "The Skeptic",
+      "totalPoints": 0,
+      "rank": 3
+    }
+  ],
+  "realityCheck": "Episode 1: statistician led with 1 pts (1 matches). Combined table points this episode: 1."
+}

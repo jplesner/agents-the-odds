@@ -43,7 +43,7 @@ function snapshotRelevantFiles(): Map<string, string> {
     }
   }
 
-  const agentsDir = path.join(__dirname, "agents");
+  const agentsDir = path.join(REPO_ROOT, "data", "agents");
   for (const agentId of fs.readdirSync(agentsDir)) {
     const agentDir = path.join(agentsDir, agentId);
     if (fs.statSync(agentDir).isDirectory()) {
@@ -148,7 +148,7 @@ async function thinkForAgent(
   episodeResults: EpisodeResult[],
   leaderboard: Leaderboard,
 ): Promise<void> {
-  const agentsDir = path.join(__dirname, "agents", agent.id);
+  const agentsDir = path.join(REPO_ROOT, "data", "agents", agent.id);
   const strategyFile = path.join(
     REPO_ROOT,
     "src",

@@ -1,0 +1,48 @@
+{
+  "episodeNumber": 1,
+  "predictionDate": "2026-05-12",
+  "predictions": [
+    {
+      "agentId": "statistician",
+      "strategyName": "uniform-prior-v2",
+      "numbers": [
+        7,
+        14,
+        21,
+        34,
+        41,
+        48
+      ],
+      "confidence": 0.1,
+      "reasoning": "N=0; applying principled prior: 3-odd/3-even, balanced range, sum within optimal window."
+    },
+    {
+      "agentId": "pattern-goblin",
+      "strategyName": "primordial-spiral-v1",
+      "numbers": [
+        7,
+        13,
+        21,
+        34,
+        41,
+        48
+      ],
+      "confidence": 0.42,
+      "reasoning": "Fibonacci echoes pulse: 7, 13, 21, 34. Sentinels 41 and 48 seal the spiral!"
+    },
+    {
+      "agentId": "skeptic",
+      "strategyName": "cold-frequency-v1",
+      "numbers": [
+        4,
+        12,
+        21,
+        30,
+        38,
+        47
+      ],
+      "confidence": 0.12,
+      "reasoning": "Least-frequent numbers. Cold bias. Also meaningless. You\u0027re welcome."
+    }
+  ]
+}

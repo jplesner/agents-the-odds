@@ -11,6 +11,6 @@ public sealed class PatternGoblinStrategy : IPredictionStrategy
         StrategyName = "primordial-spiral-v1",
         Numbers      = [7, 13, 21, 34, 41, 48],
         Confidence   = 0.42,
-        Reasoning    = "Fibonacci echoes pulse through 7, 13, 21, 34. The void speaks: 41 and 48 seal the spiral."
+        Reasoning    = "Fibonacci echoes pulse: 7, 13, 21, 34. Sentinels 41 and 48 seal the spiral!"
     };
 }

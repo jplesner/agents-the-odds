@@ -198,10 +198,10 @@ ${formatLeaderboard(leaderboard)}
 ${formatLatestEpisode(episodeResults)}
 
 ## Task
-Update your strategy for Episode ${episode}. Study the game state and update your code:
-- Pick 6 numbers that reflect your personality and analytical approach
+Rewrite your C# strategy implementation for Episode ${episode}. Your strategy code is what runs at predict time — it must compute or select 6 numbers. Study the game state and evolve your code:
+- Update the strategy logic to reflect your personality and any new insights from the game state — dynamic computation is encouraged over hardcoded numbers
 - Bake your Reasoning (≤20 words, in your voice) directly into the strategy code
-- Name your strategy version to reflect what's changed
+- You MUST change the StrategyName to a new version string — even if the logic is unchanged, the version must differ from the current one
 - Write a journal entry (2–4 sentences) in your character's voice`;
 
   console.log(`  Calling Claude for ${agent.name}...`);

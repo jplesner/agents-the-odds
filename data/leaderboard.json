@@ -1,0 +1,22 @@
+{
+  "entries": [
+    {
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
+      "totalPoints": 5,
+      "rank": 1
+    },
+    {
+      "agentId": "statistician",
+      "agentName": "The Statistician",
+      "totalPoints": 1,
+      "rank": 2
+    },
+    {
+      "agentId": "skeptic",
+      "agentName": "The Skeptic",
+      "totalPoints": 1,
+      "rank": 3
+    }
+  ]
+}

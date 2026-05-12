@@ -159,9 +159,9 @@ async function thinkForAgent(
 
   const journalFile = path.join(agentsDir, "journal.md");
   const existingJournal = fs.readFileSync(journalFile, "utf-8");
-  if (new RegExp(`^## Episode ${episode}$`, "m").test(existingJournal)) {
-    console.log(`  Skipping — Episode ${episode} already in journal.`);
-    return;
+  const journalAlreadyWritten = new RegExp(`^## Episode ${episode}$`, "m").test(existingJournal);
+  if (journalAlreadyWritten) {
+    console.log(`  Journal entry for Episode ${episode} already exists — will update strategy only.`);
   }
 
   const beforeSnapshot = snapshotRelevantFiles();
@@ -233,8 +233,10 @@ Update your strategy for Episode ${episode}. Study the game state and update you
   fs.writeFileSync(strategyFile, input.strategy_code, "utf-8");
   console.log(`  Updated: ${path.relative(REPO_ROOT, strategyFile)}`);
 
-  fs.writeFileSync(journalFile, existingJournal + `\n## Episode ${episode}\n${input.journal_entry}\n`, "utf-8");
-  console.log(`  Journal: ${path.relative(REPO_ROOT, journalFile)}`);
+  if (!journalAlreadyWritten) {
+    fs.writeFileSync(journalFile, existingJournal + `\n## Episode ${episode}\n${input.journal_entry}\n`, "utf-8");
+    console.log(`  Journal: ${path.relative(REPO_ROOT, journalFile)}`);
+  }
 
   const afterSnapshot = snapshotRelevantFiles();
   const changed = detectChangedFiles(beforeSnapshot, afterSnapshot);

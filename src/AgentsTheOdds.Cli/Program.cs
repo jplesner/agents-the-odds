@@ -1,4 +1,3 @@
-using AgentsTheOdds.Application;
 using AgentsTheOdds.Application.Commands;
 using AgentsTheOdds.Application.Services;
 using AgentsTheOdds.Cli;
@@ -9,6 +8,7 @@ using AgentsTheOdds.Domain.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.CommandLine;
+using System.Text.Json;
 
 var dataRoot = Environment.GetEnvironmentVariable("AGENTS_DATA_ROOT")
                ?? DataRootResolver.Resolve();
@@ -19,13 +19,10 @@ var host = Host.CreateDefaultBuilder(args)
     {
         services.AddSingleton(dataOpts);
 
-        // Phase 1 (in-memory, play command only)
         services.AddSingleton<IAgentRepository, InMemoryAgentRepository>();
         services.AddSingleton<IPredictionRepository, InMemoryPredictionRepository>();
-        services.AddSingleton<IGamePresenter, ConsoleGamePresenter>();
-        services.AddTransient<GameRunner>();
 
-        // Phase 2 (file-based)
+        // File-based
         services.AddSingleton<IDrawRepository, JsonDrawRepository>();
         services.AddSingleton<IDrawService, RandomDrawService>();
         services.AddSingleton<IEpisodePredictionRepository, JsonEpisodePredictionRepository>();
@@ -37,6 +34,9 @@ var host = Host.CreateDefaultBuilder(args)
         services.AddTransient<DrawCommand>();
         services.AddTransient<PredictCommand>();
         services.AddTransient<ScoreCommand>();
+        services.AddTransient<ShowCommand>(sp => new ShowCommand(
+            sp.GetRequiredService<IEpisodeResultRepository>(),
+            new ConsoleGamePresenter().ShowEpisode));
     })
     .Build();
 
@@ -82,16 +82,37 @@ scoreCmd.SetHandler(episode =>
     Environment.Exit(cmd.Execute(episode));
 }, scoreEpisodeOption);
 
-// play (Phase 1 in-memory simulation)
-var playCmd = new Command("play", "Run a single in-memory game round (Phase 1)");
-playCmd.SetHandler(async () =>
+// show
+var showEpisodeOption = new Option<int>("--episode", "Episode number") { IsRequired = true };
+var showCmd = new Command("show", "Display the results of a scored episode")
 {
-    await host.Services.GetRequiredService<GameRunner>().RunAsync();
+    showEpisodeOption,
+};
+showCmd.SetHandler(episode =>
+{
+    var cmd = host.Services.GetRequiredService<ShowCommand>();
+    Environment.Exit(cmd.Execute(episode));
+}, showEpisodeOption);
+
+// agents — outputs agent list as JSON for the think script
+var agentsCmd = new Command("agents", "List all agents as JSON");
+agentsCmd.SetHandler(() =>
+{
+    var repo = host.Services.GetRequiredService<IAgentRepository>();
+    var output = repo.GetAll().Select(a => new
+    {
+        id            = a.Id,
+        name          = a.Name,
+        strategyClass = a.Strategy.GetType().Name,
+    });
+    Console.WriteLine(JsonSerializer.Serialize(output,
+        new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
 });
 
 rootCommand.AddCommand(drawCmd);
 rootCommand.AddCommand(predictCmd);
 rootCommand.AddCommand(scoreCmd);
-rootCommand.AddCommand(playCmd);
+rootCommand.AddCommand(showCmd);
+rootCommand.AddCommand(agentsCmd);
 
 return await rootCommand.InvokeAsync(args);

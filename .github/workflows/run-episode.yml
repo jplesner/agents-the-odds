@@ -13,6 +13,15 @@ on:
         required: false
         type: boolean
         default: false
+  workflow_call:
+    inputs:
+      episode:
+        required: true
+        type: number
+      force:
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   run-episode:

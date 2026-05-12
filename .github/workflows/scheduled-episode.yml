@@ -1,0 +1,28 @@
+name: Scheduled Episode
+
+on:
+  schedule:
+    - cron: "0 12 * * 2" # Every Tuesday at 7am ET (12:00 UTC / EST; 8am during EDT)
+  workflow_dispatch: # Allow manual trigger for testing
+
+jobs:
+  detect-episode:
+    runs-on: ubuntu-latest
+    outputs:
+      episode: ${{ steps.next.outputs.episode }}
+    steps:
+      - name: Detect next episode number
+        id: next
+        run: |
+          LAST=$(git ls-remote --heads https://github.com/${{ github.repository }} 'episode/*' \
+            | grep -oP 'episode/\K[0-9]+' | sort -n | tail -1)
+          NEXT=$((${LAST:-0} + 1))
+          echo "episode=$NEXT" >> $GITHUB_OUTPUT
+
+  run-episode:
+    needs: detect-episode
+    uses: ./.github/workflows/run-episode.yml
+    with:
+      episode: ${{ needs.detect-episode.outputs.episode }}
+      force: false
+    secrets: inherit

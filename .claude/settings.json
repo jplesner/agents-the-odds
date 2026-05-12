@@ -2,11 +2,11 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Read",
+        "matcher": "Read|Grep",
         "hooks": [
           {
             "type": "command",
-            "command": "bash hooks/scripts/readHook.sh"
+            "command": "bash .claude/scripts/readHook.sh"
           }
         ]
       }

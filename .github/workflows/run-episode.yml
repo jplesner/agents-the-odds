@@ -1,0 +1,71 @@
+name: Run Episode
+
+on:
+  workflow_dispatch:
+    inputs:
+      episode:
+        description: "Episode number"
+        required: true
+        type: number
+
+jobs:
+  run-episode:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create episode branch
+        run: git checkout -b episode/${{ inputs.episode }}
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.x"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install script dependencies
+        run: npm install
+        working-directory: scripts
+
+      - name: Think
+        run: npm run think -- --episode ${{ inputs.episode }}
+        working-directory: scripts
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Predict
+        run: dotnet run --project src/AgentsTheOdds.Cli -- predict --episode ${{ inputs.episode }}
+
+      - name: Draw
+        run: dotnet run --project src/AgentsTheOdds.Cli -- draw --episode ${{ inputs.episode }}
+
+      - name: Score
+        run: dotnet run --project src/AgentsTheOdds.Cli -- score --episode ${{ inputs.episode }}
+
+      - name: Show
+        run: dotnet run --project src/AgentsTheOdds.Cli -- show --episode ${{ inputs.episode }}
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ scripts/agents/ src/AgentsTheOdds.Domain/Strategies/
+          git commit -m "Episode ${{ inputs.episode }} results"
+          git push origin episode/${{ inputs.episode }}
+
+      - name: Open PR
+        run: |
+          EPISODE_PADDED=$(printf "%03d" ${{ inputs.episode }})
+          RECAP=$(cat data/episodes/episode-${EPISODE_PADDED}.md)
+          gh pr create \
+            --base ${{ github.ref_name }} \
+            --head episode/${{ inputs.episode }} \
+            --title "Episode ${{ inputs.episode }} results" \
+            --body "$RECAP"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -26,6 +26,6 @@ jobs:
       pull-requests: write
     uses: ./.github/workflows/run-episode.yml
     with:
-      episode: ${{ needs.detect-episode.outputs.episode }}
+      episode: ${{ fromJSON(needs.detect-episode.outputs.episode) }}
       force: false
     secrets: inherit

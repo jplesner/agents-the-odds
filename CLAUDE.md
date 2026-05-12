@@ -60,16 +60,17 @@ All Phase 2 state lives under `data/` at the repo root (resolved via `DataRootRe
 
 ```
 data/
-  draws/episode-001.json          ← written by draw
-  predictions/episode-001.json    ← written by predict
-  episodes/episode-001.json       ← written by score
-  episodes/episode-001.md         ← written by score
-  leaderboard.json                ← written by score
+  draws/episode-001.json                        ← written by draw
+  predictions/episode-001.json                  ← written by predict
+  episodes/episode-001.json                     ← written by score
+  episodes/episode-001.md                       ← written by score
+  leaderboard.json                              ← written by score
+  agents/{id}/strategies/episode-001.cs         ← written by think (strategy snapshot)
 ```
 
 ### Core data flow (Phase 3)
 
-0. **think** (`scripts/think.ts`) — calls `dotnet run ... -- agents` to get the agent list; for each agent reads `scripts/agents/{id}/personality.md`, `journal.md`, and the current `.cs` strategy file; calls Claude (`claude-opus-4-7`) with the game state and forces a structured `update_agent` tool response; writes the new strategy code back to `src/AgentsTheOdds.Domain/Strategies/{Class}.cs` and appends a journal entry
+0. **think** (`scripts/think.ts`) — calls `dotnet run ... -- agents` to get the agent list; for each agent reads `data/agents/{id}/personality.md`, `journal.md`, and the current `.cs` strategy file; calls Claude (`claude-sonnet-4-6`) with the game state and forces a structured `update_agent` tool response; writes the new strategy code back to `src/AgentsTheOdds.Domain/Strategies/{Class}.cs`, snapshots it to `data/agents/{id}/strategies/episode-{n}.cs`, and appends a journal entry
 1. **predict** — loads agents, draw history (from past episode results), leaderboard; calls `agent.Strategy.GeneratePrediction(context)` per agent with that agent's own filtered history in `PredictionContext.AgentHistory`; validates via `LotteryValidator`; saves `EpisodePredictionSet`
 2. **draw** — calls `IDrawService.Draw(episode)` → `RandomDrawService` generates 6 random numbers, calls `IDrawRepository.RecordDraw()`
 3. **score** — loads locked predictions + draw via `IDrawRepository.GetByEpisode()` (errors if missing); scores via `Scorer.Score()`; merges leaderboard via `LeaderboardMerger.Merge()`; generates `RealityCheck` via `IRealityCheckGenerator`; saves `EpisodeResult` + markdown recap + leaderboard
@@ -78,7 +79,7 @@ data/
 
 **`IPredictionStrategy`** is the extension point. Adding a new agent means implementing this interface in `AgentsTheOdds.Domain`, registering it in `InMemoryAgentRepository`, and adding a `scripts/agents/{id}/` folder with `personality.md` and `journal.md`. Each strategy receives a `PredictionContext` with rules, draw history, its own prior `PredictionResult` history (filtered by `AgentId`), and the current leaderboard.
 
-**Think phase** — `think.ts` calls `dotnet run ... -- agents` at startup to get the authoritative agent list (id, name, strategyClass). The `.cs` strategy files are the source of truth for compiled behaviour; `think.ts` overwrites them and then `dotnet build` recompiles before `predict` runs. Agent personalities and journals live in `scripts/agents/` and are never read by the .NET code.
+**Think phase** — `think.ts` calls `dotnet run ... -- agents` at startup to get the authoritative agent list (id, name, strategyClass). The `.cs` strategy files are the source of truth for compiled behaviour; `think.ts` overwrites them, snapshots the code to `data/agents/{id}/strategies/episode-{n}.cs`, and then `dotnet build` recompiles before `predict` runs. Agent personalities and journals live in `data/agents/{id}/` and are never read by the .NET code.
 
 **`IDrawService`** owns draw generation logic (currently random). `IDrawRepository` is pure CRUD storage. Swapping in a real lottery API means implementing a new `IDrawService` only.
 
@@ -133,7 +134,7 @@ npx astro check      # TypeScript check
 ### Architecture
 
 - **`src/types/data.ts`** — TypeScript interfaces for all JSON data shapes. **Source of truth shared with `scripts/types.ts`**, which re-exports from here.
-- **`src/lib/data.ts`** — Build-time helpers (`readLeaderboard`, `readAllEpisodes`, `readEpisode`, `getEpisodeNumbers`). Uses synchronous `node:fs`. All I/O errors swallowed — missing files produce empty/null gracefully so the site builds even with no episode data.
+- **`src/lib/data.ts`** — Build-time helpers (`readLeaderboard`, `readAllEpisodes`, `readEpisode`, `getEpisodeNumbers`, `readAgentProfiles`, `readEpisodeStrategyCodes`). Uses synchronous `node:fs`. All I/O errors swallowed — missing files produce empty/null gracefully so the site builds even with no episode data.
 - **`src/layouts/Layout.astro`** — Shared HTML shell with nav. Imports `src/styles/global.css`.
 - **`src/styles/global.css`** — Tailwind v4 config via `@theme` (custom colors, Roboto font), base element styles, and `.data-table` component class.
 

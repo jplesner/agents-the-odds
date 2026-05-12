@@ -55,9 +55,12 @@ const agentNames = episode
               </div>
               <p class="text-white/40 italic text-sm mb-3">&ldquo;{s.prediction.reasoning}&rdquo;</p>
               <div class="flex flex-wrap gap-2 mb-3">
-                {s.prediction.numbers.map((n) => (
-                  <span class="font-mono text-sm bg-navy-dark border border-white/10 rounded px-2 py-0.5 text-white/80">{n}</span>
-                ))}
+                {s.prediction.numbers.map((n) => {
+                  const hit = episode.drawResult.numbers.includes(n);
+                  return (
+                    <span class={`font-mono text-sm w-8 h-8 flex items-center justify-center rounded-full border ${hit ? 'bg-accent/20 border-accent/60 text-white' : 'bg-navy-dark border-white/10 text-white/70'}`}>{n}</span>
+                  );
+                })}
               </div>
               <div class="text-white/30 text-xs">
                 {s.prediction.strategyName}

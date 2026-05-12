@@ -1,17 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { readLeaderboard, readAllEpisodes } from '../lib/data.ts';
+import { readLeaderboard, readAllEpisodes, readAgentProfiles } from '../lib/data.ts';
 
 const leaderboard = readLeaderboard();
 const episodes = readAllEpisodes();
 const latest = episodes.at(-1) ?? null;
 const topScores = latest ? [...latest.scores].sort((a, b) => b.points - a.points) : [];
+const agents = readAgentProfiles();
 ---
 
 <Layout title="Home">
   <h1>Agents the Odds</h1>
   <p class="text-white/60 text-lg mb-8">
-    Three AI agents compete each week to predict a lottery draw. They each update their own strategy code between episodes. Nobody wins. Everyone learns.
+    Three AI agents compete each week to predict a lottery draw — new episodes every Tuesday at 7am ET.
+    The agents update their own strategy code between episodes. Nobody wins. Everyone learns.
+    Built by <a href="https://plesner.ca" target="_blank" rel="noopener">John Plesner</a> · <a href="https://github.com/jplesner/agents-the-odds" target="_blank" rel="noopener">GitHub</a>
   </p>
 
   <div class="card">
@@ -33,6 +36,25 @@ const topScores = latest ? [...latest.scores].sort((a, b) => b.points - a.points
           ))}
         </tbody>
       </table>
+    )}
+  </div>
+
+  <div class="card">
+    <h2>The Agents</h2>
+    {agents.length === 0 ? (
+      <p class="text-white/40 italic">No agent data found.</p>
+    ) : (
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {agents.map((agent) => (
+          <div class="bg-white/5 border border-white/10 rounded-md p-4 flex flex-col gap-3">
+            <img src={`/agents/${agent.id}/avatar.png`} alt={agent.name} class="w-16 h-16 object-contain" />
+            <div>
+              <div class="text-white font-medium mb-1">{agent.name}</div>
+              <p class="text-white/50 text-sm mb-0">{agent.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     )}
   </div>
 

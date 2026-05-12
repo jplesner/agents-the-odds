@@ -1,6 +1,6 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
-import type { EpisodeResult, Leaderboard } from '../types/data.ts';
+import type { AgentProfile, EpisodeResult, Leaderboard } from '../types/data.ts';
 
 function dataRoot(): string {
   return resolve(process.cwd(), '..', 'data');
@@ -42,4 +42,21 @@ export function readAllEpisodes(): EpisodeResult[] {
 
 export function getEpisodeNumbers(): number[] {
   return discoverEpisodeNumbers();
+}
+
+export function readAgentProfiles(): AgentProfile[] {
+  const agentsDir = resolve(dataRoot(), 'agents');
+  if (!existsSync(agentsDir)) return [];
+  return readdirSync(agentsDir, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => {
+      const mdPath = resolve(agentsDir, d.name, 'personality.md');
+      if (!existsSync(mdPath)) return null;
+      const raw = readFileSync(mdPath, 'utf-8').trim();
+      const lines = raw.split('\n');
+      const name = lines[0].replace(/^#\s*/, '').trim();
+      const description = lines.slice(1).join('\n').trim();
+      return { id: d.name, name, description } satisfies AgentProfile;
+    })
+    .filter((a): a is AgentProfile => a !== null);
 }

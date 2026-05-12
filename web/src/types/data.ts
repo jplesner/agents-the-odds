@@ -37,3 +37,9 @@ export interface EpisodeResult {
   leaderboard: LeaderboardEntry[];
   realityCheck: string;
 }
+
+export interface AgentProfile {
+  id: string;
+  name: string;
+  description: string;
+}

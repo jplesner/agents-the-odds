@@ -7,6 +7,9 @@ const episodes = readAllEpisodes();
 const latest = episodes.at(-1) ?? null;
 const topScores = latest ? [...latest.scores].sort((a, b) => b.points - a.points) : [];
 const agents = readAgentProfiles();
+const agentNames = latest
+  ? Object.fromEntries(latest.leaderboard.map((e) => [e.agentId, e.agentName]))
+  : {};
 ---
 
 <Layout title="Home">
@@ -59,7 +62,7 @@ const agents = readAgentProfiles();
         <tbody>
           {topScores.map((s) => (
             <tr>
-              <td class="text-white/80">{s.prediction.agentId}</td>
+              <td class="text-white/80">{agentNames[s.prediction.agentId] ?? s.prediction.agentId}</td>
               <td class="font-mono text-white/60 tracking-wider">{s.prediction.numbers.join(' · ')}</td>
               <td>{s.matches}</td>
               <td class="text-accent font-medium">{s.points}</td>

@@ -54,11 +54,19 @@ public class ScorerTests
     }
 
     [Fact]
-    public void Score_TwoMatches_Returns0Points()
+    public void Score_TwoMatches_Returns5Points()
     {
         var result = Scorer.Score(MakePrediction([1, 2, 7, 8, 9, 10]), Draw);
         Assert.Equal(2, result.Matches);
-        Assert.Equal(0, result.Points);
+        Assert.Equal(5, result.Points);
+    }
+
+    [Fact]
+    public void Score_OneMatch_Returns1Point()
+    {
+        var result = Scorer.Score(MakePrediction([1, 7, 8, 9, 10, 11]), Draw);
+        Assert.Equal(1, result.Matches);
+        Assert.Equal(1, result.Points);
     }
 
     [Fact]

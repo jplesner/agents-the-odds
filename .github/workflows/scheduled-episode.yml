@@ -21,6 +21,9 @@ jobs:
 
   run-episode:
     needs: detect-episode
+    permissions:
+      contents: write
+      pull-requests: write
     uses: ./.github/workflows/run-episode.yml
     with:
       episode: ${{ needs.detect-episode.outputs.episode }}

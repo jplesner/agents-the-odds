@@ -61,7 +61,6 @@ public class ScoreCommandTests
     {
         Id = id,
         Name = $"Agent {id}",
-        Behavior = string.Empty,
         Strategy = new StatisticianStrategy(),
     };
 

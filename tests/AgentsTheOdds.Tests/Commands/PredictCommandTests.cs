@@ -54,7 +54,6 @@ public class PredictCommandTests
     {
         Id = id,
         Name = id,
-        Behavior = string.Empty,
         Strategy = new StatisticianStrategy(),
     };
 
@@ -62,7 +61,6 @@ public class PredictCommandTests
     {
         Id = id,
         Name = id,
-        Behavior = string.Empty,
         Strategy = new InvalidStrategy(),
     };
 

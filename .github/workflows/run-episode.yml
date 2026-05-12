@@ -7,6 +7,11 @@ on:
         description: "Episode number"
         required: true
         type: number
+      force:
+        description: "Overwrite existing predictions and draw"
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   run-episode:
@@ -39,10 +44,10 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
       - name: Predict
-        run: dotnet run --project src/AgentsTheOdds.Cli -- predict --episode ${{ inputs.episode }}
+        run: dotnet run --project src/AgentsTheOdds.Cli -- predict --episode ${{ inputs.episode }} ${{ inputs.force && '--force' || '' }}
 
       - name: Draw
-        run: dotnet run --project src/AgentsTheOdds.Cli -- draw --episode ${{ inputs.episode }}
+        run: dotnet run --project src/AgentsTheOdds.Cli -- draw --episode ${{ inputs.episode }} ${{ inputs.force && '--force' || '' }}
 
       - name: Score
         run: dotnet run --project src/AgentsTheOdds.Cli -- score --episode ${{ inputs.episode }}

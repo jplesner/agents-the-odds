@@ -1,7 +1,7 @@
 using AgentsTheOdds.Domain.Interfaces;
 using AgentsTheOdds.Domain.Models;
 
-namespace AgentsTheOdds.Application.Agents;
+namespace AgentsTheOdds.Application;
 
 public sealed class RandomBaselineStrategy : IPredictionStrategy
 {

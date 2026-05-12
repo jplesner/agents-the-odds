@@ -10,6 +10,15 @@ import type { AgentConfig, DrawResult, EpisodeResult, Leaderboard } from "./type
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.join(__dirname, "..");
 
+// Load .env if present (local development convenience)
+const envFile = path.join(__dirname, ".env");
+if (fs.existsSync(envFile)) {
+  for (const line of fs.readFileSync(envFile, "utf-8").split("\n")) {
+    const match = line.match(/^([^#=][^=]*)=(.*)/);
+    if (match) process.env[match[1].trim()] ??= match[2].trim();
+  }
+}
+
 const client = new Anthropic();
 
 function loadAgents(): AgentConfig[] {

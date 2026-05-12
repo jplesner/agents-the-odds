@@ -484,3 +484,6 @@ $RECYCLE.BIN/
 *.swp
 
 .claude/*.local.json
+
+# Playwright MCP output
+.playwright-mcp/

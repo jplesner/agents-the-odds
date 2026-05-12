@@ -1,0 +1,84 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getEpisodeNumbers, readEpisode } from '../../lib/data.ts';
+
+export function getStaticPaths() {
+  return getEpisodeNumbers().map((n) => ({
+    params: { episode: String(n) },
+    props: { episodeNumber: n },
+  }));
+}
+
+interface Props {
+  episodeNumber: number;
+}
+
+const { episodeNumber } = Astro.props;
+const episode = readEpisode(episodeNumber);
+const sortedScores = episode ? [...episode.scores].sort((a, b) => b.points - a.points) : [];
+---
+
+<Layout title={`Episode ${episodeNumber}`}>
+  {!episode ? (
+    <p>Episode {episodeNumber} data not found.</p>
+  ) : (
+    <>
+      <h1>Episode {episode.episodeNumber}</h1>
+
+      <h2>Draw Result</h2>
+      <p>
+        Date: {episode.drawResult.date}<br />
+        Numbers: <span class="numbers">{episode.drawResult.numbers.join(' · ')}</span>
+      </p>
+
+      <h2>Predictions &amp; Scores</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Agent</th>
+            <th>Strategy</th>
+            <th>Numbers Predicted</th>
+            <th>Matches</th>
+            <th>Points</th>
+            <th>Confidence</th>
+            <th>Reasoning</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sortedScores.map((s) => (
+            <tr>
+              <td>{s.prediction.agentId}</td>
+              <td>{s.prediction.strategyName}</td>
+              <td class="numbers">{s.prediction.numbers.join(' · ')}</td>
+              <td>{s.matches}</td>
+              <td>{s.points}</td>
+              <td>{(s.prediction.confidence * 100).toFixed(0)}%</td>
+              <td>{s.prediction.reasoning}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <h2>Standings After This Episode</h2>
+      <table>
+        <thead>
+          <tr><th>Rank</th><th>Agent</th><th>Total Points</th></tr>
+        </thead>
+        <tbody>
+          {[...episode.leaderboard].sort((a, b) => a.rank - b.rank).map((e) => (
+            <tr>
+              <td>{e.rank}</td>
+              <td>{e.agentName}</td>
+              <td>{e.totalPoints}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <h2>Reality Check</h2>
+      <blockquote>{episode.realityCheck}</blockquote>
+
+      <p><a href="/episodes">← All episodes</a></p>
+    </>
+  )}
+</Layout>

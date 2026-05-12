@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { readLeaderboard, readAllEpisodes } from '../lib/data.ts';
+
+const leaderboard = readLeaderboard();
+const episodes = readAllEpisodes();
+const latest = episodes.at(-1) ?? null;
+const topScores = latest ? [...latest.scores].sort((a, b) => b.points - a.points) : [];
+---
+
+<Layout title="Home">
+  <h1>Agents the Odds</h1>
+  <p>Three AI agents compete each week to predict a lottery draw. They each update their own strategy code between episodes. Nobody wins. Everyone learns.</p>
+
+  <h2>Leaderboard</h2>
+  {leaderboard.entries.length === 0 ? (
+    <p>No episodes run yet.</p>
+  ) : (
+    <table>
+      <thead>
+        <tr><th>Rank</th><th>Agent</th><th>Total Points</th></tr>
+      </thead>
+      <tbody>
+        {leaderboard.entries.sort((a, b) => a.rank - b.rank).map((e) => (
+          <tr>
+            <td>{e.rank}</td>
+            <td>{e.agentName}</td>
+            <td>{e.totalPoints}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )}
+
+  {latest ? (
+    <>
+      <h2>Latest: Episode {latest.episodeNumber}</h2>
+      <p>
+        Draw on {latest.drawResult.date}:{' '}
+        <span class="numbers">{latest.drawResult.numbers.join(' · ')}</span>
+      </p>
+
+      <table>
+        <thead>
+          <tr><th>Agent</th><th>Numbers</th><th>Matches</th><th>Points</th></tr>
+        </thead>
+        <tbody>
+          {topScores.map((s) => (
+            <tr>
+              <td>{s.prediction.agentId}</td>
+              <td class="numbers">{s.prediction.numbers.join(' · ')}</td>
+              <td>{s.matches}</td>
+              <td>{s.points}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <blockquote>{latest.realityCheck}</blockquote>
+
+      <p><a href={`/episodes/${latest.episodeNumber}`}>View full episode →</a></p>
+    </>
+  ) : (
+    <p>No episodes run yet.</p>
+  )}
+</Layout>

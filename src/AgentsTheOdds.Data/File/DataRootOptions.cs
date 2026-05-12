@@ -1,4 +1,4 @@
-namespace AgentsTheOdds.Data.Storage;
+namespace AgentsTheOdds.Data.File;
 
 public sealed class DataRootOptions
 {

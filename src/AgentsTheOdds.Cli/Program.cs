@@ -2,13 +2,13 @@ using AgentsTheOdds.Application.Commands;
 using AgentsTheOdds.Application.Services;
 using AgentsTheOdds.Cli;
 using AgentsTheOdds.Data;
-using AgentsTheOdds.Data.Storage;
 using AgentsTheOdds.Domain.Interfaces;
 using AgentsTheOdds.Domain.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.CommandLine;
 using System.Text.Json;
+using AgentsTheOdds.Data.File;
 
 var dataRoot = Environment.GetEnvironmentVariable("AGENTS_DATA_ROOT")
                ?? DataRootResolver.Resolve();

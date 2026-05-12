@@ -1,8 +1,8 @@
+using System.Text;
 using AgentsTheOdds.Domain.Interfaces;
 using AgentsTheOdds.Domain.Models;
-using System.Text;
 
-namespace AgentsTheOdds.Data.Storage;
+namespace AgentsTheOdds.Data.File;
 
 public sealed class MarkdownRecapWriter(DataRootOptions options) : IRecapWriter
 {

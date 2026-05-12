@@ -1,8 +1,8 @@
+using System.Text.Json;
 using AgentsTheOdds.Domain.Interfaces;
 using AgentsTheOdds.Domain.Models;
-using System.Text.Json;
 
-namespace AgentsTheOdds.Data.Storage;
+namespace AgentsTheOdds.Data.File;
 
 public sealed class JsonEpisodePredictionRepository(DataRootOptions options) : IEpisodePredictionRepository
 {

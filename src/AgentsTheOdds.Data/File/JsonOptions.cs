@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace AgentsTheOdds.Data.Storage;
+namespace AgentsTheOdds.Data.File;
 
 internal static class JsonOptions
 {

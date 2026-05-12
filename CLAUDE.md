@@ -37,9 +37,9 @@ dotnet test --filter "FullyQualifiedName~ScorerTests.Score_SixMatches_Returns100
 Four projects under `src/`, one test project under `tests/`:
 
 - **`AgentsTheOdds.Domain`** — models, interfaces, `LotteryValidator`, `Scorer`, strategy implementations (`PatternGoblinStrategy`, `SkepticStrategy`, `StatisticianStrategy`), domain services (`LeaderboardMerger`, `RealityCheckGenerator`)
-- **`AgentsTheOdds.Application`** — `GameRunner`, `RandomBaselineStrategy`, `RandomDrawService`, commands (`DrawCommand`, `PredictCommand`, `ScoreCommand`)
+- **`AgentsTheOdds.Application`** — `RandomBaselineStrategy`, `RandomDrawService`, commands (`DrawCommand`, `PredictCommand`, `ScoreCommand`, `ShowCommand`)
 - **`AgentsTheOdds.Data`** — in-memory repositories (`InMemoryDrawRepository`, `InMemoryPredictionRepository`, `InMemoryAgentRepository`), file-based storage under `File/` (`JsonDrawRepository`, `JsonEpisodePredictionRepository`, `JsonEpisodeResultRepository`, `JsonLeaderboardRepository`, `MarkdownRecapWriter`)
-- **`AgentsTheOdds.Cli`** — `Program.cs`, `ConsoleGamePresenter`, Generic Host + DI wiring, `System.CommandLine` subcommands
+- **`AgentsTheOdds.Cli`** — `Program.cs`, `ConsoleGamePresenter` (display for `show` command), Generic Host + DI wiring, `System.CommandLine` subcommands
 - **`scripts/`** — Node.js/TypeScript tooling for the think phase: `think.ts` (orchestrator), `prompt.ts` (system prompt + tool definition), `types.ts` (shared interfaces). Agent personality and journal files live under `scripts/agents/{agent-id}/`.
 
 Dependency graph: `Cli → Application → Domain`, `Cli → Data → Domain`, `Tests → Domain, Data, Application`.
@@ -51,8 +51,8 @@ Dependency graph: `Cli → Application → Domain`, `Cli → Data → Domain`, `
 | `predict --episode <n> [--force]` | Generate and lock agent predictions |
 | `draw --episode <n> [--force]` | Generate and record the draw result |
 | `score --episode <n>` | Score predictions against the recorded draw |
+| `show --episode <n>` | Display episode results in the console |
 | `agents` | Print all agents as JSON (consumed by `think.ts`) |
-| `play` | Phase 1 in-memory simulation |
 
 ### File storage
 

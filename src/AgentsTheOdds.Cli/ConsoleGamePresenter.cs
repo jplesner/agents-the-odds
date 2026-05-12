@@ -1,52 +1,41 @@
-using AgentsTheOdds.Domain.Interfaces;
 using AgentsTheOdds.Domain.Models;
 
 namespace AgentsTheOdds.Cli;
 
-public sealed class ConsoleGamePresenter : IGamePresenter
+public sealed class ConsoleGamePresenter
 {
-    public void ShowHeader(DrawResult draw)
+    public void ShowEpisode(EpisodeResult result)
     {
-        Console.WriteLine("╔══════════════════════════════════════╗");
-        Console.WriteLine("║          Agents the Odds             ║");
-        Console.WriteLine("╚══════════════════════════════════════╝");
-        Console.WriteLine();
-        Console.WriteLine($"Draw #{draw.DrawNumber} · {draw.Date}");
-        Console.WriteLine($"Numbers: {string.Join("  ", draw.Numbers)}");
-        Console.WriteLine();
-    }
+        var draw = result.DrawResult;
 
-    public void ShowInvalidPrediction(string agentName, string error)
-    {
-        Console.WriteLine($"[INVALID] {agentName}: {error}");
-    }
+        Console.WriteLine();
+        Console.WriteLine($"── Episode {result.EpisodeNumber} ─────────────────────────────────────────");
+        Console.WriteLine($"   Draw: [{string.Join(", ", draw.Numbers)}]");
+        Console.WriteLine();
 
-    public void ShowPredictions(IReadOnlyList<(Agent Agent, PredictionResult Result)> ranked)
-    {
         Console.WriteLine("── Predictions ─────────────────────────────────────────────");
         Console.WriteLine();
-        foreach (var (agent, result) in ranked)
+
+        foreach (var score in result.Scores.OrderByDescending(s => s.Points).ThenByDescending(s => s.Prediction.Confidence))
         {
-            Console.WriteLine($"  {agent.Name}  ({result.Prediction.StrategyName})");
-            Console.WriteLine($"  Picked:     {string.Join("  ", result.Prediction.Numbers)}");
-            Console.WriteLine($"  Confidence: {result.Prediction.Confidence:F2}");
-            Console.WriteLine($"  Reasoning:  \"{result.Prediction.Reasoning}\"");
-            Console.WriteLine($"  Result:     {result.Matches} matches → {result.Points} pts");
+            var p = score.Prediction;
+            Console.WriteLine($"  {p.AgentId}  ({p.StrategyName})");
+            Console.WriteLine($"  Picked:     [{string.Join(", ", p.Numbers)}]");
+            Console.WriteLine($"  Confidence: {p.Confidence:F2}");
+            Console.WriteLine($"  Reasoning:  \"{p.Reasoning}\"");
+            Console.WriteLine($"  Result:     {score.Matches} matches → {score.Points} pts");
             Console.WriteLine();
         }
-    }
 
-    public void ShowLeaderboard(IReadOnlyList<(Agent Agent, PredictionResult Result)> ranked)
-    {
         Console.WriteLine("── Leaderboard ─────────────────────────────────────────────");
         Console.WriteLine();
-        Console.WriteLine($"  {"#",-3} {"Agent",-22} {"Pts",5}   {"Matches",7}   {"Confidence",10}");
-        Console.WriteLine($"  {new string('-', 55)}");
-        for (var i = 0; i < ranked.Count; i++)
-        {
-            var (agent, result) = ranked[i];
-            Console.WriteLine($"  {i + 1,-3} {agent.Name,-22} {result.Points,5}   {result.Matches,7}   {result.Prediction.Confidence,10:F2}");
-        }
+        Console.WriteLine($"  {"#",-3} {"Agent",-22} {"Total Pts",9}");
+        Console.WriteLine($"  {new string('-', 38)}");
+        foreach (var entry in result.Leaderboard.OrderBy(e => e.Rank))
+            Console.WriteLine($"  {entry.Rank,-3} {entry.AgentName,-22} {entry.TotalPoints,9}");
+        Console.WriteLine();
+
+        Console.WriteLine($"  {result.RealityCheck}");
         Console.WriteLine();
     }
 }

@@ -159,7 +159,6 @@ Update your strategy for Episode ${episode}. Study the game state and update you
   const response = await client.messages.create({
     model: "claude-sonnet-4-6",
     max_tokens: 8192,
-    thinking: { type: "adaptive" },
     system: [
       {
         type: "text",

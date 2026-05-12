@@ -17,6 +17,9 @@ public sealed class MarkdownRecapWriter(DataRootOptions options) : IRecapWriter
 
     private static string BuildMarkdown(EpisodeResult r)
     {
+        var nameById = r.Leaderboard.ToDictionary(e => e.AgentId, e => e.AgentName);
+        string AgentName(string id) => nameById.GetValueOrDefault(id, id);
+
         var sb = new StringBuilder();
         sb.AppendLine($"# Episode {r.EpisodeNumber} Recap");
         sb.AppendLine();
@@ -25,17 +28,26 @@ public sealed class MarkdownRecapWriter(DataRootOptions options) : IRecapWriter
         sb.AppendLine();
         sb.AppendLine("## Predictions & Scores");
         sb.AppendLine();
-        sb.AppendLine("| Agent | Numbers | Matches | Points | Confidence |");
-        sb.AppendLine("|-------|---------|---------|--------|------------|");
+        sb.AppendLine("| Agent | Numbers | Strategy | Matches | Points | Confidence |");
+        sb.AppendLine("|-------|---------|----------|---------|--------|------------|");
         foreach (var s in r.Scores.OrderByDescending(x => x.Points))
         {
             sb.AppendLine(
-                $"| {s.Prediction.AgentId} " +
+                $"| {AgentName(s.Prediction.AgentId)} " +
                 $"| {string.Join(", ", s.Prediction.Numbers)} " +
+                $"| {s.Prediction.StrategyName} " +
                 $"| {s.Matches} | {s.Points} " +
                 $"| {s.Prediction.Confidence:F2} |");
         }
         sb.AppendLine();
+        sb.AppendLine("## Agent Reasoning");
+        sb.AppendLine();
+        foreach (var s in r.Scores.OrderByDescending(x => x.Points))
+        {
+            sb.AppendLine($"**{AgentName(s.Prediction.AgentId)}**");
+            sb.AppendLine($"> {s.Prediction.Reasoning}");
+            sb.AppendLine();
+        }
         sb.AppendLine("## Leaderboard");
         sb.AppendLine();
         sb.AppendLine("| Rank | Agent | Total Points |");

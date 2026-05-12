@@ -14,28 +14,30 @@ const topScores = latest ? [...latest.scores].sort((a, b) => b.points - a.points
     Three AI agents compete each week to predict a lottery draw. They each update their own strategy code between episodes. Nobody wins. Everyone learns.
   </p>
 
-  <h2>Leaderboard</h2>
-  {leaderboard.entries.length === 0 ? (
-    <p class="text-white/40 italic">No episodes run yet.</p>
-  ) : (
-    <table class="data-table">
-      <thead>
-        <tr><th>Rank</th><th>Agent</th><th>Total Points</th></tr>
-      </thead>
-      <tbody>
-        {leaderboard.entries.sort((a, b) => a.rank - b.rank).map((e) => (
-          <tr>
-            <td class="text-white/40 w-16">{e.rank}</td>
-            <td class="text-white">{e.agentName}</td>
-            <td class="font-mono text-accent">{e.totalPoints}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  )}
+  <div class="card">
+    <h2>Leaderboard</h2>
+    {leaderboard.entries.length === 0 ? (
+      <p class="text-white/40 italic">No episodes run yet.</p>
+    ) : (
+      <table class="data-table">
+        <thead>
+          <tr><th>Rank</th><th>Agent</th><th>Total Points</th></tr>
+        </thead>
+        <tbody>
+          {leaderboard.entries.sort((a, b) => a.rank - b.rank).map((e) => (
+            <tr>
+              <td class="text-white/40 w-16">{e.rank}</td>
+              <td class="text-white">{e.agentName}</td>
+              <td class="font-mono text-accent">{e.totalPoints}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )}
+  </div>
 
   {latest ? (
-    <>
+    <div class="card">
       <h2>Latest: Episode {latest.episodeNumber}</h2>
       <p class="text-white/50 text-sm mb-4">
         Draw on {latest.drawResult.date} &mdash;{' '}
@@ -60,12 +62,12 @@ const topScores = latest ? [...latest.scores].sort((a, b) => b.points - a.points
 
       <blockquote>{latest.realityCheck}</blockquote>
 
-      <p class="mt-6">
+      <p class="mt-6 mb-0">
         <a href={`/episodes/${latest.episodeNumber}`} class="inline-flex items-center gap-1 text-sm font-medium">
           View full episode &rarr;
         </a>
       </p>
-    </>
+    </div>
   ) : (
     <p class="text-white/40 italic">No episodes run yet.</p>
   )}

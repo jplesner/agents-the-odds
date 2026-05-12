@@ -33,8 +33,12 @@ const { title } = Astro.props;
       <slot />
     </main>
 
-    <footer class="max-w-5xl mx-auto px-6 py-6 border-t border-white/10 text-white/30 text-sm">
-      Static site. Built from data at compile time.
+    <footer class="max-w-5xl mx-auto px-6 py-6 border-t border-white/10 text-white/30 text-sm flex items-center justify-between gap-4">
+      <span>Static site. Built from data at compile time.</span>
+      <div class="flex gap-4">
+        <a href="https://github.com/jplesner/agents-the-odds" class="text-white/30 hover:text-white/60 no-underline" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://plesner.ca" class="text-white/30 hover:text-white/60 no-underline" target="_blank" rel="noopener">plesner.ca</a>
+      </div>
     </footer>
   </body>
 </html>

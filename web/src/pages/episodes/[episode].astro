@@ -16,6 +16,9 @@ interface Props {
 const { episodeNumber } = Astro.props;
 const episode = readEpisode(episodeNumber);
 const sortedScores = episode ? [...episode.scores].sort((a, b) => b.points - a.points) : [];
+const agentNames = episode
+  ? Object.fromEntries(episode.leaderboard.map((e) => [e.agentId, e.agentName]))
+  : {};
 ---
 
 <Layout title={`Episode ${episodeNumber}`}>
@@ -25,64 +28,71 @@ const sortedScores = episode ? [...episode.scores].sort((a, b) => b.points - a.p
     <>
       <h1>Episode {episode.episodeNumber}</h1>
 
-      <h2>Draw Result</h2>
-      <p>
-        <span class="text-white/40 text-sm uppercase tracking-wide mr-2">Date</span>
-        <span class="text-white/80">{episode.drawResult.date}</span>
-      </p>
-      <p>
-        <span class="text-white/40 text-sm uppercase tracking-wide mr-2">Numbers</span>
-        <span class="font-mono text-white text-lg tracking-widest">{episode.drawResult.numbers.join(' · ')}</span>
-      </p>
+      <div class="card">
+        <h2>Draw Result</h2>
+        <p>
+          <span class="text-white/40 text-sm uppercase tracking-wide mr-2">Date</span>
+          <span class="text-white/80">{episode.drawResult.date}</span>
+        </p>
+        <p class="mb-0">
+          <span class="text-white/40 text-sm uppercase tracking-wide mr-2">Numbers</span>
+          <span class="font-mono text-white text-lg tracking-widest">{episode.drawResult.numbers.join(' · ')}</span>
+        </p>
+      </div>
 
-      <h2>Predictions &amp; Scores</h2>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Agent</th>
-            <th>Strategy</th>
-            <th>Numbers Predicted</th>
-            <th>Matches</th>
-            <th>Points</th>
-            <th>Confidence</th>
-            <th>Reasoning</th>
-          </tr>
-        </thead>
-        <tbody>
+      <div class="card">
+        <h2>Predictions &amp; Scores</h2>
+        <div class="flex flex-col gap-3">
           {sortedScores.map((s) => (
-            <tr>
-              <td class="text-white/80 whitespace-nowrap">{s.prediction.agentId}</td>
-              <td class="text-white/50 text-xs">{s.prediction.strategyName}</td>
-              <td class="font-mono tracking-wider text-white/70">{s.prediction.numbers.join(' · ')}</td>
-              <td class="text-center">{s.matches}</td>
-              <td class="text-accent font-medium text-center">{s.points}</td>
-              <td class="text-white/50 text-center">{(s.prediction.confidence * 100).toFixed(0)}%</td>
-              <td class="text-white/50 text-sm">{s.prediction.reasoning}</td>
-            </tr>
+            <div class="bg-white/5 border border-white/10 rounded-md px-4 py-3">
+              <div class="flex items-baseline justify-between gap-4 mb-2">
+                <span class="text-white font-medium">{agentNames[s.prediction.agentId] ?? s.prediction.agentId}</span>
+                <span class="text-sm shrink-0">
+                  <span class="text-accent font-medium">{s.points} pts</span>
+                  <span class="text-white/30 mx-1">·</span>
+                  <span class="text-white/50">{s.matches} {s.matches === 1 ? 'match' : 'matches'}</span>
+                </span>
+              </div>
+              <p class="text-white/40 italic text-sm mb-3">&ldquo;{s.prediction.reasoning}&rdquo;</p>
+              <div class="flex flex-wrap gap-2 mb-3">
+                {s.prediction.numbers.map((n) => (
+                  <span class="font-mono text-sm bg-navy-dark border border-white/10 rounded px-2 py-0.5 text-white/80">{n}</span>
+                ))}
+              </div>
+              <div class="text-white/30 text-xs">
+                {s.prediction.strategyName}
+                <span class="mx-1">·</span>
+                {(s.prediction.confidence * 100).toFixed(0)}% confidence
+              </div>
+            </div>
           ))}
-        </tbody>
-      </table>
+        </div>
+      </div>
 
-      <h2>Standings After This Episode</h2>
-      <table class="data-table">
-        <thead>
-          <tr><th>Rank</th><th>Agent</th><th>Total Points</th></tr>
-        </thead>
-        <tbody>
-          {[...episode.leaderboard].sort((a, b) => a.rank - b.rank).map((e) => (
-            <tr>
-              <td class="text-white/40 w-16">{e.rank}</td>
-              <td class="text-white">{e.agentName}</td>
-              <td class="font-mono text-accent">{e.totalPoints}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div class="card">
+        <h2>Standings After This Episode</h2>
+        <table class="data-table">
+          <thead>
+            <tr><th>Rank</th><th>Agent</th><th>Total Points</th></tr>
+          </thead>
+          <tbody>
+            {[...episode.leaderboard].sort((a, b) => a.rank - b.rank).map((e) => (
+              <tr>
+                <td class="text-white/40 w-16">{e.rank}</td>
+                <td class="text-white">{e.agentName}</td>
+                <td class="font-mono text-accent">{e.totalPoints}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-      <h2>Reality Check</h2>
-      <blockquote>{episode.realityCheck}</blockquote>
+      <div class="card">
+        <h2>Reality Check</h2>
+        <blockquote class="mb-0">{episode.realityCheck}</blockquote>
+      </div>
 
-      <p class="mt-8">
+      <p class="mt-4">
         <a href="/episodes" class="text-sm">&larr; All episodes</a>
       </p>
     </>

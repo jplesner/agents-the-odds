@@ -36,6 +36,14 @@
 }
 
 @layer components {
+  .card {
+    @apply bg-navy-card border border-white/10 rounded-lg px-6 py-5 my-6;
+  }
+
+  .card h2 {
+    @apply mt-0;
+  }
+
   .data-table {
     @apply w-full text-sm border-collapse my-4;
   }

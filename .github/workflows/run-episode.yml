@@ -1,4 +1,5 @@
 name: Run Episode
+run-name: "Run Episode ${{ inputs.episode }}"
 
 on:
   workflow_dispatch:
@@ -31,7 +32,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
 
       - name: Install script dependencies
         run: npm install

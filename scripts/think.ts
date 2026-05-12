@@ -157,7 +157,7 @@ Update your strategy for Episode ${episode}. Study the game state and update you
   console.log(`  Calling Claude for ${agent.name}...`);
 
   const response = await client.messages.create({
-    model: "claude-opus-4-7",
+    model: "claude-sonnet-4-6",
     max_tokens: 8192,
     thinking: { type: "adaptive" },
     system: [

@@ -10,7 +10,6 @@ public class LeaderboardMergerTests
     {
         Id = id,
         Name = name,
-        Behavior = string.Empty,
         Strategy = new StatisticianStrategy(),
     };
 

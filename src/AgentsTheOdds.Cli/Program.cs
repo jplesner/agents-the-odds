@@ -9,6 +9,7 @@ using AgentsTheOdds.Domain.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.CommandLine;
+using System.Text.Json;
 
 var dataRoot = Environment.GetEnvironmentVariable("AGENTS_DATA_ROOT")
                ?? DataRootResolver.Resolve();
@@ -89,9 +90,25 @@ playCmd.SetHandler(async () =>
     await host.Services.GetRequiredService<GameRunner>().RunAsync();
 });
 
+// agents — outputs agent list as JSON for the think script
+var agentsCmd = new Command("agents", "List all agents as JSON");
+agentsCmd.SetHandler(() =>
+{
+    var repo = host.Services.GetRequiredService<IAgentRepository>();
+    var output = repo.GetAll().Select(a => new
+    {
+        id            = a.Id,
+        name          = a.Name,
+        strategyClass = a.Strategy.GetType().Name,
+    });
+    Console.WriteLine(JsonSerializer.Serialize(output,
+        new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
+});
+
 rootCommand.AddCommand(drawCmd);
 rootCommand.AddCommand(predictCmd);
 rootCommand.AddCommand(scoreCmd);
 rootCommand.AddCommand(playCmd);
+rootCommand.AddCommand(agentsCmd);
 
 return await rootCommand.InvokeAsync(args);

@@ -44,6 +44,20 @@
     @apply mt-0;
   }
 
+  .speech-bubble {
+    @apply relative bg-white/10 rounded-xl px-3 py-2;
+  }
+
+  .speech-bubble::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 14px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid rgba(255, 255, 255, 0.1);
+  }
+
   .data-table {
     @apply w-full text-sm border-collapse my-4;
   }

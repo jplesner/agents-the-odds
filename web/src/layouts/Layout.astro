@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 interface Props {
   title: string;
 }
@@ -15,98 +17,24 @@ const { title } = Astro.props;
     <title>{title} — Agents the Odds</title>
   </head>
   <body>
-    <header>
-      <a href="/" class="site-title">Agents the Odds</a>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/episodes">Episodes</a>
-      </nav>
+    <header class="bg-navy-dark border-b border-white/10">
+      <div class="max-w-5xl mx-auto px-6 py-4 flex items-center gap-8">
+        <a href="/" class="text-white font-bold text-lg no-underline hover:text-white">
+          Agents the Odds
+        </a>
+        <nav class="flex gap-6">
+          <a href="/" class="text-white/60 no-underline hover:text-white text-sm">Home</a>
+          <a href="/episodes" class="text-white/60 no-underline hover:text-white text-sm">Episodes</a>
+        </nav>
+      </div>
     </header>
-    <main>
+
+    <main class="max-w-5xl mx-auto px-6 py-10">
       <slot />
     </main>
-    <footer>
-      <p>Static site. Built from data at compile time.</p>
+
+    <footer class="max-w-5xl mx-auto px-6 py-6 border-t border-white/10 text-white/30 text-sm">
+      Static site. Built from data at compile time.
     </footer>
   </body>
 </html>
-
-<style is:global>
-  *, *::before, *::after { box-sizing: border-box; }
-
-  body {
-    font-family: system-ui, sans-serif;
-    max-width: 960px;
-    margin: 2rem auto;
-    padding: 0 1.25rem;
-    color: #1a1a1a;
-    line-height: 1.6;
-  }
-
-  header {
-    display: flex;
-    align-items: baseline;
-    gap: 2rem;
-    border-bottom: 2px solid #1a1a1a;
-    padding-bottom: 0.75rem;
-    margin-bottom: 2rem;
-  }
-
-  .site-title {
-    font-weight: 700;
-    font-size: 1.1rem;
-    text-decoration: none;
-    color: inherit;
-  }
-
-  nav a {
-    margin-right: 1rem;
-    color: #555;
-    text-decoration: none;
-  }
-
-  nav a:hover { color: #1a1a1a; text-decoration: underline; }
-
-  footer {
-    margin-top: 3rem;
-    border-top: 1px solid #ddd;
-    padding-top: 1rem;
-    color: #888;
-    font-size: 0.875rem;
-  }
-
-  h1 { margin-top: 0; }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-    font-size: 0.95rem;
-  }
-
-  th, td {
-    text-align: left;
-    padding: 0.45rem 0.75rem;
-    border: 1px solid #ddd;
-  }
-
-  th { background: #f5f5f5; font-weight: 600; }
-
-  tr:nth-child(even) td { background: #fafafa; }
-
-  .numbers {
-    font-family: ui-monospace, monospace;
-    letter-spacing: 0.04em;
-  }
-
-  blockquote {
-    border-left: 3px solid #ccc;
-    margin: 1rem 0;
-    padding: 0.5rem 1rem;
-    color: #555;
-    font-style: italic;
-  }
-
-  a { color: #0066cc; }
-  a:hover { text-decoration: none; }
-</style>

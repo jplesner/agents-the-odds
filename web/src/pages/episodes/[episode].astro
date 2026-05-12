@@ -20,19 +20,23 @@ const sortedScores = episode ? [...episode.scores].sort((a, b) => b.points - a.p
 
 <Layout title={`Episode ${episodeNumber}`}>
   {!episode ? (
-    <p>Episode {episodeNumber} data not found.</p>
+    <p class="text-white/40 italic">Episode {episodeNumber} data not found.</p>
   ) : (
     <>
       <h1>Episode {episode.episodeNumber}</h1>
 
       <h2>Draw Result</h2>
       <p>
-        Date: {episode.drawResult.date}<br />
-        Numbers: <span class="numbers">{episode.drawResult.numbers.join(' · ')}</span>
+        <span class="text-white/40 text-sm uppercase tracking-wide mr-2">Date</span>
+        <span class="text-white/80">{episode.drawResult.date}</span>
+      </p>
+      <p>
+        <span class="text-white/40 text-sm uppercase tracking-wide mr-2">Numbers</span>
+        <span class="font-mono text-white text-lg tracking-widest">{episode.drawResult.numbers.join(' · ')}</span>
       </p>
 
       <h2>Predictions &amp; Scores</h2>
-      <table>
+      <table class="data-table">
         <thead>
           <tr>
             <th>Agent</th>
@@ -47,29 +51,29 @@ const sortedScores = episode ? [...episode.scores].sort((a, b) => b.points - a.p
         <tbody>
           {sortedScores.map((s) => (
             <tr>
-              <td>{s.prediction.agentId}</td>
-              <td>{s.prediction.strategyName}</td>
-              <td class="numbers">{s.prediction.numbers.join(' · ')}</td>
-              <td>{s.matches}</td>
-              <td>{s.points}</td>
-              <td>{(s.prediction.confidence * 100).toFixed(0)}%</td>
-              <td>{s.prediction.reasoning}</td>
+              <td class="text-white/80 whitespace-nowrap">{s.prediction.agentId}</td>
+              <td class="text-white/50 text-xs">{s.prediction.strategyName}</td>
+              <td class="font-mono tracking-wider text-white/70">{s.prediction.numbers.join(' · ')}</td>
+              <td class="text-center">{s.matches}</td>
+              <td class="text-accent font-medium text-center">{s.points}</td>
+              <td class="text-white/50 text-center">{(s.prediction.confidence * 100).toFixed(0)}%</td>
+              <td class="text-white/50 text-sm">{s.prediction.reasoning}</td>
             </tr>
           ))}
         </tbody>
       </table>
 
       <h2>Standings After This Episode</h2>
-      <table>
+      <table class="data-table">
         <thead>
           <tr><th>Rank</th><th>Agent</th><th>Total Points</th></tr>
         </thead>
         <tbody>
           {[...episode.leaderboard].sort((a, b) => a.rank - b.rank).map((e) => (
             <tr>
-              <td>{e.rank}</td>
-              <td>{e.agentName}</td>
-              <td>{e.totalPoints}</td>
+              <td class="text-white/40 w-16">{e.rank}</td>
+              <td class="text-white">{e.agentName}</td>
+              <td class="font-mono text-accent">{e.totalPoints}</td>
             </tr>
           ))}
         </tbody>
@@ -78,7 +82,9 @@ const sortedScores = episode ? [...episode.scores].sort((a, b) => b.points - a.p
       <h2>Reality Check</h2>
       <blockquote>{episode.realityCheck}</blockquote>
 
-      <p><a href="/episodes">← All episodes</a></p>
+      <p class="mt-8">
+        <a href="/episodes" class="text-sm">&larr; All episodes</a>
+      </p>
     </>
   )}
 </Layout>

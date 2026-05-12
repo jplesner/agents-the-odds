@@ -40,7 +40,7 @@ Four projects under `src/`, one test project under `tests/`:
 - **`AgentsTheOdds.Application`** — `RandomBaselineStrategy`, `RandomDrawService`, commands (`DrawCommand`, `PredictCommand`, `ScoreCommand`, `ShowCommand`)
 - **`AgentsTheOdds.Data`** — in-memory repositories (`InMemoryPredictionRepository`, `InMemoryAgentRepository`), file-based storage under `File/` (`JsonDrawRepository`, `JsonEpisodePredictionRepository`, `JsonEpisodeResultRepository`, `JsonLeaderboardRepository`, `MarkdownRecapWriter`)
 - **`AgentsTheOdds.Cli`** — `Program.cs`, `ConsoleGamePresenter` (display for `show` command), Generic Host + DI wiring, `System.CommandLine` subcommands
-- **`scripts/`** — Node.js/TypeScript tooling for the think phase: `think.ts` (orchestrator), `prompt.ts` (system prompt + tool definition), `types.ts` (shared interfaces). Agent personality and journal files live under `scripts/agents/{agent-id}/`.
+- **`scripts/`** — Node.js/TypeScript tooling for the think phase: `think.ts` (orchestrator), `prompt.ts` (system prompt + tool definition), `types.ts` (re-exports shared interfaces from `web/src/types/data.ts`, plus `AgentConfig`). Agent personality and journal files live under `scripts/agents/{agent-id}/`.
 
 Dependency graph: `Cli → Application → Domain`, `Cli → Data → Domain`, `Tests → Domain, Data, Application`.
 
@@ -106,3 +106,41 @@ data/
 ### NuGet
 
 A local `NuGet.config` at the repo root restricts package sources to `nuget.org` only, bypassing any machine-level corporate feeds.
+
+## Web UI (`web/`)
+
+Static read-only Astro 6 site that reads episode data from `../data/` at build time. No backend, no API.
+
+### Commands
+
+```bash
+cd web
+npm install          # first time only
+npm run dev          # dev server at http://localhost:4321
+npm run build        # emit to web/dist/
+npm run preview      # serve web/dist/ locally
+npx astro check      # TypeScript check
+```
+
+### Pages
+
+| Route | Description |
+|-------|-------------|
+| `/` | Home: leaderboard + latest episode summary |
+| `/episodes` | All episodes list with date, draw, winner |
+| `/episodes/[n]` | Episode detail: draw, full scores table, standings, reality check |
+
+### Architecture
+
+- **`src/types/data.ts`** — TypeScript interfaces for all JSON data shapes. **Source of truth shared with `scripts/types.ts`**, which re-exports from here.
+- **`src/lib/data.ts`** — Build-time helpers (`readLeaderboard`, `readAllEpisodes`, `readEpisode`, `getEpisodeNumbers`). Uses synchronous `node:fs`. All I/O errors swallowed — missing files produce empty/null gracefully so the site builds even with no episode data.
+- **`src/layouts/Layout.astro`** — Shared HTML shell with nav. Imports `src/styles/global.css`.
+- **`src/styles/global.css`** — Tailwind v4 config via `@theme` (custom colors, Roboto font), base element styles, and `.data-table` component class.
+
+### Styling
+
+Matches [plesner.ca](https://www.plesner.ca/) — dark navy (`#111821`) background, `rgba(255,255,255,0.7)` body text, Roboto font, `#0d6efd` blue accent. Uses Tailwind v4 (`@tailwindcss/vite`). Custom theme properties defined in `global.css` under `@theme`.
+
+### Data path
+
+`src/lib/data.ts` resolves data via `path.resolve(process.cwd(), '..', 'data')`. Always run Astro commands from the `web/` directory.

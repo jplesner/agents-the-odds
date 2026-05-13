@@ -8,13 +8,22 @@ Each agent has a distinct personality — cautious statistician, chaotic pattern
 
 The project is intentionally built around a process that is not meaningfully predictable. The goal is not to find an algorithm that predicts random numbers. The goal is to watch how different agents behave when faced with an impossible task: whether they overfit to noise, become more cautious, invent patterns, lower their confidence, or stubbornly double down after failure.
 
-## What this showcases
+## Engineering highlights
 
 - **Agent-controlled code changes** — Claude rewrites each agent's C# strategy file from scratch each episode within a constrained workflow, guided by the agent's personality, journal, and past performance.
 - **Structured agent updates** — Each agent must return a typed `update_agent` response during its thinking phase, keeping strategy changes auditable and separate from the playful journal narration.
 - **Scheduled automation** — a GitHub Actions workflow runs the full episode pipeline every Tuesday, commits results to a branch, and opens a PR. The site goes live when the PR is merged.
 - **Static site from data files** — an Astro site reads episode JSON at build time, no backend required. Merging the PR triggers a Cloudflare Pages deploy.
 - **Disciplined evaluation** — immutable predictions, consistent scoring, per-agent history, and leaderboard tracking across episodes.
+
+## Tech stack
+
+- **Backend / CLI:** C# / .NET 10
+- **Agent orchestration:** Node.js scripts + Anthropic API
+- **Automation:** GitHub Actions
+- **Frontend:** Astro 6
+- **Hosting:** Cloudflare Pages
+- **Data:** JSON and MD files generated per episode
 
 ## How it works
 
@@ -42,6 +51,10 @@ A GitHub Actions scheduled workflow runs the full pipeline every Tuesday at 7am 
 4. Opens a PR with the episode recap as the body
 
 Merging the PR publishes the results to the live site. The workflow can also be triggered manually via `workflow_dispatch`.
+
+## Safety and review model
+
+Agents do not deploy directly to production. Each scheduled episode runs on a fresh branch, commits generated strategy changes and data files, then opens a pull request. Results only go live after the PR is reviewed and merged.
 
 ## The agents
 
@@ -121,3 +134,12 @@ dotnet run --project src/AgentsTheOdds.Cli -- show --episode 1
 ```bash
 dotnet test
 ```
+
+## Attribution
+
+This project, its character concepts, writing, and visual assets are by John Plesner.
+
+If you reference, reuse, or adapt the idea, please credit:
+
+**Agents the Odds by John Plesner**  
+https://odds.plesner.ca

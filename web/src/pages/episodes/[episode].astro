@@ -67,10 +67,15 @@ const strategyCodes = readEpisodeStrategyCodes(episodeNumber);
                   );
                 })}
               </div>
-              <div class="text-white/50 text-xs">
-                {s.prediction.strategyName}
-                <span class="mx-1">·</span>
-                {(s.prediction.confidence * 100).toFixed(0)}% confidence
+              <div class="text-white/50 text-xs flex items-center justify-between">
+                <span>
+                  {s.prediction.strategyName}
+                  <span class="mx-1">·</span>
+                  {(s.prediction.confidence * 100).toFixed(0)}% confidence
+                </span>
+                <a href={`/agents/${s.prediction.agentId}#episode-${episodeNumber}`} class="text-accent/70 hover:text-accent no-underline">
+                  Go to journal entry &rarr;
+                </a>
               </div>
               {strategyCodes[s.prediction.agentId] && (
                 <details class="mt-3">

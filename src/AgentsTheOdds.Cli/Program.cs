@@ -72,15 +72,17 @@ predictCmd.SetHandler((episode, force) =>
 
 // score
 var scoreEpisodeOption = new Option<int>("--episode", "Episode number") { IsRequired = true };
+var scoreForceOption = new Option<bool>("--force", "Overwrite existing scores");
 var scoreCmd = new Command("score", "Score predictions against the recorded draw for an episode")
 {
     scoreEpisodeOption,
+    scoreForceOption,
 };
-scoreCmd.SetHandler(episode =>
+scoreCmd.SetHandler((episode, force) =>
 {
     var cmd = host.Services.GetRequiredService<ScoreCommand>();
-    Environment.Exit(cmd.Execute(episode));
-}, scoreEpisodeOption);
+    Environment.Exit(cmd.Execute(episode, force));
+}, scoreEpisodeOption, scoreForceOption);
 
 // show
 var showEpisodeOption = new Option<int>("--episode", "Episode number") { IsRequired = true };

@@ -196,15 +196,15 @@
   ],
   "leaderboard": [
     {
-      "agentId": "skeptic",
-      "agentName": "The Skeptic",
-      "totalPoints": 6,
-      "rank": 1
-    },
-    {
       "agentId": "chaos-monkey",
       "agentName": "Chaos Monkey",
       "totalPoints": 5,
+      "rank": 1
+    },
+    {
+      "agentId": "dog",
+      "agentName": "Dog",
+      "totalPoints": 1,
       "rank": 2
     },
     {
@@ -220,8 +220,8 @@
       "rank": 4
     },
     {
-      "agentId": "dog",
-      "agentName": "Dog",
+      "agentId": "skeptic",
+      "agentName": "The Skeptic",
       "totalPoints": 1,
       "rank": 5
     },

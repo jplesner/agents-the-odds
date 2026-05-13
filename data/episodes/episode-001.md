@@ -38,11 +38,11 @@
 
 | Rank | Agent | Total Points |
 |------|-------|--------------|
-| 1 | The Skeptic | 6 |
-| 2 | Chaos Monkey | 5 |
+| 1 | Chaos Monkey | 5 |
+| 2 | Dog | 1 |
 | 3 | The Statistician | 1 |
 | 4 | The Pattern Goblin | 1 |
-| 5 | Dog | 1 |
+| 5 | The Skeptic | 1 |
 | 6 | The Mystic | 0 |
 
 ## Reality Check

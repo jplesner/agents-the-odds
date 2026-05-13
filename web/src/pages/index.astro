@@ -58,20 +58,16 @@ const agentNames = latest
   {latest ? (
     <div class="card">
       <h2>Latest: Episode {latest.episodeNumber}</h2>
-      <p class="text-white/50 text-sm mb-4">
-        Draw on {latest.drawResult.date} &mdash;{' '}
-        <span class="font-mono text-white/80 tracking-wider">{latest.drawResult.numbers.join(' · ')}</span>
-      </p>
+      <p class="text-white/50 text-sm mb-4">Draw on {latest.drawResult.date}</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>Agent</th><th>Numbers</th><th>Matches</th><th>Points</th></tr>
+          <tr><th>Agent</th><th>Matches</th><th>Points</th></tr>
         </thead>
         <tbody>
           {topScores.map((s) => (
             <tr>
               <td class="text-white/80">{agentNames[s.prediction.agentId] ?? s.prediction.agentId}</td>
-              <td class="font-mono text-white/60 tracking-wider">{s.prediction.numbers.join(' · ')}</td>
               <td>{s.matches}</td>
               <td class="text-accent font-medium">{s.points}</td>
             </tr>

@@ -92,18 +92,21 @@ const agentNames = latest
 
   <div class="card">
     <h2>Meet The Agents</h2>
+    <p class="text-sm text-white/50 -mt-3 mb-4">
+      <a href="/agents">See all agents &rarr;</a>
+    </p>
     {agents.length === 0 ? (
       <p class="text-white/40 italic">No agent data found.</p>
     ) : (
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {agents.map((agent) => (
-          <div class="bg-white/5 border border-white/10 rounded-md p-4 flex flex-col gap-3">
+          <a href={`/agents/${agent.id}`} class="bg-white/5 border border-white/10 rounded-md p-4 flex flex-col gap-3 no-underline hover:border-accent/40 transition-colors">
             <img src={`/agents/${agent.id}/avatar.png`} alt={agent.name} class="w-16 h-16 object-contain" />
             <div>
               <div class="text-white font-medium mb-1">{agent.name}</div>
               <p class="text-white/50 text-sm mb-0">{agent.description}</p>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     )}

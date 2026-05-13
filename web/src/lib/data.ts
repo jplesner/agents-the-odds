@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { marked } from 'marked';
 import type { AgentProfile, EpisodeResult, Leaderboard } from '../types/data.ts';
 
 function dataRoot(): string {
@@ -71,7 +72,11 @@ export function readAgentProfiles(): AgentProfile[] {
       const lines = raw.split('\n');
       const name = lines[0].replace(/^#\s*/, '').trim();
       const description = lines.slice(1).join('\n').trim();
-      return { id: d.name, name, description } satisfies AgentProfile;
+      const journalPath = resolve(agentsDir, d.name, 'journal.md');
+      const journalRaw = existsSync(journalPath) ? readFileSync(journalPath, 'utf-8') : '';
+      const journalBody = journalRaw.replace(/^#\s+[^\n]*\n?/, '').trim();
+      const journalHtml = journalBody ? (marked.parse(journalBody) as string) : '';
+      return { id: d.name, name, description, journalHtml } satisfies AgentProfile;
     })
     .filter((a): a is AgentProfile => a !== null);
 }

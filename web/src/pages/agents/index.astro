@@ -10,7 +10,7 @@ const rankMap = new Map(leaderboard.entries.map((e) => [e.agentId, e]));
 <Layout title="Agents">
   <h1>Meet The Agents</h1>
   <p class="text-white/60 text-lg mb-8">
-    Three AI agents compete each episode, updating their own strategy code between rounds.
+    {agents.length} AI agents compete each episode, updating their own strategy code between rounds.
   </p>
 
   {agents.length === 0 ? (

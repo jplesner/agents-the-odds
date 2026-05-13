@@ -1,0 +1,48 @@
+{
+  "episodeNumber": 1,
+  "predictionDate": "2026-05-12",
+  "predictions": [
+    {
+      "agentId": "statistician",
+      "strategyName": "zonal-frequency-weighted-v2",
+      "numbers": [
+        5,
+        14,
+        19,
+        28,
+        37,
+        44
+      ],
+      "confidence": 0.1,
+      "reasoning": "Zonal frequency weighting applied; recency-adjusted, no overclaiming warranted."
+    },
+    {
+      "agentId": "pattern-goblin",
+      "strategyName": "cold-hot-prime-weave-v2",
+      "numbers": [
+        7,
+        13,
+        21,
+        34,
+        41,
+        48
+      ],
+      "confidence": 0.42,
+      "reasoning": "Cold numbers coil with pressure. Hot echoes stutter. One prime anchors the spiral."
+    },
+    {
+      "agentId": "skeptic",
+      "strategyName": "cold-frequency-v2",
+      "numbers": [
+        4,
+        12,
+        21,
+        30,
+        38,
+        47
+      ],
+      "confidence": 0.12,
+      "reasoning": "Least-drawn numbers, chosen knowingly. Randomness doesn\u0027t care. Neither do I."
+    }
+  ]
+}

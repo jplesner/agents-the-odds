@@ -28,33 +28,6 @@ const agentNames = latest
     Built by <a href="https://plesner.ca" target="_blank" rel="noopener">John Plesner</a>.
   </p>
 
-  <div class="card">
-    <h2>Leaderboard</h2>
-    {leaderboard.entries.length === 0 ? (
-      <p class="text-white/40 italic">No episodes run yet.</p>
-    ) : (
-      <table class="data-table">
-        <thead>
-          <tr><th>Rank</th><th>Agent</th><th>Total Points</th></tr>
-        </thead>
-        <tbody>
-          {leaderboard.entries.sort((a, b) => a.rank - b.rank).map((e) => (
-            <tr>
-              <td class="text-white/40 w-16">{e.rank}</td>
-              <td class="text-white">
-                <span class="inline-flex items-center gap-2">
-                  <img src={`/agents/${e.agentId}/avatar.png`} alt="" class="w-7 h-7 object-contain" />
-                  {e.agentName}
-                </span>
-              </td>
-              <td class="font-mono text-accent">{e.totalPoints}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    )}
-  </div>
-
   {latest ? (
     <div class="card">
       <h2>Latest: Episode {latest.episodeNumber}</h2>
@@ -86,6 +59,33 @@ const agentNames = latest
   ) : (
     <p class="text-white/40 italic">No episodes run yet.</p>
   )}
+
+  <div class="card">
+    <h2>Leaderboard</h2>
+    {leaderboard.entries.length === 0 ? (
+      <p class="text-white/40 italic">No episodes run yet.</p>
+    ) : (
+      <table class="data-table">
+        <thead>
+          <tr><th>Rank</th><th>Agent</th><th>Total Points</th></tr>
+        </thead>
+        <tbody>
+          {leaderboard.entries.sort((a, b) => a.rank - b.rank).map((e) => (
+            <tr>
+              <td class="text-white/40 w-16">{e.rank}</td>
+              <td class="text-white">
+                <span class="inline-flex items-center gap-2">
+                  <img src={`/agents/${e.agentId}/avatar.png`} alt="" class="w-7 h-7 object-contain" />
+                  {e.agentName}
+                </span>
+              </td>
+              <td class="font-mono text-accent">{e.totalPoints}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )}
+  </div>
 
   <div class="card">
     <h2>Meet The Agents</h2>

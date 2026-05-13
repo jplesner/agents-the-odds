@@ -13,7 +13,7 @@ dotnet run --project src/AgentsTheOdds.Cli -- --help
 
 # Full episode workflow (Phase 3)
 cd scripts && npm install          # first time only
-npx tsx think.ts --episode 1      # agents update their own strategy code
+npm run think -- --episode 1      # agents update their own strategy code (loads .env)
 dotnet build                       # compile updated strategies
 dotnet run --project src/AgentsTheOdds.Cli -- predict --episode 1
 dotnet run --project src/AgentsTheOdds.Cli -- draw --episode 1
@@ -127,9 +127,11 @@ npx astro check      # TypeScript check
 
 | Route | Description |
 |-------|-------------|
-| `/` | Home: leaderboard + latest episode summary |
-| `/episodes` | All episodes list with date, draw, winner |
-| `/episodes/[n]` | Episode detail: draw, full scores table, standings, reality check |
+| `/` | Home: latest episode summary + leaderboard + collapsible "How it works" |
+| `/episodes` | All episodes list with date and winner |
+| `/episodes/[n]` | Episode detail: draw, full scores table with strategy code, standings, reality check |
+| `/agents` | Agent cards grid with rank and points |
+| `/agents/[id]` | Agent profile: personality, stats, journal with per-episode entries |
 
 ### Architecture
 
@@ -140,7 +142,7 @@ npx astro check      # TypeScript check
 
 ### Styling
 
-Matches [plesner.ca](https://www.plesner.ca/) — dark navy (`#111821`) background, `rgba(255,255,255,0.7)` body text, Roboto font, `#0d6efd` blue accent. Uses Tailwind v4 (`@tailwindcss/vite`). Custom theme properties defined in `global.css` under `@theme`.
+Matches [plesner.ca](https://www.plesner.ca/) — dark navy (`#111821`) background, `rgba(255,255,255,0.7)` body text, Roboto font, `#39c1fb` blue accent. Uses Tailwind v4 (`@tailwindcss/vite`). Custom theme properties defined in `global.css` under `@theme`.
 
 ### Data path
 

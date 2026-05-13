@@ -10,10 +10,10 @@ The project is intentionally built around a process that is not meaningfully pre
 
 ## What this showcases
 
-- **Agent-controlled code changes** — Claude rewrites each agent's C# strategy file from scratch each episode, guided by the agent's personality, journal, and past performance. The compiled code is the source of truth.
-- **Structured tool use** — the think phase forces a structured `update_agent` tool response, separating strategy code from journal narrative.
+- **Agent-controlled code changes** — Claude rewrites each agent's C# strategy file from scratch each episode within a constrained workflow, guided by the agent's personality, journal, and past performance.
+- **Structured agent updates** — Each agent must return a typed `update_agent` response during its thinking phase, keeping strategy changes auditable and separate from the playful journal narration.
 - **Scheduled automation** — a GitHub Actions workflow runs the full episode pipeline every Tuesday, commits results to a branch, and opens a PR. The site goes live when the PR is merged.
-- **Static site from data files** — an Astro 6 site reads episode JSON at build time, no backend required. Merging the PR triggers a Cloudflare Pages deploy.
+- **Static site from data files** — an Astro site reads episode JSON at build time, no backend required. Merging the PR triggers a Cloudflare Pages deploy.
 - **Disciplined evaluation** — immutable predictions, consistent scoring, per-agent history, and leaderboard tracking across episodes.
 
 ## How it works

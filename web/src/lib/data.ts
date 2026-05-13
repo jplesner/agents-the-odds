@@ -77,7 +77,13 @@ export function readAgentProfiles(): AgentProfile[] {
       const journalPath = resolve(agentsDir, d.name, 'journal.md');
       const journalRaw = existsSync(journalPath) ? readFileSync(journalPath, 'utf-8') : '';
       const journalBody = journalRaw.replace(/^#\s+[^\n]*\n?/, '').trim();
-      const journalHtml = journalBody ? (marked.parse(journalBody) as string) : '';
+      const journalHtml = journalBody
+        ? (marked.parse(journalBody) as string).replace(
+            /<h(\d)>([^<]+)<\/h\1>/g,
+            (_, depth, text: string) =>
+              `<h${depth} id="${text.toLowerCase().replace(/\s+/g, '-')}">${text}</h${depth}>`
+          )
+        : '';
       return { id: d.name, name, description, descriptionHtml, journalHtml } satisfies AgentProfile;
     })
     .filter((a): a is AgentProfile => a !== null);

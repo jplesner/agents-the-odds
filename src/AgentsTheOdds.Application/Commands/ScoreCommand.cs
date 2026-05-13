@@ -14,7 +14,7 @@ public sealed class ScoreCommand(
     IRecapWriter recapWriter,
     IRealityCheckGenerator realityCheckGenerator)
 {
-    public int Execute(int episodeNumber)
+    public int Execute(int episodeNumber, bool force = false)
     {
         if (!predictions.Exists(episodeNumber))
         {
@@ -34,27 +34,40 @@ public sealed class ScoreCommand(
             return 1;
         }
 
+        if (episodeResults.TryGet(episodeNumber) != null && !force)
+        {
+            Console.Error.WriteLine(
+                $"Episode {episodeNumber} has already been scored. Use --force to re-score.");
+            return 1;
+        }
+
         var predictionSet = predictions.Get(episodeNumber);
         var scores = predictionSet.Predictions
             .Select(p => Scorer.Score(p, draw))
             .ToList();
 
         var allAgents = agents.GetAll();
-        var updatedBoard = LeaderboardMerger.Merge(leaderboards.Load(), scores, allAgents);
         var realityCheck = realityCheckGenerator.Generate(episodeNumber, scores);
+
+        var board = Leaderboard.Empty;
+        foreach (var prior in episodeResults.GetAll()
+                     .Where(r => r.EpisodeNumber != episodeNumber)
+                     .OrderBy(r => r.EpisodeNumber))
+            board = LeaderboardMerger.Merge(board, prior.Scores, allAgents);
+        board = LeaderboardMerger.Merge(board, scores, allAgents);
 
         var episodeResult = new EpisodeResult
         {
             EpisodeNumber = episodeNumber,
             DrawResult = draw,
             Scores = scores,
-            Leaderboard = updatedBoard.Entries,
+            Leaderboard = board.Entries,
             RealityCheck = realityCheck,
         };
 
         episodeResults.Save(episodeResult);
         recapWriter.Write(episodeResult);
-        leaderboards.Save(updatedBoard);
+        leaderboards.Save(board);
 
         Console.WriteLine(
             $"Episode {episodeNumber} scored. " +

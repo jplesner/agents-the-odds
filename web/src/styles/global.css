@@ -6,7 +6,7 @@
   --color-navy: #111821;
   --color-navy-dark: #0d1520;
   --color-navy-card: #1a2332;
-  --color-accent: #0d6efd;
+  --color-accent: #39c1fb;
 }
 
 @layer base {
@@ -27,7 +27,7 @@
   }
 
   a {
-    @apply text-accent transition-colors hover:text-blue-400;
+    @apply text-accent transition-colors hover:text-white;
   }
 
   blockquote {

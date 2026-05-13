@@ -1,13 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { readLeaderboard, readAllEpisodes, readAgentProfiles } from '../lib/data.ts';
+import { readLeaderboard, readAllEpisodes } from '../lib/data.ts';
 
 const leaderboard = readLeaderboard();
-const rankMap = new Map(leaderboard.entries.map((e) => [e.agentId, e]));
 const episodes = readAllEpisodes();
 const latest = episodes.at(-1) ?? null;
 const topScores = latest ? [...latest.scores].sort((a, b) => b.points - a.points) : [];
-const agents = readAgentProfiles();
 const agentNames = latest
   ? Object.fromEntries(latest.leaderboard.map((e) => [e.agentId, e.agentName]))
   : {};
@@ -71,7 +69,7 @@ const agentNames = latest
         </thead>
         <tbody>
           {leaderboard.entries.sort((a, b) => a.rank - b.rank).map((e) => (
-            <tr>
+            <tr class="cursor-pointer hover:bg-white/5 transition-colors" onclick={`window.location='/agents/${e.agentId}'`}>
               <td class="text-white/40 w-16">{e.rank}</td>
               <td class="text-white">
                 <span class="inline-flex items-center gap-2">
@@ -87,32 +85,5 @@ const agentNames = latest
     )}
   </div>
 
-  <div class="card">
-    <h2>Meet The Agents</h2>
-    <p class="text-sm text-white/50 -mt-3 mb-4">
-      <a href="/agents">See all agents &rarr;</a>
-    </p>
-    {agents.length === 0 ? (
-      <p class="text-white/40 italic">No agent data found.</p>
-    ) : (
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {agents.map((agent) => {
-          const stats = rankMap.get(agent.id);
-          return (
-            <a href={`/agents/${agent.id}`} class="bg-white/5 border border-white/10 rounded-md p-4 flex flex-col no-underline hover:border-accent/40 transition-colors">
-              <img src={`/agents/${agent.id}/avatar.png`} alt={agent.name} class="w-16 h-16 object-contain mb-3" />
-              <div class="text-white font-medium">{agent.name}</div>
-              <div class="mt-auto pt-3 flex items-center justify-between">
-                {stats
-                  ? <span class="text-xs text-white">Rank {stats.rank} &middot; {stats.totalPoints} pts</span>
-                  : <span />
-                }
-                <span class="text-xs text-accent">View profile &rarr;</span>
-              </div>
-            </a>
-          );
-        })}
-      </div>
-    )}
-  </div>
+
 </Layout>

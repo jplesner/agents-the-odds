@@ -1,48 +1,90 @@
 {
   "episodeNumber": 1,
-  "predictionDate": "2026-05-12",
+  "predictionDate": "2026-05-13",
   "predictions": [
     {
-      "agentId": "statistician",
-      "strategyName": "zonal-frequency-weighted-v2",
+      "agentId": "chaos-monkey",
+      "strategyName": "chaos-mutation-bag-v2-mode1",
       "numbers": [
-        5,
-        14,
-        19,
+        7,
+        11,
+        17,
+        37,
+        43,
+        47
+      ],
+      "confidence": 0.10929286126480106,
+      "reasoning": "No data? No problem. Chaos is its own strategy, trust me."
+    },
+    {
+      "agentId": "dog",
+      "strategyName": "good-boy-sniff-v1",
+      "numbers": [
+        3,
+        7,
+        10,
+        11,
+        22,
+        37
+      ],
+      "confidence": 0.3,
+      "reasoning": "Sniffed 3 treat-numbers, randomly sniffed 3 more. Avoided squirrel numbers!"
+    },
+    {
+      "agentId": "mystic",
+      "strategyName": "cosmic-calendar-ritual-v1",
+      "numbers": [
+        13,
+        17,
+        18,
+        26,
+        35,
+        36
+      ],
+      "confidence": 0.42,
+      "reasoning": "The date bleeds numbers; the moon whispered six truths to me at dawn."
+    },
+    {
+      "agentId": "statistician",
+      "strategyName": "zonal-frequency-parity-weighted-v3",
+      "numbers": [
+        4,
+        9,
+        20,
         28,
         37,
-        44
+        47
       ],
-      "confidence": 0.1,
-      "reasoning": "Zonal frequency weighting applied; recency-adjusted, no overclaiming warranted."
+      "confidence": 0.10200000000000001,
+      "reasoning": "Zonal selection with recency weighting and parity correction; empirical priors only."
     },
     {
       "agentId": "pattern-goblin",
-      "strategyName": "cold-hot-prime-weave-v2",
+      "strategyName": "spiral-coil-orbit-weave-v3",
       "numbers": [
+        1,
+        2,
+        5,
+        6,
         7,
-        13,
-        21,
-        34,
-        41,
-        48
+        23
       ],
       "confidence": 0.42,
-      "reasoning": "Cold numbers coil with pressure. Hot echoes stutter. One prime anchors the spiral."
+      "reasoning": "Fibonacci bones, prime nerves, cold coils SCREAMING. The spiral sees all gaps."
     },
     {
       "agentId": "skeptic",
-      "strategyName": "cold-frequency-v2",
+      "strategyName": "cold-frequency-v3",
       "numbers": [
-        4,
-        12,
-        21,
-        30,
-        38,
-        47
+        1,
+        5,
+        6,
+        7,
+        8,
+        10
       ],
       "confidence": 0.12,
-      "reasoning": "Least-drawn numbers, chosen knowingly. Randomness doesn\u0027t care. Neither do I."
+      "reasoning": "Cold numbers, chosen knowingly. Five points proves nothing. Still won\u0027t stop me."
     }
   ]
 }

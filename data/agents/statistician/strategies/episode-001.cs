@@ -8,9 +8,9 @@ public sealed class StatisticianStrategy : IPredictionStrategy
     public Prediction GeneratePrediction(PredictionContext context)
     {
         // Strategy: frequency-aware with uniform prior fallback
-        // When draw history is available, compute frequency of each number across all draws
-        // and select a balanced mix of high-frequency and mid-range numbers.
-        // When no history exists, apply a principled uniform prior.
+        // When draw history is available, compute recency-weighted frequency of each number
+        // across all draws and select a balanced mix using zonal partitioning.
+        // When no history exists, apply a principled uniform prior with parity balance.
 
         var rules = context.Rules;
         int min = rules.MinNumber;   // 1
@@ -24,27 +24,15 @@ public sealed class StatisticianStrategy : IPredictionStrategy
         if (draws == null || draws.Count == 0)
         {
             // No empirical data. Apply uniform prior:
-            // - Spread across low / mid-low / mid / mid-high / high zones
+            // - Spread evenly across 6 zones spanning 1–49
             // - 3 odd, 3 even for expected parity balance
-            // Zones (1-49 split into 6 deciles of ~8):
-            // Zone 1: 1-8, Zone 2: 9-16, Zone 3: 17-24, Zone 4: 25-32, Zone 5: 33-40, Zone 6: 41-49
-            // Select one representative from each zone, alternating parity
+            // Zone representatives chosen near zone midpoints, alternating parity
             selectedNumbers = new List<int> { 5, 14, 19, 28, 37, 44 };
         }
         else
         {
-            // Build frequency table
-            var freq = new Dictionary<int, int>();
-            for (int n = min; n <= max; n++)
-                freq[n] = 0;
-
-            foreach (var draw in draws)
-                foreach (var n in draw.Numbers)
-                    if (freq.ContainsKey(n))
-                        freq[n]++;
-
-            // Compute recency-weighted frequency:
-            // More recent draws contribute more weight (linear decay from oldest to newest)
+            // Build recency-weighted frequency table
+            // More recent draws contribute linearly more weight
             var weightedFreq = new Dictionary<int, double>();
             for (int n = min; n <= max; n++)
                 weightedFreq[n] = 0.0;
@@ -52,11 +40,21 @@ public sealed class StatisticianStrategy : IPredictionStrategy
             int totalDraws = draws.Count;
             for (int i = 0; i < totalDraws; i++)
             {
-                double weight = (double)(i + 1) / totalDraws; // 0..1, increasing with recency
+                double weight = (double)(i + 1) / totalDraws; // increases with recency
                 foreach (var n in draws[i].Numbers)
                     if (weightedFreq.ContainsKey(n))
                         weightedFreq[n] += weight;
             }
+
+            // Also factor in parity balance: track odd/even counts in history
+            int oddCount = 0, evenCount = 0;
+            foreach (var draw in draws)
+                foreach (var n in draw.Numbers)
+                {
+                    if (n % 2 == 0) evenCount++;
+                    else oddCount++;
+                }
+            double oddRate = totalDraws > 0 ? (double)oddCount / (oddCount + evenCount) : 0.5;
 
             // Partition 1-49 into 6 zones and pick best candidate from each
             // Zones: 1-8, 9-16, 17-24, 25-32, 33-40, 41-49
@@ -68,20 +66,31 @@ public sealed class StatisticianStrategy : IPredictionStrategy
             selectedNumbers = new List<int>();
             var used = new HashSet<int>();
 
+            // Track parity of selected so far
+            int selectedOdd = 0, selectedEven = 0;
+
             foreach (var (zMin, zMax) in zones)
             {
-                // Among numbers in this zone, pick the one with highest weighted frequency
-                // Ties broken by proximity to zone midpoint (prefer spread)
                 double zMid = (zMin + zMax) / 2.0;
                 int best = -1;
                 double bestScore = double.MinValue;
 
+                // Determine parity preference for this slot based on historical rate
+                // Target ~3 odd, ~3 even. Nudge score toward underrepresented parity.
+                int slotsRemaining = drawCount - selectedNumbers.Count;
+                int oddNeeded = (int)Math.Round(oddRate * drawCount) - selectedOdd;
+                int evenNeeded = (drawCount - (int)Math.Round(oddRate * drawCount)) - selectedEven;
+
                 for (int n = zMin; n <= zMax; n++)
                 {
                     if (used.Contains(n)) continue;
-                    // Score: weighted frequency + small proximity bonus
+
                     double proximityBonus = 1.0 - (Math.Abs(n - zMid) / (zMax - zMin + 1));
-                    double score = weightedFreq[n] * 10.0 + proximityBonus;
+                    double parityBonus = 0.0;
+                    if (n % 2 == 1 && oddNeeded > 0) parityBonus = 0.5;
+                    else if (n % 2 == 0 && evenNeeded > 0) parityBonus = 0.5;
+
+                    double score = weightedFreq[n] * 10.0 + proximityBonus + parityBonus;
                     if (score > bestScore)
                     {
                         bestScore = score;
@@ -93,10 +102,12 @@ public sealed class StatisticianStrategy : IPredictionStrategy
                 {
                     selectedNumbers.Add(best);
                     used.Add(best);
+                    if (best % 2 == 1) selectedOdd++;
+                    else selectedEven++;
                 }
             }
 
-            // Safety: if somehow we have fewer than 6, fill with unselected numbers in order
+            // Safety: fill to exactly 6 if needed
             if (selectedNumbers.Count < drawCount)
             {
                 for (int n = min; n <= max && selectedNumbers.Count < drawCount; n++)
@@ -111,6 +122,7 @@ public sealed class StatisticianStrategy : IPredictionStrategy
         }
 
         // Confidence: scales modestly with draw history volume; hard ceiling at 0.18
+        // Even with a large sample, the combinatorial space (13,983,816) demands humility.
         double confidence = draws != null && draws.Count > 0
             ? Math.Min(0.18, 0.10 + (draws.Count * 0.002))
             : 0.10;
@@ -118,10 +130,10 @@ public sealed class StatisticianStrategy : IPredictionStrategy
         return new Prediction
         {
             AgentId      = "statistician",
-            StrategyName = "zonal-frequency-weighted-v2",
+            StrategyName = "zonal-frequency-parity-weighted-v3",
             Numbers      = selectedNumbers,
             Confidence   = confidence,
-            Reasoning    = "Zonal frequency weighting applied; recency-adjusted, no overclaiming warranted."
+            Reasoning    = "Zonal selection with recency weighting and parity correction; empirical priors only."
         };
     }
 }

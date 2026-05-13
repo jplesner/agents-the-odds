@@ -2,127 +2,235 @@
   "episodeNumber": 1,
   "drawResult": {
     "drawNumber": 1,
-    "date": "2026-05-12",
+    "date": "2026-05-13",
     "numbers": [
-      2,
-      3,
-      4,
-      9,
-      46,
-      47
+      5,
+      29,
+      37,
+      40,
+      43,
+      49
     ]
   },
   "scores": [
     {
       "prediction": {
-        "agentId": "statistician",
-        "strategyName": "zonal-frequency-weighted-v2",
-        "numbers": [
-          5,
-          14,
-          19,
-          28,
-          37,
-          44
-        ],
-        "confidence": 0.1,
-        "reasoning": "Zonal frequency weighting applied; recency-adjusted, no overclaiming warranted."
-      },
-      "draw": {
-        "drawNumber": 1,
-        "date": "2026-05-12",
-        "numbers": [
-          2,
-          3,
-          4,
-          9,
-          46,
-          47
-        ]
-      },
-      "matches": 0,
-      "points": 0
-    },
-    {
-      "prediction": {
-        "agentId": "pattern-goblin",
-        "strategyName": "cold-hot-prime-weave-v2",
+        "agentId": "chaos-monkey",
+        "strategyName": "chaos-mutation-bag-v2-mode1",
         "numbers": [
           7,
-          13,
-          21,
-          34,
-          41,
-          48
+          11,
+          17,
+          37,
+          43,
+          47
         ],
-        "confidence": 0.42,
-        "reasoning": "Cold numbers coil with pressure. Hot echoes stutter. One prime anchors the spiral."
+        "confidence": 0.10929286126480106,
+        "reasoning": "No data? No problem. Chaos is its own strategy, trust me."
       },
       "draw": {
         "drawNumber": 1,
-        "date": "2026-05-12",
+        "date": "2026-05-13",
         "numbers": [
-          2,
-          3,
-          4,
-          9,
-          46,
-          47
-        ]
-      },
-      "matches": 0,
-      "points": 0
-    },
-    {
-      "prediction": {
-        "agentId": "skeptic",
-        "strategyName": "cold-frequency-v2",
-        "numbers": [
-          4,
-          12,
-          21,
-          30,
-          38,
-          47
-        ],
-        "confidence": 0.12,
-        "reasoning": "Least-drawn numbers, chosen knowingly. Randomness doesn\u0027t care. Neither do I."
-      },
-      "draw": {
-        "drawNumber": 1,
-        "date": "2026-05-12",
-        "numbers": [
-          2,
-          3,
-          4,
-          9,
-          46,
-          47
+          5,
+          29,
+          37,
+          40,
+          43,
+          49
         ]
       },
       "matches": 2,
       "points": 5
+    },
+    {
+      "prediction": {
+        "agentId": "dog",
+        "strategyName": "good-boy-sniff-v1",
+        "numbers": [
+          3,
+          7,
+          10,
+          11,
+          22,
+          37
+        ],
+        "confidence": 0.3,
+        "reasoning": "Sniffed 3 treat-numbers, randomly sniffed 3 more. Avoided squirrel numbers!"
+      },
+      "draw": {
+        "drawNumber": 1,
+        "date": "2026-05-13",
+        "numbers": [
+          5,
+          29,
+          37,
+          40,
+          43,
+          49
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "mystic",
+        "strategyName": "cosmic-calendar-ritual-v1",
+        "numbers": [
+          13,
+          17,
+          18,
+          26,
+          35,
+          36
+        ],
+        "confidence": 0.42,
+        "reasoning": "The date bleeds numbers; the moon whispered six truths to me at dawn."
+      },
+      "draw": {
+        "drawNumber": 1,
+        "date": "2026-05-13",
+        "numbers": [
+          5,
+          29,
+          37,
+          40,
+          43,
+          49
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "statistician",
+        "strategyName": "zonal-frequency-parity-weighted-v3",
+        "numbers": [
+          4,
+          9,
+          20,
+          28,
+          37,
+          47
+        ],
+        "confidence": 0.10200000000000001,
+        "reasoning": "Zonal selection with recency weighting and parity correction; empirical priors only."
+      },
+      "draw": {
+        "drawNumber": 1,
+        "date": "2026-05-13",
+        "numbers": [
+          5,
+          29,
+          37,
+          40,
+          43,
+          49
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "pattern-goblin",
+        "strategyName": "spiral-coil-orbit-weave-v3",
+        "numbers": [
+          1,
+          2,
+          5,
+          6,
+          7,
+          23
+        ],
+        "confidence": 0.42,
+        "reasoning": "Fibonacci bones, prime nerves, cold coils SCREAMING. The spiral sees all gaps."
+      },
+      "draw": {
+        "drawNumber": 1,
+        "date": "2026-05-13",
+        "numbers": [
+          5,
+          29,
+          37,
+          40,
+          43,
+          49
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "skeptic",
+        "strategyName": "cold-frequency-v3",
+        "numbers": [
+          1,
+          5,
+          6,
+          7,
+          8,
+          10
+        ],
+        "confidence": 0.12,
+        "reasoning": "Cold numbers, chosen knowingly. Five points proves nothing. Still won\u0027t stop me."
+      },
+      "draw": {
+        "drawNumber": 1,
+        "date": "2026-05-13",
+        "numbers": [
+          5,
+          29,
+          37,
+          40,
+          43,
+          49
+        ]
+      },
+      "matches": 1,
+      "points": 1
     }
   ],
   "leaderboard": [
     {
       "agentId": "skeptic",
       "agentName": "The Skeptic",
-      "totalPoints": 5,
+      "totalPoints": 6,
       "rank": 1
+    },
+    {
+      "agentId": "chaos-monkey",
+      "agentName": "Chaos Monkey",
+      "totalPoints": 5,
+      "rank": 2
     },
     {
       "agentId": "statistician",
       "agentName": "The Statistician",
-      "totalPoints": 0,
-      "rank": 2
+      "totalPoints": 1,
+      "rank": 3
     },
     {
       "agentId": "pattern-goblin",
       "agentName": "The Pattern Goblin",
+      "totalPoints": 1,
+      "rank": 4
+    },
+    {
+      "agentId": "dog",
+      "agentName": "Dog",
+      "totalPoints": 1,
+      "rank": 5
+    },
+    {
+      "agentId": "mystic",
+      "agentName": "The Mystic",
       "totalPoints": 0,
-      "rank": 3
+      "rank": 6
     }
   ],
-  "realityCheck": "Episode 1: skeptic led with 5 pts (2 matches). Combined table points this episode: 5."
+  "realityCheck": "Episode 1: chaos-monkey led with 5 pts (2 matches). Combined table points this episode: 9."
 }

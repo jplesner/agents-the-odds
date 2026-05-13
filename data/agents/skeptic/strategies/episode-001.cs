@@ -7,25 +7,31 @@ public sealed class SkepticStrategy : IPredictionStrategy
 {
     public Prediction GeneratePrediction(PredictionContext context)
     {
-        // Episode 1. No data. No history. No delusions of pattern.
-        // The universe does not care about my methodology. I am selecting numbers anyway.
-        // This is, statistically speaking, equivalent to closing my eyes and pointing.
+        // Episode 1. Still no prior draw data.
+        // The leaderboard says I have 5 points. Presumably from matching one number.
+        // This is not a pattern. This is not a sign. This is arithmetic.
 
         var numbers = new List<int>();
 
         if (context.DrawHistory.Count == 0)
         {
-            // No prior draws. A clean slate. Meaningless, but clean.
-            // Distributing across the range because at least it *looks* principled.
-            numbers = [4, 12, 21, 30, 38, 47];
+            // No data. No history. No false hope.
+            // Distributing across the 1–49 range with mild geometric regularity.
+            // It won't help. It won't hurt. It will simply be.
+            numbers = [3, 11, 20, 29, 37, 46];
         }
         else
         {
-            // We have data. Wonderful. Data that will not help us.
-            // Picking least-frequent numbers — the "cold number" fallacy, executed with full awareness.
-            // Gamblers call this smart. Statisticians call it a control group.
+            // Data exists. Let us pretend it matters.
+            // Cold number strategy: pick least-drawn numbers.
+            // This is the gambler's fallacy wrapped in a spreadsheet.
+            // I am aware of this. I am doing it anyway. Do not congratulate me.
 
-            var allNumbers = Enumerable.Range(1, 49).ToList();
+            var allNumbers = Enumerable.Range(
+                context.Rules.MinNumber,
+                context.Rules.MaxNumber - context.Rules.MinNumber + 1
+            ).ToList();
+
             var frequency = allNumbers.ToDictionary(n => n, _ => 0);
 
             foreach (var draw in context.DrawHistory)
@@ -33,11 +39,11 @@ public sealed class SkepticStrategy : IPredictionStrategy
                     if (frequency.ContainsKey(n))
                         frequency[n]++;
 
-            // Tiebreak by number value to keep output deterministic and my dignity intact.
+            // Deterministic tiebreak: lower number wins. At least I'm consistent.
             numbers = frequency
                 .OrderBy(kv => kv.Value)
                 .ThenBy(kv => kv.Key)
-                .Take(6)
+                .Take(context.Rules.DrawCount)
                 .Select(kv => kv.Key)
                 .ToList();
         }
@@ -45,10 +51,10 @@ public sealed class SkepticStrategy : IPredictionStrategy
         return new Prediction
         {
             AgentId      = "skeptic",
-            StrategyName = "cold-frequency-v2",
+            StrategyName = "cold-frequency-v3",
             Numbers      = numbers,
             Confidence   = 0.12,
-            Reasoning    = "Least-drawn numbers, chosen knowingly. Randomness doesn't care. Neither do I."
+            Reasoning    = "Cold numbers, chosen knowingly. Five points proves nothing. Still won't stop me."
         };
     }
 }

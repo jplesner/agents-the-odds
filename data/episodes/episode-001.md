@@ -1,35 +1,50 @@
 # Episode 1 Recap
 
-**Draw date:** 2026-05-12
-**Numbers drawn:** 2, 3, 4, 9, 46, 47
+**Draw date:** 2026-05-13
+**Numbers drawn:** 5, 29, 37, 40, 43, 49
 
 ## Predictions & Scores
 
 | Agent | Numbers | Strategy | Matches | Points | Confidence |
 |-------|---------|----------|---------|--------|------------|
-| The Skeptic | 4, 12, 21, 30, 38, 47 | cold-frequency-v2 | 2 | 5 | 0.12 |
-| The Statistician | 5, 14, 19, 28, 37, 44 | zonal-frequency-weighted-v2 | 0 | 0 | 0.10 |
-| The Pattern Goblin | 7, 13, 21, 34, 41, 48 | cold-hot-prime-weave-v2 | 0 | 0 | 0.42 |
+| Chaos Monkey | 7, 11, 17, 37, 43, 47 | chaos-mutation-bag-v2-mode1 | 2 | 5 | 0.11 |
+| Dog | 3, 7, 10, 11, 22, 37 | good-boy-sniff-v1 | 1 | 1 | 0.30 |
+| The Statistician | 4, 9, 20, 28, 37, 47 | zonal-frequency-parity-weighted-v3 | 1 | 1 | 0.10 |
+| The Pattern Goblin | 1, 2, 5, 6, 7, 23 | spiral-coil-orbit-weave-v3 | 1 | 1 | 0.42 |
+| The Skeptic | 1, 5, 6, 7, 8, 10 | cold-frequency-v3 | 1 | 1 | 0.12 |
+| The Mystic | 13, 17, 18, 26, 35, 36 | cosmic-calendar-ritual-v1 | 0 | 0 | 0.42 |
 
 ## Agent Reasoning
 
-**The Skeptic**
-> Least-drawn numbers, chosen knowingly. Randomness doesn't care. Neither do I.
+**Chaos Monkey**
+> No data? No problem. Chaos is its own strategy, trust me.
+
+**Dog**
+> Sniffed 3 treat-numbers, randomly sniffed 3 more. Avoided squirrel numbers!
 
 **The Statistician**
-> Zonal frequency weighting applied; recency-adjusted, no overclaiming warranted.
+> Zonal selection with recency weighting and parity correction; empirical priors only.
 
 **The Pattern Goblin**
-> Cold numbers coil with pressure. Hot echoes stutter. One prime anchors the spiral.
+> Fibonacci bones, prime nerves, cold coils SCREAMING. The spiral sees all gaps.
+
+**The Skeptic**
+> Cold numbers, chosen knowingly. Five points proves nothing. Still won't stop me.
+
+**The Mystic**
+> The date bleeds numbers; the moon whispered six truths to me at dawn.
 
 ## Leaderboard
 
 | Rank | Agent | Total Points |
 |------|-------|--------------|
-| 1 | The Skeptic | 5 |
-| 2 | The Statistician | 0 |
-| 3 | The Pattern Goblin | 0 |
+| 1 | The Skeptic | 6 |
+| 2 | Chaos Monkey | 5 |
+| 3 | The Statistician | 1 |
+| 4 | The Pattern Goblin | 1 |
+| 5 | Dog | 1 |
+| 6 | The Mystic | 0 |
 
 ## Reality Check
 
-Episode 1: skeptic led with 5 pts (2 matches). Combined table points this episode: 5.
+Episode 1: chaos-monkey led with 5 pts (2 matches). Combined table points this episode: 9.

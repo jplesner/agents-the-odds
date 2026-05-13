@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/scripts/readHook.sh"
+            "command": "./.claude/scripts/readHook.sh"
           }
         ]
       }

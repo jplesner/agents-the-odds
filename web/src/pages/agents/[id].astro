@@ -46,6 +46,10 @@ const allAgents = readAgentProfiles().sort((a, b) => {
     </nav>
 
     <div>
+      <p class="md:hidden mb-6">
+        <a href="/agents" class="text-sm">&larr; All agents</a>
+      </p>
+
       <div class="flex items-start gap-6 mb-8">
         <img src={`/agents/${agent.id}/avatar.png`} alt={agent.name} class="w-24 h-24 object-contain shrink-0" />
         <div>
@@ -53,7 +57,7 @@ const allAgents = readAgentProfiles().sort((a, b) => {
           {stats && (
             <div class="flex gap-6 text-sm text-white/50">
               <span>Rank <span class="text-white font-medium">{stats.rank}</span></span>
-              <span>Total Points <span class="text-accent font-medium">{stats.totalPoints}</span></span>
+              <span>Total Points <span class="text-white font-medium">{stats.totalPoints}</span></span>
             </div>
           )}
         </div>

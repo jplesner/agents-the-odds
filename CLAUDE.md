@@ -36,11 +36,11 @@ dotnet test --filter "FullyQualifiedName~ScorerTests.Score_SixMatches_Returns100
 
 Four projects under `src/`, one test project under `tests/`:
 
-- **`AgentsTheOdds.Domain`** — models, interfaces, `LotteryValidator`, `Scorer`, strategy implementations (`PatternGoblinStrategy`, `SkepticStrategy`, `StatisticianStrategy`), domain services (`LeaderboardMerger`, `RealityCheckGenerator`)
+- **`AgentsTheOdds.Domain`** — models, interfaces, `LotteryValidator`, `Scorer`, strategy implementations (`PatternGoblinStrategy`, `SkepticStrategy`, `StatisticianStrategy`, `ChaosMonkeyStrategy`, `DogStrategy`, `MysticStrategy`), domain services (`LeaderboardMerger`, `RealityCheckGenerator`)
 - **`AgentsTheOdds.Application`** — `RandomBaselineStrategy`, `RandomDrawService`, commands (`DrawCommand`, `PredictCommand`, `ScoreCommand`, `ShowCommand`)
 - **`AgentsTheOdds.Data`** — in-memory repositories (`InMemoryPredictionRepository`, `InMemoryAgentRepository`), file-based storage under `File/` (`JsonDrawRepository`, `JsonEpisodePredictionRepository`, `JsonEpisodeResultRepository`, `JsonLeaderboardRepository`, `MarkdownRecapWriter`)
 - **`AgentsTheOdds.Cli`** — `Program.cs`, `ConsoleGamePresenter` (display for `show` command), Generic Host + DI wiring, `System.CommandLine` subcommands
-- **`scripts/`** — Node.js/TypeScript tooling for the think phase: `think.ts` (orchestrator), `prompt.ts` (system prompt + tool definition), `types.ts` (re-exports shared interfaces from `web/src/types/data.ts`, plus `AgentConfig`). Agent personality and journal files live under `scripts/agents/{agent-id}/`.
+- **`scripts/`** — Node.js/TypeScript tooling for the think phase: `think.ts` (orchestrator), `prompt.ts` (system prompt + tool definition), `types.ts` (re-exports shared interfaces from `web/src/types/data.ts`, plus `AgentConfig`). Agent personality and journal files live under `data/agents/{agent-id}/`.
 
 Dependency graph: `Cli → Application → Domain`, `Cli → Data → Domain`, `Tests → Domain, Data, Application`.
 
@@ -77,7 +77,7 @@ data/
 
 ### Key design decisions
 
-**`IPredictionStrategy`** is the extension point. Adding a new agent means implementing this interface in `AgentsTheOdds.Domain`, registering it in `InMemoryAgentRepository`, and adding a `scripts/agents/{id}/` folder with `personality.md` and `journal.md`. Each strategy receives a `PredictionContext` with rules, draw history, its own prior `PredictionResult` history (filtered by `AgentId`), and the current leaderboard.
+**`IPredictionStrategy`** is the extension point. Adding a new agent means implementing this interface in `AgentsTheOdds.Domain`, registering it in `InMemoryAgentRepository`, and adding a `data/agents/{id}/` folder with `personality.md`, `journal.md`, `avatar.png`, and an empty `strategies/` directory. Each strategy receives a `PredictionContext` with rules, draw history, its own prior `PredictionResult` history (filtered by `AgentId`), and the current leaderboard.
 
 **Think phase** — `think.ts` calls `dotnet run ... -- agents` at startup to get the authoritative agent list (id, name, strategyClass). The `.cs` strategy files are the source of truth for compiled behaviour; `think.ts` overwrites them, snapshots the code to `data/agents/{id}/strategies/episode-{n}.cs`, and then `dotnet build` recompiles before `predict` runs. Agent personalities and journals live in `data/agents/{id}/` and are never read by the .NET code.
 

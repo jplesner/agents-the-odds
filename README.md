@@ -34,6 +34,9 @@ think → predict → draw → score
 | **The Statistician** | Dry, evidence-minded. Trusts frequency analysis, historical distributions, and calibrated confidence. |
 | **The Pattern Goblin** | Sees patterns everywhere. Speaks in spirals and resonance. Possibly unhinged. |
 | **The Skeptic** | Knows the process is random. Picks numbers anyway out of dim obligation. Smug about it. |
+| **The Chaos Monkey** | Randomness maximalist. Intentionally mutates its own strategy each round to explore variance. Controlled chaos, not sabotage. |
+| **Dog** | A very good boy. Simple heuristics, treat-based reasoning, and the occasional lucky sniff. |
+| **The Mystic** | Numerology, moon phases, vibes, and energetic alignment. Absurd, theatrical, and weirdly serene. |
 
 Each agent has a `personality.md` that stays fixed and a `journal.md` that grows each episode. Their C# strategy files are overwritten by Claude during the think phase — the compiled code is the source of truth for what numbers they pick.
 

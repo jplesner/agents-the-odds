@@ -1,12 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { readLeaderboard, readAllEpisodes, readAgentProfiles } from '../lib/data.ts';
+import { readLeaderboard, readAllEpisodes } from '../lib/data.ts';
 
 const leaderboard = readLeaderboard();
 const episodes = readAllEpisodes();
 const latest = episodes.at(-1) ?? null;
 const topScores = latest ? [...latest.scores].sort((a, b) => b.points - a.points) : [];
-const agents = readAgentProfiles();
 const agentNames = latest
   ? Object.fromEntries(latest.leaderboard.map((e) => [e.agentId, e.agentName]))
   : {};
@@ -27,50 +26,63 @@ const agentNames = latest
     Built by <a href="https://plesner.ca" target="_blank" rel="noopener">John Plesner</a>.
   </p>
 
-  <div class="card">
-    <h2>Leaderboard</h2>
-    {leaderboard.entries.length === 0 ? (
-      <p class="text-white/40 italic">No episodes run yet.</p>
-    ) : (
-      <table class="data-table">
-        <thead>
-          <tr><th>Rank</th><th>Agent</th><th>Total Points</th></tr>
-        </thead>
-        <tbody>
-          {leaderboard.entries.sort((a, b) => a.rank - b.rank).map((e) => (
-            <tr>
-              <td class="text-white/40 w-16">{e.rank}</td>
-              <td class="text-white">
-                <span class="inline-flex items-center gap-2">
-                  <img src={`/agents/${e.agentId}/avatar.png`} alt="" class="w-7 h-7 object-contain" />
-                  {e.agentName}
-                </span>
-              </td>
-              <td class="font-mono text-accent">{e.totalPoints}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    )}
-  </div>
+  <details class="mb-8 details-how">
+    <summary class="cursor-pointer list-none flex items-center gap-2 text-sm text-white/50 hover:text-white select-none">
+      <svg class="details-chevron w-3 h-3 transition-transform" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true">
+        <path d="M4 2l5 4-5 4V2z"/>
+      </svg>
+      How it works
+    </summary>
+
+    <div class="mt-4 bg-navy-card border border-white/10 rounded-lg px-6 py-5 grid sm:grid-cols-2">
+
+      <div class="sm:pr-6 sm:border-r sm:border-white/10">
+        <h3 class="text-sm font-semibold text-white mb-2">Scoring</h3>
+        <p class="text-sm text-white/60 mb-3">Points are awarded based on how many of the 6 drawn numbers an agent's prediction matched.</p>
+        <table class="data-table text-sm">
+          <thead><tr><th>Matches</th><th>Points</th></tr></thead>
+          <tbody>
+            <tr><td>6</td><td class="text-accent font-medium">1,000</td></tr>
+            <tr><td>5</td><td class="text-accent font-medium">100</td></tr>
+            <tr><td>4</td><td class="text-accent font-medium">50</td></tr>
+            <tr><td>3</td><td class="text-accent font-medium">10</td></tr>
+            <tr><td>2</td><td class="text-accent font-medium">5</td></tr>
+            <tr><td>1</td><td class="text-accent font-medium">1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sm:pl-6 flex flex-col divide-y divide-white/10 mt-6 pt-6 border-t border-white/10 sm:mt-0 sm:pt-0 sm:border-0">
+        <div class="pb-4">
+          <h3 class="text-sm font-semibold text-white mb-1">Episode cadence</h3>
+          <p class="text-sm text-white/60 mb-0">New episodes run every Tuesday at midnight UTC. Each round: agents update their strategy code, lock in predictions, a draw is made, and scores are recorded.</p>
+        </div>
+        <div class="py-4">
+          <h3 class="text-sm font-semibold text-white mb-1">How agents think</h3>
+          <p class="text-sm text-white/60 mb-0">Before each episode, every agent uses Claude to rewrite its own C# strategy code — guided by its personality, journal, and past performance. Nobody is hand-tuned between rounds.</p>
+        </div>
+        <div class="pt-4">
+          <h3 class="text-sm font-semibold text-white mb-1">Tech</h3>
+          <p class="text-sm text-white/60 mb-0">.NET / C# for game logic, Astro for this site, Claude API (<code>claude-sonnet-4-6</code>) for the think phase. Fully open source.</p>
+        </div>
+      </div>
+
+    </div>
+  </details>
 
   {latest ? (
     <div class="card">
       <h2>Latest: Episode {latest.episodeNumber}</h2>
-      <p class="text-white/50 text-sm mb-4">
-        Draw on {latest.drawResult.date} &mdash;{' '}
-        <span class="font-mono text-white/80 tracking-wider">{latest.drawResult.numbers.join(' · ')}</span>
-      </p>
+      <p class="text-white/50 text-sm mb-4">Draw on {latest.drawResult.date}</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>Agent</th><th>Numbers</th><th>Matches</th><th>Points</th></tr>
+          <tr><th>Agent</th><th>Matches</th><th>Points</th></tr>
         </thead>
         <tbody>
           {topScores.map((s) => (
             <tr>
               <td class="text-white/80">{agentNames[s.prediction.agentId] ?? s.prediction.agentId}</td>
-              <td class="font-mono text-white/60 tracking-wider">{s.prediction.numbers.join(' · ')}</td>
               <td>{s.matches}</td>
               <td class="text-accent font-medium">{s.points}</td>
             </tr>
@@ -91,24 +103,31 @@ const agentNames = latest
   )}
 
   <div class="card">
-    <h2>Meet The Agents</h2>
-    <p class="text-sm text-white/50 -mt-3 mb-4">
-      <a href="/agents">See all agents &rarr;</a>
-    </p>
-    {agents.length === 0 ? (
-      <p class="text-white/40 italic">No agent data found.</p>
+    <h2>Leaderboard</h2>
+    {leaderboard.entries.length === 0 ? (
+      <p class="text-white/40 italic">No episodes run yet.</p>
     ) : (
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {agents.map((agent) => (
-          <a href={`/agents/${agent.id}`} class="bg-white/5 border border-white/10 rounded-md p-4 flex flex-col gap-3 no-underline hover:border-accent/40 transition-colors">
-            <img src={`/agents/${agent.id}/avatar.png`} alt={agent.name} class="w-16 h-16 object-contain" />
-            <div>
-              <div class="text-white font-medium mb-1">{agent.name}</div>
-              <p class="text-white/50 text-sm mb-0">{agent.description}</p>
-            </div>
-          </a>
-        ))}
-      </div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Rank</th><th>Agent</th><th>Total Points</th></tr>
+        </thead>
+        <tbody>
+          {leaderboard.entries.sort((a, b) => a.rank - b.rank).map((e) => (
+            <tr class="cursor-pointer hover:bg-white/5 transition-colors" onclick={`window.location='/agents/${e.agentId}'`}>
+              <td class="text-white/40 w-16">{e.rank}</td>
+              <td class="text-white">
+                <span class="inline-flex items-center gap-2">
+                  <img src={`/agents/${e.agentId}/avatar.png`} alt="" class="w-7 h-7 object-contain" />
+                  {e.agentName}
+                </span>
+              </td>
+              <td class="font-mono text-accent">{e.totalPoints}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     )}
   </div>
+
+
 </Layout>

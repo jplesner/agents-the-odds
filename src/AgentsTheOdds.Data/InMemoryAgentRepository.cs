@@ -11,6 +11,9 @@ public sealed class InMemoryAgentRepository : IAgentRepository
         new() { Id = "statistician",   Name = "The Statistician",   Strategy = new StatisticianStrategy()  },
         new() { Id = "pattern-goblin", Name = "The Pattern Goblin", Strategy = new PatternGoblinStrategy() },
         new() { Id = "skeptic",        Name = "The Skeptic",        Strategy = new SkepticStrategy()       },
+        new() { Id = "mystic",         Name = "The Mystic",         Strategy = new MysticStrategy()        },
+        new() { Id = "chaos-monkey",   Name = "Chaos Monkey",       Strategy = new ChaosMonkeyStrategy()   },
+        new() { Id = "dog",            Name = "Dog",                Strategy = new DogStrategy()           },  
     ];
 
     public IReadOnlyList<Agent> GetAll() => Agents;

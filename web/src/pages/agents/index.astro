@@ -10,7 +10,7 @@ const rankMap = new Map(leaderboard.entries.map((e) => [e.agentId, e]));
 <Layout title="Agents">
   <h1>Meet The Agents</h1>
   <p class="text-white/60 text-lg mb-8">
-    Three AI agents compete each episode, updating their own strategy code between rounds.
+    {agents.length} AI agents compete each episode, updating their own strategy code between rounds.
   </p>
 
   {agents.length === 0 ? (
@@ -20,16 +20,15 @@ const rankMap = new Map(leaderboard.entries.map((e) => [e.agentId, e]));
       {agents.map((agent) => {
         const stats = rankMap.get(agent.id);
         return (
-          <a href={`/agents/${agent.id}`} class="bg-white/5 border border-white/10 rounded-md p-4 flex flex-col gap-3 no-underline hover:border-accent/40 transition-colors">
-            <img src={`/agents/${agent.id}/avatar.png`} alt={agent.name} class="w-16 h-16 object-contain" />
-            <div>
-              <div class="text-white font-medium mb-1">{agent.name}</div>
-              <p class="text-white/50 text-sm mb-2">{agent.description}</p>
-              {stats && (
-                <div class="text-xs text-white/40">
-                  Rank {stats.rank} &middot; {stats.totalPoints} pts
-                </div>
-              )}
+          <a href={`/agents/${agent.id}`} class="bg-white/5 border border-white/10 rounded-md p-4 flex flex-col no-underline hover:border-accent/40 transition-colors">
+            <img src={`/agents/${agent.id}/avatar.png`} alt={agent.name} class="w-16 h-16 object-contain mb-3" />
+            <div class="text-white font-medium">{agent.name}</div>
+            <div class="mt-auto pt-3 flex items-center justify-between">
+              {stats
+                ? <span class="text-xs text-white">Rank {stats.rank} &middot; {stats.totalPoints} pts</span>
+                : <span />
+              }
+              <span class="text-xs text-accent">View profile &rarr;</span>
             </div>
           </a>
         );

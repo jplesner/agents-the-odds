@@ -16,36 +16,69 @@ interface Props {
 
 const { agent } = Astro.props;
 const leaderboard = readLeaderboard();
-const stats = leaderboard.entries.find((e) => e.agentId === agent.id);
+const rankMap = new Map(leaderboard.entries.map((e) => [e.agentId, e]));
+const stats = rankMap.get(agent.id);
+const allAgents = readAgentProfiles().sort((a, b) => {
+  const ra = rankMap.get(a.id)?.rank ?? 999;
+  const rb = rankMap.get(b.id)?.rank ?? 999;
+  return ra - rb;
+});
 ---
 
 <Layout title={agent.name}>
-  <div class="flex items-start gap-6 mb-8">
-    <img src={`/agents/${agent.id}/avatar.png`} alt={agent.name} class="w-24 h-24 object-contain shrink-0" />
+  <div class="md:grid md:grid-cols-[180px_1fr] md:gap-8 md:items-start">
+
+    <nav class="hidden md:flex flex-col gap-1 sticky top-6">
+      {allAgents.map((a) => {
+        const aStats = rankMap.get(a.id);
+        const active = a.id === agent.id;
+        return (
+          <a href={`/agents/${a.id}`}
+             class={`flex items-center gap-2 px-2 py-2 rounded no-underline transition-colors ${active ? 'bg-white/10 text-white' : 'text-white/50 hover:text-white hover:bg-white/5'}`}>
+            <img src={`/agents/${a.id}/avatar.png`} alt={a.name} class="w-8 h-8 object-contain shrink-0" />
+            <div class="min-w-0">
+              <div class="text-sm truncate">{a.name}</div>
+              {aStats && <div class="text-xs text-white/40">Rank {aStats.rank}</div>}
+            </div>
+          </a>
+        );
+      })}
+    </nav>
+
     <div>
-      <h1 class="mb-2">{agent.name}</h1>
-      {stats && (
-        <div class="flex gap-6 text-sm text-white/50">
-          <span>Rank <span class="text-white font-medium">{stats.rank}</span></span>
-          <span>Total Points <span class="text-accent font-medium">{stats.totalPoints}</span></span>
+      <p class="md:hidden mb-6">
+        <a href="/agents" class="text-sm">&larr; All agents</a>
+      </p>
+
+      <div class="flex items-start gap-6 mb-8">
+        <img src={`/agents/${agent.id}/avatar.png`} alt={agent.name} class="w-24 h-24 object-contain shrink-0" />
+        <div>
+          <h1 class="mb-2">{agent.name}</h1>
+          {stats && (
+            <div class="flex gap-6 text-sm text-white/50">
+              <span>Rank <span class="text-white font-medium">{stats.rank}</span></span>
+              <span>Total Points <span class="text-white font-medium">{stats.totalPoints}</span></span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Personality</h2>
+        <div class="text-white/70" set:html={agent.descriptionHtml} />
+      </div>
+
+      {agent.journalHtml && (
+        <div class="card">
+          <h2>Journal</h2>
+          <div set:html={agent.journalHtml} />
         </div>
       )}
+
+      <p class="mt-4 md:hidden">
+        <a href="/agents" class="text-sm">&larr; All agents</a>
+      </p>
     </div>
+
   </div>
-
-  <div class="card">
-    <h2>Personality</h2>
-    <p class="text-white/70">{agent.description}</p>
-  </div>
-
-  {agent.journalHtml && (
-    <div class="card">
-      <h2>Journal</h2>
-      <div set:html={agent.journalHtml} />
-    </div>
-  )}
-
-  <p class="mt-4">
-    <a href="/agents" class="text-sm">&larr; All agents</a>
-  </p>
 </Layout>

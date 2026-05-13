@@ -73,4 +73,8 @@
   .data-table tbody tr:hover td {
     @apply bg-white/5;
   }
+
+  .details-how[open] .details-chevron {
+    transform: rotate(90deg);
+  }
 }

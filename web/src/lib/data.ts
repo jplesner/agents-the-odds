@@ -71,12 +71,14 @@ export function readAgentProfiles(): AgentProfile[] {
       const raw = readFileSync(mdPath, 'utf-8').trim();
       const lines = raw.split('\n');
       const name = lines[0].replace(/^#\s*/, '').trim();
-      const description = lines.slice(1).join('\n').trim();
+      const body = lines.slice(1).join('\n').trim();
+      const description = body.split(/\r?\n\r?\n/)[0].replace(/\*\*[^*]+\*\*/g, '').trim();
+      const descriptionHtml = marked.parse(body) as string;
       const journalPath = resolve(agentsDir, d.name, 'journal.md');
       const journalRaw = existsSync(journalPath) ? readFileSync(journalPath, 'utf-8') : '';
       const journalBody = journalRaw.replace(/^#\s+[^\n]*\n?/, '').trim();
       const journalHtml = journalBody ? (marked.parse(journalBody) as string) : '';
-      return { id: d.name, name, description, journalHtml } satisfies AgentProfile;
+      return { id: d.name, name, description, descriptionHtml, journalHtml } satisfies AgentProfile;
     })
     .filter((a): a is AgentProfile => a !== null);
 }

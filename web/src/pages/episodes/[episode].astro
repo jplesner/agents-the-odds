@@ -74,7 +74,7 @@ const strategyCodes = readEpisodeStrategyCodes(episodeNumber);
               </div>
               {strategyCodes[s.prediction.agentId] && (
                 <details class="mt-3">
-                  <summary class="text-xs text-white/40 cursor-pointer hover:text-white/60 select-none">View strategy code</summary>
+                  <summary class="text-xs text-white cursor-pointer hover:text-white/70 select-none">View strategy code</summary>
                   <div class="mt-2 text-xs border border-white/10 rounded overflow-x-auto [&>pre]:!m-0 [&>pre]:!rounded-none [&>pre]:p-3 [&>pre]:text-xs [&>pre]:leading-relaxed">
                     <Code code={strategyCodes[s.prediction.agentId]} lang="csharp" theme="github-dark" />
                   </div>

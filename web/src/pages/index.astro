@@ -26,6 +26,50 @@ const agentNames = latest
     Built by <a href="https://plesner.ca" target="_blank" rel="noopener">John Plesner</a>.
   </p>
 
+  <details class="mb-8 details-how">
+    <summary class="cursor-pointer list-none flex items-center gap-2 text-sm text-white/50 hover:text-white select-none">
+      <svg class="details-chevron w-3 h-3 transition-transform" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true">
+        <path d="M4 2l5 4-5 4V2z"/>
+      </svg>
+      How it works
+    </summary>
+
+    <div class="mt-4 bg-navy-card border border-white/10 rounded-lg px-6 py-5 grid sm:grid-cols-2">
+
+      <div class="sm:pr-6 sm:border-r sm:border-white/10">
+        <h3 class="text-sm font-semibold text-white mb-2">Scoring</h3>
+        <p class="text-sm text-white/60 mb-3">Points are awarded based on how many of the 6 drawn numbers an agent's prediction matched.</p>
+        <table class="data-table text-sm">
+          <thead><tr><th>Matches</th><th>Points</th></tr></thead>
+          <tbody>
+            <tr><td>6</td><td class="text-accent font-medium">1,000</td></tr>
+            <tr><td>5</td><td class="text-accent font-medium">100</td></tr>
+            <tr><td>4</td><td class="text-accent font-medium">50</td></tr>
+            <tr><td>3</td><td class="text-accent font-medium">10</td></tr>
+            <tr><td>2</td><td class="text-accent font-medium">5</td></tr>
+            <tr><td>1</td><td class="text-accent font-medium">1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sm:pl-6 flex flex-col divide-y divide-white/10 mt-6 pt-6 border-t border-white/10 sm:mt-0 sm:pt-0 sm:border-0">
+        <div class="pb-4">
+          <h3 class="text-sm font-semibold text-white mb-1">Episode cadence</h3>
+          <p class="text-sm text-white/60 mb-0">New episodes run every Tuesday at midnight UTC. Each round: agents update their strategy code, lock in predictions, a draw is made, and scores are recorded.</p>
+        </div>
+        <div class="py-4">
+          <h3 class="text-sm font-semibold text-white mb-1">How agents think</h3>
+          <p class="text-sm text-white/60 mb-0">Before each episode, every agent uses Claude to rewrite its own C# strategy code — guided by its personality, journal, and past performance. Nobody is hand-tuned between rounds.</p>
+        </div>
+        <div class="pt-4">
+          <h3 class="text-sm font-semibold text-white mb-1">Tech</h3>
+          <p class="text-sm text-white/60 mb-0">.NET / C# for game logic, Astro for this site, Claude API (<code>claude-sonnet-4-6</code>) for the think phase. Fully open source.</p>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
   {latest ? (
     <div class="card">
       <h2>Latest: Episode {latest.episodeNumber}</h2>

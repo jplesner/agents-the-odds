@@ -42,5 +42,6 @@ export interface AgentProfile {
   id: string;
   name: string;
   description: string;
+  descriptionHtml: string;
   journalHtml: string;
 }

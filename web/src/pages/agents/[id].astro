@@ -35,7 +35,7 @@ const stats = leaderboard.entries.find((e) => e.agentId === agent.id);
 
   <div class="card">
     <h2>Personality</h2>
-    <p class="text-white/70">{agent.description}</p>
+    <div class="text-white/70" set:html={agent.descriptionHtml} />
   </div>
 
   {agent.journalHtml && (

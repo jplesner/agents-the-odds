@@ -1,0 +1,42 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { readAllEpisodes } from '../../lib/data.ts';
+
+const episodes = readAllEpisodes();
+---
+
+<Layout title="Episodes">
+  <h1>All Episodes</h1>
+
+  {episodes.length === 0 ? (
+    <p class="text-white/40 italic">No episodes have been run yet.</p>
+  ) : (
+    <div class="card">
+      <table class="data-table">
+        <thead>
+          <tr><th>Episode</th><th>Date</th><th>Draw</th><th>Episode Winner</th></tr>
+        </thead>
+        <tbody>
+          {episodes.map((ep) => {
+            const episodeWinner = ep.scores.reduce((best, s) => s.points > best.points ? s : best, ep.scores[0]);
+            return (
+              <tr>
+                <td class="w-24">
+                  <a href={`/episodes/${ep.episodeNumber}`} class="font-medium">
+                    #{ep.episodeNumber}
+                  </a>
+                </td>
+                <td class="text-white/50">{ep.drawResult.date}</td>
+                <td class="font-mono text-white/60 tracking-wider">{ep.drawResult.numbers.join(' · ')}</td>
+                <td class="text-white/80">
+                  {episodeWinner.prediction.agentId}
+                  <span class="text-white/40 text-xs ml-1">({episodeWinner.points} pts)</span>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  )}
+</Layout>

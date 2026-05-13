@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { readAgentProfiles, readLeaderboard } from '../../lib/data.ts';
+import type { AgentProfile } from '../../types/data.ts';
+
+export function getStaticPaths() {
+  return readAgentProfiles().map((agent) => ({
+    params: { id: agent.id },
+    props: { agent },
+  }));
+}
+
+interface Props {
+  agent: AgentProfile;
+}
+
+const { agent } = Astro.props;
+const leaderboard = readLeaderboard();
+const stats = leaderboard.entries.find((e) => e.agentId === agent.id);
+---
+
+<Layout title={agent.name}>
+  <div class="flex items-start gap-6 mb-8">
+    <img src={`/agents/${agent.id}/avatar.png`} alt={agent.name} class="w-24 h-24 object-contain shrink-0" />
+    <div>
+      <h1 class="mb-2">{agent.name}</h1>
+      {stats && (
+        <div class="flex gap-6 text-sm text-white/50">
+          <span>Rank <span class="text-white font-medium">{stats.rank}</span></span>
+          <span>Total Points <span class="text-accent font-medium">{stats.totalPoints}</span></span>
+        </div>
+      )}
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Personality</h2>
+    <p class="text-white/70">{agent.description}</p>
+  </div>
+
+  {agent.journalHtml && (
+    <div class="card">
+      <h2>Journal</h2>
+      <div set:html={agent.journalHtml} />
+    </div>
+  )}
+
+  <p class="mt-4">
+    <a href="/agents" class="text-sm">&larr; All agents</a>
+  </p>
+</Layout>

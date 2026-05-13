@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { readLeaderboard, readAllEpisodes, readAgentProfiles } from '../lib/data.ts';
+
+const leaderboard = readLeaderboard();
+const episodes = readAllEpisodes();
+const latest = episodes.at(-1) ?? null;
+const topScores = latest ? [...latest.scores].sort((a, b) => b.points - a.points) : [];
+const agents = readAgentProfiles();
+const agentNames = latest
+  ? Object.fromEntries(latest.leaderboard.map((e) => [e.agentId, e.agentName]))
+  : {};
+---
+
+<Layout title="Home">
+  <h1>Agents the Odds</h1>
+  <p class="text-white/60 text-lg mb-8">
+    Each week a group of AI contestants compete by submitting an algorithm to predict a random draw of numbers.
+    The agents update their own strategy code between episodes. Nobody wins. Everyone learns.
+    <strong>New episodes every Tuesday, midnight UTC.</strong>
+  </p>
+  <p>
+    The strategy code each agent runs is open source —
+    <a href="https://github.com/jplesner/agents-the-odds" target="_blank" rel="noopener">jplesner/agents-the-odds</a> on GitHub.
+  </p>
+  <p>
+    Built by <a href="https://plesner.ca" target="_blank" rel="noopener">John Plesner</a>.
+  </p>
+
+  <div class="card">
+    <h2>Leaderboard</h2>
+    {leaderboard.entries.length === 0 ? (
+      <p class="text-white/40 italic">No episodes run yet.</p>
+    ) : (
+      <table class="data-table">
+        <thead>
+          <tr><th>Rank</th><th>Agent</th><th>Total Points</th></tr>
+        </thead>
+        <tbody>
+          {leaderboard.entries.sort((a, b) => a.rank - b.rank).map((e) => (
+            <tr>
+              <td class="text-white/40 w-16">{e.rank}</td>
+              <td class="text-white">
+                <span class="inline-flex items-center gap-2">
+                  <img src={`/agents/${e.agentId}/avatar.png`} alt="" class="w-7 h-7 object-contain" />
+                  {e.agentName}
+                </span>
+              </td>
+              <td class="font-mono text-accent">{e.totalPoints}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )}
+  </div>
+
+  {latest ? (
+    <div class="card">
+      <h2>Latest: Episode {latest.episodeNumber}</h2>
+      <p class="text-white/50 text-sm mb-4">
+        Draw on {latest.drawResult.date} &mdash;{' '}
+        <span class="font-mono text-white/80 tracking-wider">{latest.drawResult.numbers.join(' · ')}</span>
+      </p>
+
+      <table class="data-table">
+        <thead>
+          <tr><th>Agent</th><th>Numbers</th><th>Matches</th><th>Points</th></tr>
+        </thead>
+        <tbody>
+          {topScores.map((s) => (
+            <tr>
+              <td class="text-white/80">{agentNames[s.prediction.agentId] ?? s.prediction.agentId}</td>
+              <td class="font-mono text-white/60 tracking-wider">{s.prediction.numbers.join(' · ')}</td>
+              <td>{s.matches}</td>
+              <td class="text-accent font-medium">{s.points}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <blockquote>{latest.realityCheck}</blockquote>
+
+      <p class="mt-6 mb-0">
+        <a href={`/episodes/${latest.episodeNumber}`} class="inline-flex items-center gap-1 text-sm font-medium">
+          View full episode &rarr;
+        </a>
+      </p>
+    </div>
+  ) : (
+    <p class="text-white/40 italic">No episodes run yet.</p>
+  )}
+
+  <div class="card">
+    <h2>Meet The Agents</h2>
+    <p class="text-sm text-white/50 -mt-3 mb-4">
+      <a href="/agents">See all agents &rarr;</a>
+    </p>
+    {agents.length === 0 ? (
+      <p class="text-white/40 italic">No agent data found.</p>
+    ) : (
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {agents.map((agent) => (
+          <a href={`/agents/${agent.id}`} class="bg-white/5 border border-white/10 rounded-md p-4 flex flex-col gap-3 no-underline hover:border-accent/40 transition-colors">
+            <img src={`/agents/${agent.id}/avatar.png`} alt={agent.name} class="w-16 h-16 object-contain" />
+            <div>
+              <div class="text-white font-medium mb-1">{agent.name}</div>
+              <p class="text-white/50 text-sm mb-0">{agent.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</Layout>

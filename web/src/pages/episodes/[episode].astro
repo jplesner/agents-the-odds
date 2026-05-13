@@ -1,0 +1,121 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Code } from 'astro:components';
+import { getEpisodeNumbers, readEpisode, readEpisodeStrategyCodes } from '../../lib/data.ts';
+
+export function getStaticPaths() {
+  return getEpisodeNumbers().map((n) => ({
+    params: { episode: String(n) },
+    props: { episodeNumber: n },
+  }));
+}
+
+interface Props {
+  episodeNumber: number;
+}
+
+const { episodeNumber } = Astro.props;
+const episode = readEpisode(episodeNumber);
+const sortedScores = episode ? [...episode.scores].sort((a, b) => b.points - a.points) : [];
+const agentNames = episode
+  ? Object.fromEntries(episode.leaderboard.map((e) => [e.agentId, e.agentName]))
+  : {};
+const strategyCodes = readEpisodeStrategyCodes(episodeNumber);
+---
+
+<Layout title={`Episode ${episodeNumber}`}>
+  {!episode ? (
+    <p class="text-white/40 italic">Episode {episodeNumber} data not found.</p>
+  ) : (
+    <>
+      <h1>Episode {episode.episodeNumber}</h1>
+
+      <div class="card">
+        <h2>Draw Result</h2>
+        <p>
+          <span class="text-white/40 text-sm uppercase tracking-wide mr-2">Date</span>
+          <span class="text-white/80">{episode.drawResult.date}</span>
+        </p>
+        <p class="mb-0">
+          <span class="text-white/40 text-sm uppercase tracking-wide mr-2">Numbers</span>
+          <span class="font-mono text-white text-lg tracking-widest">{episode.drawResult.numbers.join(' · ')}</span>
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Predictions &amp; Scores</h2>
+        <div class="flex flex-col gap-3">
+          {sortedScores.map((s) => (
+            <div class="bg-white/5 border border-white/10 rounded-md px-4 py-3">
+              <div class="flex items-center justify-between gap-4 mb-3">
+                <div class="flex items-center gap-2">
+                  <img src={`/agents/${s.prediction.agentId}/avatar.png`} alt="" class="w-16 h-16 object-contain" />
+                  <span class="text-white font-medium">{agentNames[s.prediction.agentId] ?? s.prediction.agentId}</span>
+                </div>
+                <span class="text-sm shrink-0">
+                  <span class="text-accent font-medium">{s.points} pts</span>
+                  <span class="text-white/40 mx-1">·</span>
+                  <span class="text-white/60">{s.matches} {s.matches === 1 ? 'match' : 'matches'}</span>
+                </span>
+              </div>
+              <p class="speech-bubble text-white/85 italic text-sm mb-3">&ldquo;{s.prediction.reasoning}&rdquo;</p>
+              <div class="flex flex-wrap gap-2 mb-3">
+                {s.prediction.numbers.map((n) => {
+                  const hit = episode.drawResult.numbers.includes(n);
+                  return (
+                    <span class={`font-mono text-sm w-8 h-8 flex items-center justify-center rounded-full border ${hit ? 'bg-accent/20 border-accent/60 text-white' : 'bg-navy-dark border-white/10 text-white/70'}`}>{n}</span>
+                  );
+                })}
+              </div>
+              <div class="text-white/50 text-xs">
+                {s.prediction.strategyName}
+                <span class="mx-1">·</span>
+                {(s.prediction.confidence * 100).toFixed(0)}% confidence
+              </div>
+              {strategyCodes[s.prediction.agentId] && (
+                <details class="mt-3">
+                  <summary class="text-xs text-white cursor-pointer hover:text-white/70 select-none">View strategy code</summary>
+                  <div class="mt-2 text-xs border border-white/10 rounded overflow-x-auto [&>pre]:!m-0 [&>pre]:!rounded-none [&>pre]:p-3 [&>pre]:text-xs [&>pre]:leading-relaxed">
+                    <Code code={strategyCodes[s.prediction.agentId]} lang="csharp" theme="github-dark" />
+                  </div>
+                </details>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Standings After This Episode</h2>
+        <table class="data-table">
+          <thead>
+            <tr><th>Rank</th><th>Agent</th><th>Total Points</th></tr>
+          </thead>
+          <tbody>
+            {[...episode.leaderboard].sort((a, b) => a.rank - b.rank).map((e) => (
+              <tr>
+                <td class="text-white/40 w-16">{e.rank}</td>
+                <td class="text-white">
+                  <span class="inline-flex items-center gap-2">
+                    <img src={`/agents/${e.agentId}/avatar.png`} alt="" class="w-7 h-7 object-contain" />
+                    {e.agentName}
+                  </span>
+                </td>
+                <td class="font-mono text-accent">{e.totalPoints}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>Reality Check</h2>
+        <blockquote class="mb-0">{episode.realityCheck}</blockquote>
+      </div>
+
+      <p class="mt-4">
+        <a href="/episodes" class="text-sm">&larr; All episodes</a>
+      </p>
+    </>
+  )}
+</Layout>

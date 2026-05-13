@@ -1,0 +1,76 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+@theme {
+  --font-sans: "Roboto", sans-serif;
+  --color-navy: #111821;
+  --color-navy-dark: #0d1520;
+  --color-navy-card: #1a2332;
+  --color-accent: #39c1fb;
+}
+
+@layer base {
+  body {
+    @apply bg-navy text-white/70 font-sans;
+  }
+
+  h1 {
+    @apply text-white text-3xl font-bold mb-6 mt-0;
+  }
+
+  h2 {
+    @apply text-white text-xl font-semibold mt-8 mb-4 pl-3 border-l-4 border-accent;
+  }
+
+  p {
+    @apply mb-4;
+  }
+
+  a {
+    @apply text-accent transition-colors hover:text-white;
+  }
+
+  blockquote {
+    @apply border-l-4 border-accent pl-4 my-4 text-white/50 italic;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-navy-card border border-white/10 rounded-lg px-6 py-5 my-6;
+  }
+
+  .card h2 {
+    @apply mt-0;
+  }
+
+  .speech-bubble {
+    @apply relative bg-white/10 rounded-xl px-3 py-2;
+  }
+
+  .speech-bubble::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 14px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .data-table {
+    @apply w-full text-sm border-collapse my-4;
+  }
+
+  .data-table th {
+    @apply bg-white/5 text-white font-medium text-left px-3 py-2 border border-white/10;
+  }
+
+  .data-table td {
+    @apply px-3 py-2 border border-white/10;
+  }
+
+  .data-table tbody tr:hover td {
+    @apply bg-white/5;
+  }
+}

@@ -9,24 +9,24 @@
     {
       "agentId": "dog",
       "agentName": "Dog",
-      "totalPoints": 1,
+      "totalPoints": 2,
       "rank": 2
     },
     {
       "agentId": "statistician",
       "agentName": "The Statistician",
-      "totalPoints": 1,
+      "totalPoints": 2,
       "rank": 3
-    },
-    {
-      "agentId": "pattern-goblin",
-      "agentName": "The Pattern Goblin",
-      "totalPoints": 1,
-      "rank": 4
     },
     {
       "agentId": "skeptic",
       "agentName": "The Skeptic",
+      "totalPoints": 2,
+      "rank": 4
+    },
+    {
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
       "totalPoints": 1,
       "rank": 5
     },

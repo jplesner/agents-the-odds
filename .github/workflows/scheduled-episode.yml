@@ -16,8 +16,10 @@ jobs:
       - name: Detect next episode number
         id: next
         run: |
-          LAST=$(ls data/episodes/episode-*.json 2>/dev/null | grep -oP 'episode-\K[0-9]+' | sort -n | tail -1)
-          NEXT=$((${LAST:-0} + 1))
+          LOCAL_LAST=$(ls data/episodes/episode-*.json 2>/dev/null | grep -oP 'episode-\K[0-9]+' | sort -n | tail -1)
+          REMOTE_LAST=$(git ls-remote --heads origin 'episode/*' | grep -oP 'episode/\K[0-9]+' | sort -n | tail -1)
+          LAST=$(printf '%s\n' "${LOCAL_LAST:-0}" "${REMOTE_LAST:-0}" | sort -n | tail -1)
+          NEXT=$((LAST + 1))
           echo "episode=$NEXT" >> $GITHUB_OUTPUT
 
   run-episode:

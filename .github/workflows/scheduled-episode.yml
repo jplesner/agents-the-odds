@@ -11,11 +11,12 @@ jobs:
     outputs:
       episode: ${{ steps.next.outputs.episode }}
     steps:
+      - uses: actions/checkout@v5
+
       - name: Detect next episode number
         id: next
         run: |
-          LAST=$(git ls-remote --heads https://github.com/${{ github.repository }} 'episode/*' \
-            | grep -oP 'episode/\K[0-9]+' | sort -n | tail -1)
+          LAST=$(ls data/episodes/episode-*.json 2>/dev/null | grep -oP 'episode-\K[0-9]+' | sort -n | tail -1)
           NEXT=$((${LAST:-0} + 1))
           echo "episode=$NEXT" >> $GITHUB_OUTPUT
 

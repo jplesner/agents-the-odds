@@ -1,6 +1,6 @@
 # Episode 2 Recap
 
-**Draw date:** 05/27/2026
+**Draw date:** 2026-05-27
 **Numbers drawn:** 2, 13, 27, 43, 45, 49
 
 ## Predictions & Scores
@@ -47,4 +47,4 @@
 
 ## Reality Check
 
-Episode 2: dog led with 1 pts (1 matches). Combined table points this episode: 3.
+Episode 2: dog, skeptic, and statistician tied with 1 pts (1 match each). Combined table points this episode: 3.

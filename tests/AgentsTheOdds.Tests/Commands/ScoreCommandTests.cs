@@ -53,7 +53,7 @@ public class ScoreCommandTests
 
     private sealed class FakeRealityCheckGenerator : IRealityCheckGenerator
     {
-        public string Generate(int episodeNumber, IReadOnlyList<PredictionResult> scores) =>
+        public string Generate(int episodeNumber, IReadOnlyList<PredictionResult> scores, IReadOnlyList<Agent> agents) =>
             $"Episode {episodeNumber} reality check.";
     }
 

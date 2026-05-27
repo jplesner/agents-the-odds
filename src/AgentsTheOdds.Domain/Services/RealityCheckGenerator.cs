@@ -5,10 +5,13 @@ namespace AgentsTheOdds.Domain.Services;
 
 public sealed class RealityCheckGenerator : IRealityCheckGenerator
 {
-    public string Generate(int episodeNumber, IReadOnlyList<PredictionResult> scores)
+    public string Generate(int episodeNumber, IReadOnlyList<PredictionResult> scores, IReadOnlyList<Agent> agents)
     {
         if (scores.Count == 0)
             return $"Episode {episodeNumber}: No predictions were scored.";
+
+        var nameById = agents.ToDictionary(a => a.Id, a => a.Name);
+        string DisplayName(string id) => nameById.TryGetValue(id, out var n) ? n : id;
 
         var maxPoints = scores.Max(s => s.Points);
         var topScorers = scores
@@ -21,17 +24,17 @@ public sealed class RealityCheckGenerator : IRealityCheckGenerator
         var matchWord = matches == 1 ? "match" : "matches";
 
         string leader = topScorers.Count == 1
-            ? $"{topScorers[0].Prediction.AgentId} led with {maxPoints} pts ({matches} {matchWord})"
-            : $"{FormatTie(topScorers)} tied with {maxPoints} pts ({matches} {matchWord} each)";
+            ? $"{DisplayName(topScorers[0].Prediction.AgentId)} led with {maxPoints} pts ({matches} {matchWord})"
+            : $"{FormatTie(topScorers, DisplayName)} tied with {maxPoints} pts ({matches} {matchWord} each)";
 
         return $"Episode {episodeNumber}: {leader}. Combined table points this episode: {totalPoints}.";
     }
 
-    private static string FormatTie(List<PredictionResult> agents)
+    private static string FormatTie(List<PredictionResult> agents, Func<string, string> displayName)
     {
         if (agents.Count == 2)
-            return $"{agents[0].Prediction.AgentId} and {agents[1].Prediction.AgentId}";
-        var allButLast = agents.Take(agents.Count - 1).Select(a => a.Prediction.AgentId);
-        return string.Join(", ", allButLast) + $", and {agents[^1].Prediction.AgentId}";
+            return $"{displayName(agents[0].Prediction.AgentId)} and {displayName(agents[1].Prediction.AgentId)}";
+        var allButLast = agents.Take(agents.Count - 1).Select(a => displayName(a.Prediction.AgentId));
+        return string.Join(", ", allButLast) + $", and {displayName(agents[^1].Prediction.AgentId)}";
     }
 }

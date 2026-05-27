@@ -4,5 +4,5 @@ namespace AgentsTheOdds.Domain.Interfaces;
 
 public interface IRealityCheckGenerator
 {
-    string Generate(int episodeNumber, IReadOnlyList<PredictionResult> scores);
+    string Generate(int episodeNumber, IReadOnlyList<PredictionResult> scores, IReadOnlyList<Agent> agents);
 }

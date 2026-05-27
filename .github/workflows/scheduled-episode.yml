@@ -8,13 +8,30 @@ on:
 jobs:
   detect-episode:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
     outputs:
       episode: ${{ steps.next.outputs.episode }}
+      should_run: ${{ steps.check.outputs.should_run }}
     steps:
       - uses: actions/checkout@v5
 
+      - name: Check for open episode PRs
+        id: check
+        run: |
+          OPEN=$(gh pr list --state open --json headRefName --jq '[.[] | select(.headRefName | startswith("episode/"))] | length')
+          if [ "$OPEN" -gt 0 ]; then
+            echo "Skipping: $OPEN open episode PR(s) pending merge"
+            echo "should_run=false" >> $GITHUB_OUTPUT
+          else
+            echo "should_run=true" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Detect next episode number
         id: next
+        if: steps.check.outputs.should_run == 'true'
         run: |
           LOCAL_LAST=$(ls data/episodes/episode-*.json 2>/dev/null | grep -oP 'episode-\K[0-9]+' | sort -n | tail -1)
           REMOTE_LAST=$(git ls-remote --heads origin 'episode/*' | grep -oP 'episode/\K[0-9]+' | sort -n | tail -1)
@@ -24,6 +41,7 @@ jobs:
 
   run-episode:
     needs: detect-episode
+    if: needs.detect-episode.outputs.should_run == 'true'
     permissions:
       contents: write
       pull-requests: write

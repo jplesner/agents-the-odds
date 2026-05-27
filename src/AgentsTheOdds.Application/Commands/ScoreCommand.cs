@@ -47,7 +47,7 @@ public sealed class ScoreCommand(
             .ToList();
 
         var allAgents = agents.GetAll();
-        var realityCheck = realityCheckGenerator.Generate(episodeNumber, scores);
+        var realityCheck = realityCheckGenerator.Generate(episodeNumber, scores, allAgents);
 
         var board = Leaderboard.Empty;
         foreach (var prior in episodeResults.GetAll()

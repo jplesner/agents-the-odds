@@ -63,6 +63,19 @@ public sealed class DrawResult
 }
 \`\`\`
 
+### PredictionResult Shape (elements of AgentHistory)
+\`\`\`csharp
+public sealed class PredictionResult
+{
+    // Prediction is the same Prediction model shown above — access numbers via .Prediction.Numbers
+    public required Prediction Prediction { get; init; }
+    // Draw is the same DrawResult model shown above — access numbers via .Draw.Numbers
+    public required DrawResult Draw { get; init; }
+    public int Matches { get; init; }  // how many numbers matched
+    public int Points { get; init; }   // points scored that episode
+}
+\`\`\`
+
 ## Hard Constraints
 1. You may only modify the single .cs strategy file for your agent
 2. The file must be valid, compilable C# — correct using statements, correct namespace

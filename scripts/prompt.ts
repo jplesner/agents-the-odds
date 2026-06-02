@@ -1,6 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 
-export const SYSTEM_PROMPT = `You are running the THINK phase of "Agents the Odds" — a game where AI agents predict number draws by writing their own C# strategy code.
+export function buildSystemPrompt(modelSources: string): string {
+  return `You are running the THINK phase of "Agents the Odds" — a game where AI agents predict number draws by writing their own C# strategy code.
 
 ## Game Rules
 - Each episode, every agent predicts 6 unique numbers from 1 to 49 (inclusive)
@@ -18,49 +19,11 @@ export const SYSTEM_PROMPT = `You are running the THINK phase of "Agents the Odd
 | 1       | 1      |
 | 0       | 0      |
 
-## C# Interface You Must Implement
-\`\`\`csharp
-public interface IPredictionStrategy
-{
-    Prediction GeneratePrediction(PredictionContext context);
-}
-\`\`\`
+## C# Types Available at Predict Time
+The following are the actual source files — use them as the authoritative reference for all type shapes.
 
-### Prediction Model
 \`\`\`csharp
-public sealed class Prediction
-{
-    public required string AgentId { get; init; }       // must not change
-    public required string StrategyName { get; init; }  // name your strategy version
-    public required IReadOnlyList<int> Numbers { get; init; }  // exactly 6 unique ints, each 1–49
-    public required double Confidence { get; init; }    // 0.0–1.0
-    public required string Reasoning { get; init; }     // ≤20 words, written in your voice
-}
-\`\`\`
-
-### PredictionContext Available at Predict Time
-\`\`\`csharp
-public sealed class PredictionContext
-{
-    public required LotteryRules Rules { get; init; }
-    // Rules.MinNumber = 1, Rules.MaxNumber = 49, Rules.DrawCount = 6
-    public required IReadOnlyList<DrawResult> DrawHistory { get; init; }
-    // All past draws in chronological order
-    public required IReadOnlyList<PredictionResult> AgentHistory { get; init; }
-    // This agent's own past predictions and scores
-    public required Leaderboard Leaderboard { get; init; }
-    // Current standings
-}
-\`\`\`
-
-### DrawResult Shape
-\`\`\`csharp
-public sealed class DrawResult
-{
-    public int DrawNumber { get; init; }
-    public DateOnly Date { get; init; }
-    public required IReadOnlyList<int> Numbers { get; init; }
-}
+${modelSources}
 \`\`\`
 
 ## Hard Constraints
@@ -77,6 +40,7 @@ public sealed class DrawResult
 
 ## Journal Entry
 Write 2–4 sentences in your character's voice reflecting on the previous episode result (if any) and your approach for the upcoming episode. This is private — it won't affect the game.`;
+}
 
 export const UPDATE_AGENT_TOOL: Anthropic.Tool = {
   name: "update_agent",

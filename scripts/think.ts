@@ -4,13 +4,28 @@ import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { SYSTEM_PROMPT, UPDATE_AGENT_TOOL } from "./prompt.js";
+import { buildSystemPrompt, UPDATE_AGENT_TOOL } from "./prompt.js";
 import type { AgentConfig, DrawResult, EpisodeResult, Leaderboard } from "./types.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.join(__dirname, "..");
 
 const client = new Anthropic();
+
+function loadModelSources(): string {
+  const files = [
+    path.join(REPO_ROOT, "src", "AgentsTheOdds.Domain", "Interfaces", "IPredictionStrategy.cs"),
+    path.join(REPO_ROOT, "src", "AgentsTheOdds.Domain", "Models", "Prediction.cs"),
+    path.join(REPO_ROOT, "src", "AgentsTheOdds.Domain", "Models", "PredictionContext.cs"),
+    path.join(REPO_ROOT, "src", "AgentsTheOdds.Domain", "Models", "LotteryRules.cs"),
+    path.join(REPO_ROOT, "src", "AgentsTheOdds.Domain", "Models", "DrawResult.cs"),
+    path.join(REPO_ROOT, "src", "AgentsTheOdds.Domain", "Models", "PredictionResult.cs"),
+    path.join(REPO_ROOT, "src", "AgentsTheOdds.Domain", "Models", "Leaderboard.cs"),
+  ];
+  return files
+    .map((f) => `// --- ${path.relative(REPO_ROOT, f)} ---\n${fs.readFileSync(f, "utf-8").trim()}`)
+    .join("\n\n");
+}
 
 function loadAgents(): AgentConfig[] {
   const output = execSync(
@@ -147,6 +162,7 @@ async function thinkForAgent(
   draws: DrawResult[],
   episodeResults: EpisodeResult[],
   leaderboard: Leaderboard,
+  modelSources: string,
 ): Promise<void> {
   const agentsDir = path.join(REPO_ROOT, "data", "agents", agent.id);
   const strategyFile = path.join(
@@ -212,7 +228,7 @@ Rewrite your C# strategy implementation for Episode ${episode}. Your strategy co
     system: [
       {
         type: "text",
-        text: SYSTEM_PROMPT,
+        text: buildSystemPrompt(modelSources),
         cache_control: { type: "ephemeral" },
       },
     ],
@@ -273,6 +289,7 @@ async function main(): Promise<void> {
   const draws = loadDraws(episode);
   const episodeResults = loadEpisodeResults(episode);
   const leaderboard = loadLeaderboard();
+  const modelSources = loadModelSources();
 
   console.log(
     `Loaded: ${agents.length} agent(s), ${draws.length} draw(s), ${episodeResults.length} episode result(s)`,
@@ -280,7 +297,7 @@ async function main(): Promise<void> {
 
   for (const agent of agents) {
     console.log(`\n[${agent.name}]`);
-    await thinkForAgent(agent, episode, draws, episodeResults, leaderboard);
+    await thinkForAgent(agent, episode, draws, episodeResults, leaderboard, modelSources);
   }
 
   console.log("\nValidating updated strategies...");

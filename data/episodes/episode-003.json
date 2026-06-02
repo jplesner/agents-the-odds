@@ -1,0 +1,236 @@
+{
+  "episodeNumber": 3,
+  "drawResult": {
+    "drawNumber": 3,
+    "date": "2026-06-02",
+    "numbers": [
+      13,
+      19,
+      29,
+      36,
+      38,
+      48
+    ]
+  },
+  "scores": [
+    {
+      "prediction": {
+        "agentId": "statistician",
+        "strategyName": "zonal-frequency-gap-parity-v5",
+        "numbers": [
+          2,
+          13,
+          21,
+          27,
+          37,
+          43
+        ],
+        "confidence": 0.10400000000000001,
+        "reasoning": "Two draws: 43 and 49 repeat; frequency signal weak but noted, zonal spread maintained."
+      },
+      "draw": {
+        "drawNumber": 3,
+        "date": "2026-06-02",
+        "numbers": [
+          13,
+          19,
+          29,
+          36,
+          38,
+          48
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "pattern-goblin",
+        "strategyName": "dual-anchor-cold-desert-eruption-v5",
+        "numbers": [
+          28,
+          30,
+          31,
+          38,
+          45,
+          46
+        ],
+        "confidence": 0.51,
+        "reasoning": "43 and 49 are GRAVITY ANCHORS. The cold desert ERUPTS. Dominant gap projects NOW."
+      },
+      "draw": {
+        "drawNumber": 3,
+        "date": "2026-06-02",
+        "numbers": [
+          13,
+          19,
+          29,
+          36,
+          38,
+          48
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "skeptic",
+        "strategyName": "cold-frequency-v5",
+        "numbers": [
+          9,
+          11,
+          12,
+          14,
+          15,
+          16
+        ],
+        "confidence": 0.12,
+        "reasoning": "Cold numbers, avoiding prior picks. Chaos Monkey is regressing. Predictably."
+      },
+      "draw": {
+        "drawNumber": 3,
+        "date": "2026-06-02",
+        "numbers": [
+          13,
+          19,
+          29,
+          36,
+          38,
+          48
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "mystic",
+        "strategyName": "virgin-charge-penumbra-v3",
+        "numbers": [
+          1,
+          8,
+          11,
+          23,
+          24,
+          48
+        ],
+        "confidence": 0.42,
+        "reasoning": "Spent numbers sleep; I call the virgin ones, screaming silently with unspent cosmic charge."
+      },
+      "draw": {
+        "drawNumber": 3,
+        "date": "2026-06-02",
+        "numbers": [
+          13,
+          19,
+          29,
+          36,
+          38,
+          48
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "chaos-monkey",
+        "strategyName": "chaos-mutation-bag-v4-mode5",
+        "numbers": [
+          14,
+          22,
+          23,
+          29,
+          38,
+          44
+        ],
+        "confidence": 0.15465189190798062,
+        "reasoning": "Last draw haunts us. So we run. Anti-repeat, babyyy."
+      },
+      "draw": {
+        "drawNumber": 3,
+        "date": "2026-06-02",
+        "numbers": [
+          13,
+          19,
+          29,
+          36,
+          38,
+          48
+        ]
+      },
+      "matches": 2,
+      "points": 5
+    },
+    {
+      "prediction": {
+        "agentId": "dog",
+        "strategyName": "good-boy-sniff-v3",
+        "numbers": [
+          5,
+          37,
+          40,
+          43,
+          45,
+          49
+        ],
+        "confidence": 0.38,
+        "reasoning": "43 and 49 smell like DOUBLE TREATS! Good sniffs from history!"
+      },
+      "draw": {
+        "drawNumber": 3,
+        "date": "2026-06-02",
+        "numbers": [
+          13,
+          19,
+          29,
+          36,
+          38,
+          48
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    }
+  ],
+  "leaderboard": [
+    {
+      "agentId": "chaos-monkey",
+      "agentName": "Chaos Monkey",
+      "totalPoints": 10,
+      "rank": 1
+    },
+    {
+      "agentId": "statistician",
+      "agentName": "The Statistician",
+      "totalPoints": 3,
+      "rank": 2
+    },
+    {
+      "agentId": "dog",
+      "agentName": "Dog",
+      "totalPoints": 2,
+      "rank": 3
+    },
+    {
+      "agentId": "skeptic",
+      "agentName": "The Skeptic",
+      "totalPoints": 2,
+      "rank": 4
+    },
+    {
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
+      "totalPoints": 2,
+      "rank": 5
+    },
+    {
+      "agentId": "mystic",
+      "agentName": "The Mystic",
+      "totalPoints": 1,
+      "rank": 6
+    }
+  ],
+  "realityCheck": "Episode 3: Chaos Monkey led with 5 pts (2 matches). Combined table points this episode: 8."
+}

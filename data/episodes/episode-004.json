@@ -1,0 +1,236 @@
+{
+  "episodeNumber": 4,
+  "drawResult": {
+    "drawNumber": 4,
+    "date": "2026-06-09",
+    "numbers": [
+      4,
+      19,
+      20,
+      34,
+      37,
+      42
+    ]
+  },
+  "scores": [
+    {
+      "prediction": {
+        "agentId": "statistician",
+        "strategyName": "zonal-frequency-gap-parity-recency-v6",
+        "numbers": [
+          2,
+          13,
+          19,
+          29,
+          36,
+          43
+        ],
+        "confidence": 0.10600000000000001,
+        "reasoning": "Three draws: 13 and 29 repeat; recency-weighted frequency, zonal spread, 50/50 parity observed."
+      },
+      "draw": {
+        "drawNumber": 4,
+        "date": "2026-06-09",
+        "numbers": [
+          4,
+          19,
+          20,
+          34,
+          37,
+          42
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "pattern-goblin",
+        "strategyName": "anchor-succession-void-eruption-mid-gap-v6",
+        "numbers": [
+          6,
+          12,
+          13,
+          29,
+          35,
+          39
+        ],
+        "confidence": 0.54,
+        "reasoning": "13 and 29 are the NEW anchors. High-mid void ERUPTS. Low chamber STARVES no more."
+      },
+      "draw": {
+        "drawNumber": 4,
+        "date": "2026-06-09",
+        "numbers": [
+          4,
+          19,
+          20,
+          34,
+          37,
+          42
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "skeptic",
+        "strategyName": "cold-frequency-v6",
+        "numbers": [
+          25,
+          1,
+          31,
+          34,
+          7,
+          3
+        ],
+        "confidence": 0.12,
+        "reasoning": "Cold numbers, seeded shuffle. Chaos Monkey will regress. Eventually."
+      },
+      "draw": {
+        "drawNumber": 4,
+        "date": "2026-06-09",
+        "numbers": [
+          4,
+          19,
+          20,
+          34,
+          37,
+          42
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "mystic",
+        "strategyName": "singular-soul-golden-ratio-v4",
+        "numbers": [
+          2,
+          15,
+          21,
+          27,
+          28,
+          38
+        ],
+        "confidence": 0.42,
+        "reasoning": "Singular souls hunger to return; I call them through the golden ratio portal."
+      },
+      "draw": {
+        "drawNumber": 4,
+        "date": "2026-06-09",
+        "numbers": [
+          4,
+          19,
+          20,
+          34,
+          37,
+          42
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "chaos-monkey",
+        "strategyName": "chaos-mutation-bag-v5-mode8",
+        "numbers": [
+          12,
+          21,
+          27,
+          30,
+          39,
+          48
+        ],
+        "confidence": 0.23393297269192198,
+        "reasoning": "Mirror universe strategy. Reflect history, confuse the draw gods."
+      },
+      "draw": {
+        "drawNumber": 4,
+        "date": "2026-06-09",
+        "numbers": [
+          4,
+          19,
+          20,
+          34,
+          37,
+          42
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "dog",
+        "strategyName": "good-boy-sniff-v4",
+        "numbers": [
+          2,
+          19,
+          29,
+          38,
+          43,
+          49
+        ],
+        "confidence": 0.3,
+        "reasoning": "13 and 29 appeared TWICE! Fresh sniffs from recent draw! No squirrels!"
+      },
+      "draw": {
+        "drawNumber": 4,
+        "date": "2026-06-09",
+        "numbers": [
+          4,
+          19,
+          20,
+          34,
+          37,
+          42
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    }
+  ],
+  "leaderboard": [
+    {
+      "agentId": "chaos-monkey",
+      "agentName": "Chaos Monkey",
+      "totalPoints": 10,
+      "rank": 1
+    },
+    {
+      "agentId": "statistician",
+      "agentName": "The Statistician",
+      "totalPoints": 4,
+      "rank": 2
+    },
+    {
+      "agentId": "dog",
+      "agentName": "Dog",
+      "totalPoints": 3,
+      "rank": 3
+    },
+    {
+      "agentId": "skeptic",
+      "agentName": "The Skeptic",
+      "totalPoints": 3,
+      "rank": 4
+    },
+    {
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
+      "totalPoints": 2,
+      "rank": 5
+    },
+    {
+      "agentId": "mystic",
+      "agentName": "The Mystic",
+      "totalPoints": 1,
+      "rank": 6
+    }
+  ],
+  "realityCheck": "Episode 4: Dog, The Skeptic, and The Statistician tied with 1 pts (1 match each). Combined table points this episode: 3."
+}

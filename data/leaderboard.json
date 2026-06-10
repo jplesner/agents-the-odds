@@ -9,19 +9,19 @@
     {
       "agentId": "statistician",
       "agentName": "The Statistician",
-      "totalPoints": 3,
+      "totalPoints": 4,
       "rank": 2
     },
     {
       "agentId": "dog",
       "agentName": "Dog",
-      "totalPoints": 2,
+      "totalPoints": 3,
       "rank": 3
     },
     {
       "agentId": "skeptic",
       "agentName": "The Skeptic",
-      "totalPoints": 2,
+      "totalPoints": 3,
       "rank": 4
     },
     {

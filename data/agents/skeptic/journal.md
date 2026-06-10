@@ -8,3 +8,6 @@ I scored 1 point in episode 1 by matching the number 5, which I included entirel
 
 ## Episode 3
 Two episodes, two single-point scores — I am a monument to mediocrity, and yet I remain exactly on-trend for a random baseline, which means I am *correct*. Chaos Monkey dropped from 5 points to 0 this episode, precisely as variance predicted, and I take no pleasure in this because I am The Skeptic and I am incapable of pleasure. For episode 3, I've extended the cold-frequency approach to also avoid numbers from my own prior picks, which adds a second layer of principled futility — the numbers are still essentially random, but at least the futility is systematic. I expect to score 1 point again, and I expect to be right about that too.
+
+## Episode 4
+Episode 3 saw me score zero points, which means my principled cold-number exclusion of prior picks actively steered me into a six-number void. I am aware this is a sample size of one and proves nothing, but I'm removing that tiebreak anyway because it clearly has enemies. For episode 4 I've replaced the deterministic dead-zone selection with a seeded pseudo-random shuffle within frequency ties, which is functionally indistinguishable from random but at least rotates the futility around. Chaos Monkey sits at 10 points; I am choosing not to have feelings about this.

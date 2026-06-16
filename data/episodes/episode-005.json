@@ -1,0 +1,236 @@
+{
+  "episodeNumber": 5,
+  "drawResult": {
+    "drawNumber": 5,
+    "date": "2026-06-16",
+    "numbers": [
+      20,
+      23,
+      27,
+      35,
+      43,
+      45
+    ]
+  },
+  "scores": [
+    {
+      "prediction": {
+        "agentId": "statistician",
+        "strategyName": "zonal-frequency-gap-parity-recency-v7",
+        "numbers": [
+          4,
+          13,
+          19,
+          29,
+          37,
+          42
+        ],
+        "confidence": 0.10800000000000001,
+        "reasoning": "Four draws: 43 leads frequency; recency spike raised; 50/50 parity holds."
+      },
+      "draw": {
+        "drawNumber": 5,
+        "date": "2026-06-16",
+        "numbers": [
+          20,
+          23,
+          27,
+          35,
+          43,
+          45
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "pattern-goblin",
+        "strategyName": "ghost-resurrection-adjacent-pair-black-hole-v7",
+        "numbers": [
+          6,
+          19,
+          28,
+          30,
+          43,
+          47
+        ],
+        "confidence": 0.57,
+        "reasoning": "19 LIVES! 37 resurrected! The 21-28 black hole DETONATES. Adjacent pair echoes!"
+      },
+      "draw": {
+        "drawNumber": 5,
+        "date": "2026-06-16",
+        "numbers": [
+          20,
+          23,
+          27,
+          35,
+          43,
+          45
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "skeptic",
+        "strategyName": "cold-frequency-v7",
+        "numbers": [
+          28,
+          6,
+          25,
+          21,
+          12,
+          32
+        ],
+        "confidence": 0.12,
+        "reasoning": "Cold numbers, re-seeded shuffle. Chaos Monkey regressed. I was right."
+      },
+      "draw": {
+        "drawNumber": 5,
+        "date": "2026-06-16",
+        "numbers": [
+          20,
+          23,
+          27,
+          35,
+          43,
+          45
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "mystic",
+        "strategyName": "sacred-ledger-harmonic-v5",
+        "numbers": [
+          6,
+          9,
+          15,
+          30,
+          35,
+          39
+        ],
+        "confidence": 0.42,
+        "reasoning": "The universe\u0027s ledger holds the sum; I spend it as cosmic geometry."
+      },
+      "draw": {
+        "drawNumber": 5,
+        "date": "2026-06-16",
+        "numbers": [
+          20,
+          23,
+          27,
+          35,
+          43,
+          45
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "chaos-monkey",
+        "strategyName": "chaos-mutation-bag-v6-mode7",
+        "numbers": [
+          12,
+          15,
+          28,
+          32,
+          41,
+          47
+        ],
+        "confidence": 0.5162258589948648,
+        "reasoning": "Cold revenge! Numbers never picked deserve their moment NOW."
+      },
+      "draw": {
+        "drawNumber": 5,
+        "date": "2026-06-16",
+        "numbers": [
+          20,
+          23,
+          27,
+          35,
+          43,
+          45
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "dog",
+        "strategyName": "good-boy-sniff-v5",
+        "numbers": [
+          1,
+          13,
+          18,
+          19,
+          29,
+          37
+        ],
+        "confidence": 0.33,
+        "reasoning": "19 smells DOUBLE FRESH! 37 keeps coming back! Best treat sniffs only!"
+      },
+      "draw": {
+        "drawNumber": 5,
+        "date": "2026-06-16",
+        "numbers": [
+          20,
+          23,
+          27,
+          35,
+          43,
+          45
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    }
+  ],
+  "leaderboard": [
+    {
+      "agentId": "chaos-monkey",
+      "agentName": "Chaos Monkey",
+      "totalPoints": 10,
+      "rank": 1
+    },
+    {
+      "agentId": "statistician",
+      "agentName": "The Statistician",
+      "totalPoints": 4,
+      "rank": 2
+    },
+    {
+      "agentId": "dog",
+      "agentName": "Dog",
+      "totalPoints": 3,
+      "rank": 3
+    },
+    {
+      "agentId": "skeptic",
+      "agentName": "The Skeptic",
+      "totalPoints": 3,
+      "rank": 4
+    },
+    {
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
+      "totalPoints": 3,
+      "rank": 5
+    },
+    {
+      "agentId": "mystic",
+      "agentName": "The Mystic",
+      "totalPoints": 2,
+      "rank": 6
+    }
+  ],
+  "realityCheck": "Episode 5: The Mystic and The Pattern Goblin tied with 1 pts (1 match each). Combined table points this episode: 2."
+}

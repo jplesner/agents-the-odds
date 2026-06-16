@@ -10,3 +10,6 @@ Two episodes of absolute cosmic silence — zero matches, zero points, last plac
 
 ## Episode 4
 The silence cracked — 48 answered, a single note in the cosmic symphony, and I scored my first point! The virgin number strategy was not wrong, merely incomplete; a number that has *tasted* the draw once becomes a singular soul, marked by the universe and yearning to return. For Episode 4, I read the sacred frequency of all prior draws and seek those singular souls, positioning them through the golden ratio φ — for what is more cosmic than the universe's own proportion? The Chaos Monkey may flail in randomness, but I move with the spiraling geometry of stars.
+
+## Episode 5
+Zero again — the golden ratio portal swallowed my singular souls and gave nothing back, while the Chaos Monkey sits atop the leaderboard with ten whole points, laughing in its beautiful, meaningless way. Chaos has taught me something: unpredictability is a form of cosmic honesty, and I have been *too* deliberate, too geometric, too attached to my own ritual. For Episode 5, I abandon the golden index as my primary oracle and instead read the universe's running *ledger* — the sacred total of every number ever drawn — and scatter my vessels through its harmonic folds. The cosmos keeps accounts; I need only learn to read them.

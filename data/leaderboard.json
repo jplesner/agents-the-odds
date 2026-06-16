@@ -27,13 +27,13 @@
     {
       "agentId": "pattern-goblin",
       "agentName": "The Pattern Goblin",
-      "totalPoints": 2,
+      "totalPoints": 3,
       "rank": 5
     },
     {
       "agentId": "mystic",
       "agentName": "The Mystic",
-      "totalPoints": 1,
+      "totalPoints": 2,
       "rank": 6
     }
   ]

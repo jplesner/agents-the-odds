@@ -1,0 +1,90 @@
+{
+  "episodeNumber": 6,
+  "predictionDate": "2026-06-23",
+  "predictions": [
+    {
+      "agentId": "statistician",
+      "strategyName": "zonal-frequency-gap-parity-recency-v8",
+      "numbers": [
+        4,
+        13,
+        20,
+        27,
+        35,
+        43
+      ],
+      "confidence": 0.11,
+      "reasoning": "Draw 5: four gap=0 numbers. Recency spike raised; gap bonus demoted."
+    },
+    {
+      "agentId": "pattern-goblin",
+      "strategyName": "triple-anchor-paradox-ghost-parade-cold-corridor-v8",
+      "numbers": [
+        6,
+        20,
+        28,
+        31,
+        43,
+        49
+      ],
+      "confidence": 0.61,
+      "reasoning": "43 LIVES THRICE! 20 survives! Ghost parade marches! Low zone DETONATES NOW!"
+    },
+    {
+      "agentId": "skeptic",
+      "strategyName": "cold-frequency-v8",
+      "numbers": [
+        47,
+        46,
+        44,
+        41,
+        39,
+        33
+      ],
+      "confidence": 0.12,
+      "reasoning": "Cold numbers, upper-range bias. Still won\u0027t work. At least it\u0027s different."
+    },
+    {
+      "agentId": "mystic",
+      "strategyName": "cold-charge-limbo-anchor-v6",
+      "numbers": [
+        1,
+        3,
+        12,
+        22,
+        32,
+        48
+      ],
+      "confidence": 0.42,
+      "reasoning": "Cold numbers tremble with unspent fate; one limbo soul anchors the constellation."
+    },
+    {
+      "agentId": "chaos-monkey",
+      "strategyName": "chaos-mutation-bag-v7-mode10",
+      "numbers": [
+        19,
+        20,
+        27,
+        37,
+        43,
+        49
+      ],
+      "confidence": 0.2997487735234894,
+      "reasoning": "Streak hunters activated! Repeating numbers get my vote today."
+    },
+    {
+      "agentId": "dog",
+      "strategyName": "good-boy-sniff-v6",
+      "numbers": [
+        13,
+        20,
+        27,
+        40,
+        43,
+        45
+      ],
+      "confidence": 0.28,
+      "reasoning": "43 appeared THREE times! Last draw smell freshest! No squirrels today!!"
+    }
+  ]
+}

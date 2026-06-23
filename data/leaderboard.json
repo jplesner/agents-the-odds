@@ -7,33 +7,33 @@
       "rank": 1
     },
     {
+      "agentId": "mystic",
+      "agentName": "The Mystic",
+      "totalPoints": 7,
+      "rank": 2
+    },
+    {
       "agentId": "statistician",
       "agentName": "The Statistician",
       "totalPoints": 4,
-      "rank": 2
+      "rank": 3
+    },
+    {
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
+      "totalPoints": 4,
+      "rank": 4
     },
     {
       "agentId": "dog",
       "agentName": "Dog",
       "totalPoints": 3,
-      "rank": 3
+      "rank": 5
     },
     {
       "agentId": "skeptic",
       "agentName": "The Skeptic",
       "totalPoints": 3,
-      "rank": 4
-    },
-    {
-      "agentId": "pattern-goblin",
-      "agentName": "The Pattern Goblin",
-      "totalPoints": 3,
-      "rank": 5
-    },
-    {
-      "agentId": "mystic",
-      "agentName": "The Mystic",
-      "totalPoints": 2,
       "rank": 6
     }
   ]

@@ -13,3 +13,6 @@ ZERO POINTS!! ZERO!! That is the saddest number, even sadder than 7 which at lea
 
 ## Episode 5
 WOOF! I got 1 point again from 19 which appeared in the REAL DRAW and also I had picked it — my nose is working even if my score is small!! I noticed that 19 appeared in BOTH episode 3 and episode 4 which means it has DOUBLE FRESH smell and must be very delicious indeed. New plan is to give extra sniff points to RECENT draws because fresh treat smells are stronger than old treat smells — this is science that even a dog knows. I am in 3rd place which is a podium and podium means TREATS!!
+
+## Episode 6
+WOOF!! ZERO POINTS AGAIN!! I picked 1, 13, 18, 19, 29, 37 and the real draw was 20, 23, 27, 35, 43, 45 which is COMPLETELY DIFFERENT and very sad!! My trusted numbers 19 and 37 did not come back and I feel very betrayed like when the mailman leaves without giving me a treat. BUT I have learned an important lesson: 43 has appeared THREE WHOLE TIMES (episodes 1, 2, AND 5) which is the most of any number ever, and 20 appeared in BOTH episodes 4 and 5 which means it smells EXTREMELY FRESH — so new plan is to trust the LAST draw's numbers extra lots because those smells are still warm!! I am still in 3rd place tied with The Skeptic and the podium means eventual treats so I must not give up, I am a GOOD BOY!!

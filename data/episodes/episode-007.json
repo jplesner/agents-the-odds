@@ -1,0 +1,236 @@
+{
+  "episodeNumber": 7,
+  "drawResult": {
+    "drawNumber": 7,
+    "date": "2026-06-30",
+    "numbers": [
+      4,
+      8,
+      15,
+      19,
+      20,
+      47
+    ]
+  },
+  "scores": [
+    {
+      "prediction": {
+        "agentId": "statistician",
+        "strategyName": "zonal-frequency-gap-parity-recency-v9",
+        "numbers": [
+          4,
+          13,
+          20,
+          27,
+          37,
+          42
+        ],
+        "confidence": 0.112,
+        "reasoning": "Recency signal too volatile; halved spike weight, restored gap bonus, strong odd lean."
+      },
+      "draw": {
+        "drawNumber": 7,
+        "date": "2026-06-30",
+        "numbers": [
+          4,
+          8,
+          15,
+          19,
+          20,
+          47
+        ]
+      },
+      "matches": 2,
+      "points": 5
+    },
+    {
+      "prediction": {
+        "agentId": "pattern-goblin",
+        "strategyName": "adjacency-law-ghost-parade-low-zone-echo-v9",
+        "numbers": [
+          6,
+          13,
+          26,
+          29,
+          30,
+          49
+        ],
+        "confidence": 0.58,
+        "reasoning": "31\u002B32 ADJACENCY LAW CONFIRMED! Ghosts coil! Low zone DETONATES at last!"
+      },
+      "draw": {
+        "drawNumber": 7,
+        "date": "2026-06-30",
+        "numbers": [
+          4,
+          8,
+          15,
+          19,
+          20,
+          47
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "skeptic",
+        "strategyName": "cold-frequency-v9",
+        "numbers": [
+          47,
+          3,
+          24,
+          8,
+          15,
+          44
+        ],
+        "confidence": 0.12,
+        "reasoning": "Bias abandoned. Pure cold-number chaos. Dog is my equal. Moving on."
+      },
+      "draw": {
+        "drawNumber": 7,
+        "date": "2026-06-30",
+        "numbers": [
+          4,
+          8,
+          15,
+          19,
+          20,
+          47
+        ]
+      },
+      "matches": 3,
+      "points": 10
+    },
+    {
+      "prediction": {
+        "agentId": "mystic",
+        "strategyName": "mirror-cold-resonance-v7",
+        "numbers": [
+          8,
+          10,
+          11,
+          18,
+          33,
+          36
+        ],
+        "confidence": 0.42,
+        "reasoning": "Mirrors of the spent numbers call; cold souls tremble; seven seals open."
+      },
+      "draw": {
+        "drawNumber": 7,
+        "date": "2026-06-30",
+        "numbers": [
+          4,
+          8,
+          15,
+          19,
+          20,
+          47
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "chaos-monkey",
+        "strategyName": "chaos-mutation-bag-v8-mode7",
+        "numbers": [
+          7,
+          8,
+          33,
+          39,
+          44,
+          49
+        ],
+        "confidence": 0.2104572952075197,
+        "reasoning": "Cold revenge! Never-drawn numbers deserve their revolution NOW."
+      },
+      "draw": {
+        "drawNumber": 7,
+        "date": "2026-06-30",
+        "numbers": [
+          4,
+          8,
+          15,
+          19,
+          20,
+          47
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "dog",
+        "strategyName": "good-boy-sniff-v7",
+        "numbers": [
+          19,
+          25,
+          28,
+          31,
+          42,
+          48
+        ],
+        "confidence": 0.22,
+        "reasoning": "Traitor numbers BANNED! Fresh medium smells! Mystic proved medium = treats!!"
+      },
+      "draw": {
+        "drawNumber": 7,
+        "date": "2026-06-30",
+        "numbers": [
+          4,
+          8,
+          15,
+          19,
+          20,
+          47
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    }
+  ],
+  "leaderboard": [
+    {
+      "agentId": "skeptic",
+      "agentName": "The Skeptic",
+      "totalPoints": 13,
+      "rank": 1
+    },
+    {
+      "agentId": "chaos-monkey",
+      "agentName": "Chaos Monkey",
+      "totalPoints": 11,
+      "rank": 2
+    },
+    {
+      "agentId": "statistician",
+      "agentName": "The Statistician",
+      "totalPoints": 9,
+      "rank": 3
+    },
+    {
+      "agentId": "mystic",
+      "agentName": "The Mystic",
+      "totalPoints": 8,
+      "rank": 4
+    },
+    {
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
+      "totalPoints": 4,
+      "rank": 5
+    },
+    {
+      "agentId": "dog",
+      "agentName": "Dog",
+      "totalPoints": 4,
+      "rank": 6
+    }
+  ],
+  "realityCheck": "Episode 7: The Skeptic led with 10 pts (3 matches). Combined table points this episode: 18."
+}

@@ -9,7 +9,7 @@
     {
       "agentId": "chaos-monkey",
       "agentName": "Chaos Monkey",
-      "totalPoints": 11,
+      "totalPoints": 12,
       "rank": 2
     },
     {
@@ -19,15 +19,15 @@
       "rank": 3
     },
     {
-      "agentId": "mystic",
-      "agentName": "The Mystic",
-      "totalPoints": 8,
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
+      "totalPoints": 9,
       "rank": 4
     },
     {
-      "agentId": "pattern-goblin",
-      "agentName": "The Pattern Goblin",
-      "totalPoints": 4,
+      "agentId": "mystic",
+      "agentName": "The Mystic",
+      "totalPoints": 8,
       "rank": 5
     },
     {

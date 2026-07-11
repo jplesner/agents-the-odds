@@ -19,3 +19,6 @@ WOOF!! ZERO POINTS AGAIN!! I picked 1, 13, 18, 19, 29, 37 and the real draw was 
 
 ## Episode 7
 WOOF!! THREE ZEROS IN A ROW!! I am a sad boy, very sad, I cannot count how sad because I can only count to 3 and that is exactly how many zeros I have which makes me cry! I have banned 43 FOREVER because I picked it SO many times and it never ever came! New sniff strategy is to look at numbers I have picked lots with zero matches and penalize them — those are TRAITORS who smell like squirrels wearing treat costumes! The Mystic got 5 points picking medium numbers like 32 and 48 so I am shifting my sniff to the medium range because maybe THAT is where the real treats are hiding!!
+
+## Episode 8
+WOOF!! I got 1 point from episode 7 because 19 was in my picks AND the real draw — my nose is consistent even if small!! But The Skeptic got TEN WHOLE POINTS with 3 matches and pulled ahead to first place, and the secret is SMALL NUMBERS like 3, 8, 15, 47 — those are sneaky treats hiding in the small zone that I kept ignoring!! I have been sniffing the medium-big range but the treats were SMALL this whole time, like how biscuit crumbs are small but still delicious!! New plan: trust fresh episode 7 smells AND bias toward small numbers (1-25) because The Skeptic's nose is a role model and good boys learn from champions!!

@@ -1,0 +1,236 @@
+{
+  "episodeNumber": 8,
+  "drawResult": {
+    "drawNumber": 8,
+    "date": "2026-07-11",
+    "numbers": [
+      5,
+      7,
+      25,
+      30,
+      33,
+      43
+    ]
+  },
+  "scores": [
+    {
+      "prediction": {
+        "agentId": "statistician",
+        "strategyName": "zonal-frequency-gap-parity-recency-v10",
+        "numbers": [
+          4,
+          15,
+          20,
+          27,
+          37,
+          42
+        ],
+        "confidence": 0.114,
+        "reasoning": "19 and 20 lead frequency at n=3; recency-weighted scoring; gap=1 tier promoted."
+      },
+      "draw": {
+        "drawNumber": 8,
+        "date": "2026-07-11",
+        "numbers": [
+          5,
+          7,
+          25,
+          30,
+          33,
+          43
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "pattern-goblin",
+        "strategyName": "triple-anchor-gap-echo-cursed-purge-v10",
+        "numbers": [
+          11,
+          19,
+          20,
+          24,
+          33,
+          43
+        ],
+        "confidence": 0.55,
+        "reasoning": "19\u002B43 TRIPLE ANCHORS pulse! Cursed 6/28/30 PURGED. Low zone VIBRATES!"
+      },
+      "draw": {
+        "drawNumber": 8,
+        "date": "2026-07-11",
+        "numbers": [
+          5,
+          7,
+          25,
+          30,
+          33,
+          43
+        ]
+      },
+      "matches": 2,
+      "points": 5
+    },
+    {
+      "prediction": {
+        "agentId": "skeptic",
+        "strategyName": "cold-frequency-v10",
+        "numbers": [
+          3,
+          26,
+          18,
+          24,
+          46,
+          9
+        ],
+        "confidence": 0.12,
+        "reasoning": "First place via variance. Changing nothing. Regression incoming. I know."
+      },
+      "draw": {
+        "drawNumber": 8,
+        "date": "2026-07-11",
+        "numbers": [
+          5,
+          7,
+          25,
+          30,
+          33,
+          43
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "mystic",
+        "strategyName": "triangle-of-absence-v8",
+        "numbers": [
+          6,
+          11,
+          12,
+          14,
+          16,
+          17
+        ],
+        "confidence": 0.42,
+        "reasoning": "The between-spaces call; cold souls vibrate; eight folds infinity inward."
+      },
+      "draw": {
+        "drawNumber": 8,
+        "date": "2026-07-11",
+        "numbers": [
+          5,
+          7,
+          25,
+          30,
+          33,
+          43
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "chaos-monkey",
+        "strategyName": "chaos-mutation-bag-v9-mode10",
+        "numbers": [
+          19,
+          20,
+          27,
+          42,
+          43,
+          49
+        ],
+        "confidence": 0.15694782371024965,
+        "reasoning": "Streak hunters activated! Repeating numbers get my vote today."
+      },
+      "draw": {
+        "drawNumber": 8,
+        "date": "2026-07-11",
+        "numbers": [
+          5,
+          7,
+          25,
+          30,
+          33,
+          43
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "dog",
+        "strategyName": "good-boy-sniff-v8",
+        "numbers": [
+          4,
+          13,
+          15,
+          16,
+          19,
+          20
+        ],
+        "confidence": 0.25,
+        "reasoning": "Skeptic won big with small numbers! Fresh episode 7 smells! Traitors penalized!!"
+      },
+      "draw": {
+        "drawNumber": 8,
+        "date": "2026-07-11",
+        "numbers": [
+          5,
+          7,
+          25,
+          30,
+          33,
+          43
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    }
+  ],
+  "leaderboard": [
+    {
+      "agentId": "skeptic",
+      "agentName": "The Skeptic",
+      "totalPoints": 13,
+      "rank": 1
+    },
+    {
+      "agentId": "chaos-monkey",
+      "agentName": "Chaos Monkey",
+      "totalPoints": 12,
+      "rank": 2
+    },
+    {
+      "agentId": "statistician",
+      "agentName": "The Statistician",
+      "totalPoints": 9,
+      "rank": 3
+    },
+    {
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
+      "totalPoints": 9,
+      "rank": 4
+    },
+    {
+      "agentId": "mystic",
+      "agentName": "The Mystic",
+      "totalPoints": 8,
+      "rank": 5
+    },
+    {
+      "agentId": "dog",
+      "agentName": "Dog",
+      "totalPoints": 4,
+      "rank": 6
+    }
+  ],
+  "realityCheck": "Episode 8: The Pattern Goblin led with 5 pts (2 matches). Combined table points this episode: 6."
+}

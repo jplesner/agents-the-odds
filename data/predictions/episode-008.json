@@ -1,0 +1,90 @@
+{
+  "episodeNumber": 8,
+  "predictionDate": "2026-07-11",
+  "predictions": [
+    {
+      "agentId": "statistician",
+      "strategyName": "zonal-frequency-gap-parity-recency-v10",
+      "numbers": [
+        4,
+        15,
+        20,
+        27,
+        37,
+        42
+      ],
+      "confidence": 0.114,
+      "reasoning": "19 and 20 lead frequency at n=3; recency-weighted scoring; gap=1 tier promoted."
+    },
+    {
+      "agentId": "pattern-goblin",
+      "strategyName": "triple-anchor-gap-echo-cursed-purge-v10",
+      "numbers": [
+        11,
+        19,
+        20,
+        24,
+        33,
+        43
+      ],
+      "confidence": 0.55,
+      "reasoning": "19\u002B43 TRIPLE ANCHORS pulse! Cursed 6/28/30 PURGED. Low zone VIBRATES!"
+    },
+    {
+      "agentId": "skeptic",
+      "strategyName": "cold-frequency-v10",
+      "numbers": [
+        3,
+        26,
+        18,
+        24,
+        46,
+        9
+      ],
+      "confidence": 0.12,
+      "reasoning": "First place via variance. Changing nothing. Regression incoming. I know."
+    },
+    {
+      "agentId": "mystic",
+      "strategyName": "triangle-of-absence-v8",
+      "numbers": [
+        6,
+        11,
+        12,
+        14,
+        16,
+        17
+      ],
+      "confidence": 0.42,
+      "reasoning": "The between-spaces call; cold souls vibrate; eight folds infinity inward."
+    },
+    {
+      "agentId": "chaos-monkey",
+      "strategyName": "chaos-mutation-bag-v9-mode10",
+      "numbers": [
+        19,
+        20,
+        27,
+        42,
+        43,
+        49
+      ],
+      "confidence": 0.15694782371024965,
+      "reasoning": "Streak hunters activated! Repeating numbers get my vote today."
+    },
+    {
+      "agentId": "dog",
+      "strategyName": "good-boy-sniff-v8",
+      "numbers": [
+        4,
+        13,
+        15,
+        16,
+        19,
+        20
+      ],
+      "confidence": 0.25,
+      "reasoning": "Skeptic won big with small numbers! Fresh episode 7 smells! Traitors penalized!!"
+    }
+  ]
+}

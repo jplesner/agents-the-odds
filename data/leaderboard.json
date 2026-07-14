@@ -3,13 +3,13 @@
     {
       "agentId": "skeptic",
       "agentName": "The Skeptic",
-      "totalPoints": 13,
+      "totalPoints": 14,
       "rank": 1
     },
     {
       "agentId": "chaos-monkey",
       "agentName": "Chaos Monkey",
-      "totalPoints": 12,
+      "totalPoints": 13,
       "rank": 2
     },
     {

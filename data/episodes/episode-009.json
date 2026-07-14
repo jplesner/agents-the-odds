@@ -1,0 +1,236 @@
+{
+  "episodeNumber": 9,
+  "drawResult": {
+    "drawNumber": 9,
+    "date": "2026-07-14",
+    "numbers": [
+      3,
+      14,
+      16,
+      34,
+      39,
+      42
+    ]
+  },
+  "scores": [
+    {
+      "prediction": {
+        "agentId": "statistician",
+        "strategyName": "zonal-frequency-gap-parity-recency-v11",
+        "numbers": [
+          4,
+          15,
+          20,
+          25,
+          33,
+          43
+        ],
+        "confidence": 0.116,
+        "reasoning": "43 leads raw frequency at 4 draws; gap=0 recency and high-freq bonus added."
+      },
+      "draw": {
+        "drawNumber": 9,
+        "date": "2026-07-14",
+        "numbers": [
+          3,
+          14,
+          16,
+          34,
+          39,
+          42
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "pattern-goblin",
+        "strategyName": "quad-anchor-long-sleeper-eruption-v11",
+        "numbers": [
+          2,
+          12,
+          13,
+          40,
+          43,
+          49
+        ],
+        "confidence": 0.62,
+        "reasoning": "43 QUAD ANCHOR pulses! 40 DOUBLY RESONANT erupts! Long-sleepers DETONATE NOW!"
+      },
+      "draw": {
+        "drawNumber": 9,
+        "date": "2026-07-14",
+        "numbers": [
+          3,
+          14,
+          16,
+          34,
+          39,
+          42
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "skeptic",
+        "strategyName": "cold-frequency-v11",
+        "numbers": [
+          10,
+          16,
+          41,
+          11,
+          12,
+          26
+        ],
+        "confidence": 0.12,
+        "reasoning": "Still first. Still variance. Still cold numbers. Regression has not arrived yet."
+      },
+      "draw": {
+        "drawNumber": 9,
+        "date": "2026-07-14",
+        "numbers": [
+          3,
+          14,
+          16,
+          34,
+          39,
+          42
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "mystic",
+        "strategyName": "spiral-of-return-nine-v9",
+        "numbers": [
+          6,
+          9,
+          10,
+          13,
+          18,
+          49
+        ],
+        "confidence": 0.42,
+        "reasoning": "Nine completes all cycles; overdue souls return; the spine holds."
+      },
+      "draw": {
+        "drawNumber": 9,
+        "date": "2026-07-14",
+        "numbers": [
+          3,
+          14,
+          16,
+          34,
+          39,
+          42
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "chaos-monkey",
+        "strategyName": "chaos-mutation-bag-v10-mode2",
+        "numbers": [
+          2,
+          3,
+          19,
+          21,
+          22,
+          30
+        ],
+        "confidence": 0.5116340361356894,
+        "reasoning": "Fibonacci said pick me. Chaos agreed. Random filled the rest."
+      },
+      "draw": {
+        "drawNumber": 9,
+        "date": "2026-07-14",
+        "numbers": [
+          3,
+          14,
+          16,
+          34,
+          39,
+          42
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "dog",
+        "strategyName": "good-boy-sniff-v9",
+        "numbers": [
+          5,
+          25,
+          30,
+          31,
+          33,
+          43
+        ],
+        "confidence": 0.18,
+        "reasoning": "Last place! No bias! Recency sniff whole range! Traitors penalized! Find treats!!"
+      },
+      "draw": {
+        "drawNumber": 9,
+        "date": "2026-07-14",
+        "numbers": [
+          3,
+          14,
+          16,
+          34,
+          39,
+          42
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    }
+  ],
+  "leaderboard": [
+    {
+      "agentId": "skeptic",
+      "agentName": "The Skeptic",
+      "totalPoints": 14,
+      "rank": 1
+    },
+    {
+      "agentId": "chaos-monkey",
+      "agentName": "Chaos Monkey",
+      "totalPoints": 13,
+      "rank": 2
+    },
+    {
+      "agentId": "statistician",
+      "agentName": "The Statistician",
+      "totalPoints": 9,
+      "rank": 3
+    },
+    {
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
+      "totalPoints": 9,
+      "rank": 4
+    },
+    {
+      "agentId": "mystic",
+      "agentName": "The Mystic",
+      "totalPoints": 8,
+      "rank": 5
+    },
+    {
+      "agentId": "dog",
+      "agentName": "Dog",
+      "totalPoints": 4,
+      "rank": 6
+    }
+  ],
+  "realityCheck": "Episode 9: Chaos Monkey and The Skeptic tied with 1 pts (1 match each). Combined table points this episode: 2."
+}

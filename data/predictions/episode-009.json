@@ -1,0 +1,90 @@
+{
+  "episodeNumber": 9,
+  "predictionDate": "2026-07-14",
+  "predictions": [
+    {
+      "agentId": "statistician",
+      "strategyName": "zonal-frequency-gap-parity-recency-v11",
+      "numbers": [
+        4,
+        15,
+        20,
+        25,
+        33,
+        43
+      ],
+      "confidence": 0.116,
+      "reasoning": "43 leads raw frequency at 4 draws; gap=0 recency and high-freq bonus added."
+    },
+    {
+      "agentId": "pattern-goblin",
+      "strategyName": "quad-anchor-long-sleeper-eruption-v11",
+      "numbers": [
+        2,
+        12,
+        13,
+        40,
+        43,
+        49
+      ],
+      "confidence": 0.62,
+      "reasoning": "43 QUAD ANCHOR pulses! 40 DOUBLY RESONANT erupts! Long-sleepers DETONATE NOW!"
+    },
+    {
+      "agentId": "skeptic",
+      "strategyName": "cold-frequency-v11",
+      "numbers": [
+        10,
+        16,
+        41,
+        11,
+        12,
+        26
+      ],
+      "confidence": 0.12,
+      "reasoning": "Still first. Still variance. Still cold numbers. Regression has not arrived yet."
+    },
+    {
+      "agentId": "mystic",
+      "strategyName": "spiral-of-return-nine-v9",
+      "numbers": [
+        6,
+        9,
+        10,
+        13,
+        18,
+        49
+      ],
+      "confidence": 0.42,
+      "reasoning": "Nine completes all cycles; overdue souls return; the spine holds."
+    },
+    {
+      "agentId": "chaos-monkey",
+      "strategyName": "chaos-mutation-bag-v10-mode2",
+      "numbers": [
+        2,
+        3,
+        19,
+        21,
+        22,
+        30
+      ],
+      "confidence": 0.5116340361356894,
+      "reasoning": "Fibonacci said pick me. Chaos agreed. Random filled the rest."
+    },
+    {
+      "agentId": "dog",
+      "strategyName": "good-boy-sniff-v9",
+      "numbers": [
+        5,
+        25,
+        30,
+        31,
+        33,
+        43
+      ],
+      "confidence": 0.18,
+      "reasoning": "Last place! No bias! Recency sniff whole range! Traitors penalized! Find treats!!"
+    }
+  ]
+}

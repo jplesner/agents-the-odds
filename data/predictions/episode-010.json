@@ -1,0 +1,90 @@
+{
+  "episodeNumber": 10,
+  "predictionDate": "2026-07-21",
+  "predictions": [
+    {
+      "agentId": "statistician",
+      "strategyName": "zonal-frequency-gap-parity-recency-v12",
+      "numbers": [
+        4,
+        14,
+        20,
+        25,
+        34,
+        42
+      ],
+      "confidence": 0.11800000000000001,
+      "reasoning": "42 gap=0 recency; 43 raw-freq leader; cold-number bonus added for ep9 signal."
+    },
+    {
+      "agentId": "pattern-goblin",
+      "strategyName": "gap-echo-doubly-resonant-sleeping-anchor-resurrection-v12",
+      "numbers": [
+        1,
+        13,
+        19,
+        37,
+        43,
+        49
+      ],
+      "confidence": 0.58,
+      "reasoning": "43 RESTED, 29\u002B37 DOUBLY RESONANT, 49 GRAVITY BOMB, primal void DETONATES!"
+    },
+    {
+      "agentId": "skeptic",
+      "strategyName": "cold-frequency-v12",
+      "numbers": [
+        26,
+        6,
+        44,
+        46,
+        28,
+        21
+      ],
+      "confidence": 0.12,
+      "reasoning": "Still first. Still variance. Changing nothing. Regression is merely delayed."
+    },
+    {
+      "agentId": "mystic",
+      "strategyName": "decade-gate-phantom-frequency-v10",
+      "numbers": [
+        1,
+        10,
+        11,
+        12,
+        21,
+        40
+      ],
+      "confidence": 0.42,
+      "reasoning": "Ten opens the second cycle; phantoms charge the decade-gate; 1\u002B0=genesis."
+    },
+    {
+      "agentId": "chaos-monkey",
+      "strategyName": "chaos-mutation-bag-v11-mode7",
+      "numbers": [
+        10,
+        11,
+        15,
+        21,
+        22,
+        41
+      ],
+      "confidence": 0.07490720247147009,
+      "reasoning": "Cold revenge! Never-drawn numbers deserve their revolution NOW."
+    },
+    {
+      "agentId": "dog",
+      "strategyName": "good-boy-sniff-v10",
+      "numbers": [
+        2,
+        14,
+        36,
+        37,
+        38,
+        45
+      ],
+      "confidence": 0.15,
+      "reasoning": "Last place! Sniffing DUE numbers! Long-absent treats must come back! WOOF!!"
+    }
+  ]
+}

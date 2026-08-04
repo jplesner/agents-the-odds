@@ -1,0 +1,236 @@
+{
+  "episodeNumber": 11,
+  "drawResult": {
+    "drawNumber": 11,
+    "date": "2026-08-04",
+    "numbers": [
+      6,
+      15,
+      33,
+      36,
+      44,
+      49
+    ]
+  },
+  "scores": [
+    {
+      "prediction": {
+        "agentId": "statistician",
+        "strategyName": "zonal-frequency-gap-parity-recency-v13",
+        "numbers": [
+          4,
+          13,
+          20,
+          30,
+          36,
+          42
+        ],
+        "confidence": 0.12000000000000001,
+        "reasoning": "42 freq=4 gap=0; 13 resurged gap=0; parity now 3/3 at n=10."
+      },
+      "draw": {
+        "drawNumber": 11,
+        "date": "2026-08-04",
+        "numbers": [
+          6,
+          15,
+          33,
+          36,
+          44,
+          49
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "pattern-goblin",
+        "strategyName": "triply-echoed-quad-anchor-spiral-return-v13",
+        "numbers": [
+          29,
+          37,
+          40,
+          43,
+          44,
+          49
+        ],
+        "confidence": 0.61,
+        "reasoning": "43 SPIRALS BACK, 40 TRIPLY ECHOED, 49 eight-episode GRAVITY BOMB detonates NOW!"
+      },
+      "draw": {
+        "drawNumber": 11,
+        "date": "2026-08-04",
+        "numbers": [
+          6,
+          15,
+          33,
+          36,
+          44,
+          49
+        ]
+      },
+      "matches": 2,
+      "points": 5
+    },
+    {
+      "prediction": {
+        "agentId": "skeptic",
+        "strategyName": "cold-frequency-v13",
+        "numbers": [
+          24,
+          28,
+          1,
+          18,
+          11,
+          6
+        ],
+        "confidence": 0.12,
+        "reasoning": "Still first. Two-point lead. Cold pool shrinking. Changing nothing, obviously."
+      },
+      "draw": {
+        "drawNumber": 11,
+        "date": "2026-08-04",
+        "numbers": [
+          6,
+          15,
+          33,
+          36,
+          44,
+          49
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "mystic",
+        "strategyName": "eleven-convergence-echo-return-v11",
+        "numbers": [
+          2,
+          5,
+          11,
+          22,
+          25,
+          34
+        ],
+        "confidence": 0.42,
+        "reasoning": "Eleven mirrors itself; the cosmos favors its loyal returners above all phantoms."
+      },
+      "draw": {
+        "drawNumber": 11,
+        "date": "2026-08-04",
+        "numbers": [
+          6,
+          15,
+          33,
+          36,
+          44,
+          49
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "chaos-monkey",
+        "strategyName": "chaos-mutation-bag-v12-mode4",
+        "numbers": [
+          3,
+          6,
+          19,
+          21,
+          33,
+          47
+        ],
+        "confidence": 0.268978839795561,
+        "reasoning": "One number per decade. Spreading chaos democratically."
+      },
+      "draw": {
+        "drawNumber": 11,
+        "date": "2026-08-04",
+        "numbers": [
+          6,
+          15,
+          33,
+          36,
+          44,
+          49
+        ]
+      },
+      "matches": 2,
+      "points": 5
+    },
+    {
+      "prediction": {
+        "agentId": "dog",
+        "strategyName": "good-boy-sniff-v11",
+        "numbers": [
+          23,
+          27,
+          35,
+          37,
+          43,
+          48
+        ],
+        "confidence": 0.22,
+        "reasoning": "DUE sniff gave 5 treats last time!! Long-absent numbers smell delicious!! WOOF!!"
+      },
+      "draw": {
+        "drawNumber": 11,
+        "date": "2026-08-04",
+        "numbers": [
+          6,
+          15,
+          33,
+          36,
+          44,
+          49
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    }
+  ],
+  "leaderboard": [
+    {
+      "agentId": "chaos-monkey",
+      "agentName": "Chaos Monkey",
+      "totalPoints": 18,
+      "rank": 1
+    },
+    {
+      "agentId": "skeptic",
+      "agentName": "The Skeptic",
+      "totalPoints": 16,
+      "rank": 2
+    },
+    {
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
+      "totalPoints": 15,
+      "rank": 3
+    },
+    {
+      "agentId": "statistician",
+      "agentName": "The Statistician",
+      "totalPoints": 11,
+      "rank": 4
+    },
+    {
+      "agentId": "dog",
+      "agentName": "Dog",
+      "totalPoints": 9,
+      "rank": 5
+    },
+    {
+      "agentId": "mystic",
+      "agentName": "The Mystic",
+      "totalPoints": 8,
+      "rank": 6
+    }
+  ],
+  "realityCheck": "Episode 11: Chaos Monkey and The Pattern Goblin tied with 5 pts (2 matches each). Combined table points this episode: 12."
+}

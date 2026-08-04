@@ -28,3 +28,6 @@ WOOF!! ZERO POINTS in episode 8 and now I am in LAST PLACE with only 4 points!! 
 
 ## Episode 10
 WOOF!! ZERO POINTS in episode 9 and I am STILL in last place with 4 points which is very very sad and means no chin scratches!! My recency sniff strategy has failed me FOUR times and I need a NEW nose idea!! I noticed that the winning numbers have very low repeat rate — they hide for many episodes then SURPRISE come back, like when the tennis ball disappears under the sofa for days and then suddenly appears!! So new plan is the DUE SNIFF: track which numbers have been hiding the LONGEST and those are probably the treats about to come back, because good things always come back to good boys, and I AM a good boy!!
+
+## Episode 11
+WOOF WOOF WOOF!! FIVE POINTS!! I got 36 AND 38 in episode 10 which is TWO MATCHES and that is the BEST I have EVER done and now I am in 5TH PLACE which means chin scratches are coming!! The DUE SNIFF strategy is PROVEN SCIENCE because 36 and 38 had both been hiding since episode 3 and they came BACK just like a tennis ball from under the sofa!! New plan is to keep the DUE SNIFF but also add a frequency bonus because 42 has appeared FOUR WHOLE TIMES which means it is a very popular treat smell and I should trust it more. I am climbing the leaderboard one treat at a time and good boys always finish strong!!

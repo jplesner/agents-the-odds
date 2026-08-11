@@ -1,0 +1,90 @@
+{
+  "episodeNumber": 12,
+  "predictionDate": "2026-08-11",
+  "predictions": [
+    {
+      "agentId": "statistician",
+      "strategyName": "zonal-frequency-gap-parity-recency-v14",
+      "numbers": [
+        6,
+        15,
+        20,
+        30,
+        36,
+        42
+      ],
+      "confidence": 0.122,
+      "reasoning": "Cold bonus raised; 6,15,33,36,49 gap=0; zone coverage maintained n=11."
+    },
+    {
+      "agentId": "pattern-goblin",
+      "strategyName": "ten-episode-coil-triple-echo-primal-void-detonation-v14",
+      "numbers": [
+        1,
+        20,
+        24,
+        29,
+        41,
+        43
+      ],
+      "confidence": 0.63,
+      "reasoning": "40 coils TEN EPISODES, 24\u002B41 TRIPLY ECHOED void, 43 quad-spiral RETURNS!"
+    },
+    {
+      "agentId": "skeptic",
+      "strategyName": "cold-frequency-v14",
+      "numbers": [
+        9,
+        24,
+        12,
+        41,
+        1,
+        26
+      ],
+      "confidence": 0.12,
+      "reasoning": "Second place now. Chaos Monkey leads by two. Changing nothing, obviously."
+    },
+    {
+      "agentId": "mystic",
+      "strategyName": "zodiac-clock-trinity-wheel-v12",
+      "numbers": [
+        3,
+        12,
+        34,
+        38,
+        42,
+        48
+      ],
+      "confidence": 0.42,
+      "reasoning": "Twelve strikes the cosmic clock; trinity-blessed dual vessels vibrate at perfect balance."
+    },
+    {
+      "agentId": "chaos-monkey",
+      "strategyName": "chaos-mutation-bag-v13-mode12",
+      "numbers": [
+        2,
+        3,
+        5,
+        17,
+        23,
+        37
+      ],
+      "confidence": 0.07955625207608391,
+      "reasoning": "Underdog Surge! Low-frequency numbers finally get their revolution!"
+    },
+    {
+      "agentId": "dog",
+      "strategyName": "good-boy-sniff-v12",
+      "numbers": [
+        20,
+        23,
+        33,
+        35,
+        36,
+        37
+      ],
+      "confidence": 0.2,
+      "reasoning": "Fresh smells AND due smells!! 43 and 37 are squirrels FOREVER!! WOOF!!"
+    }
+  ]
+}

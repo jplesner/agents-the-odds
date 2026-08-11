@@ -1,0 +1,236 @@
+{
+  "episodeNumber": 12,
+  "drawResult": {
+    "drawNumber": 12,
+    "date": "2026-08-11",
+    "numbers": [
+      12,
+      16,
+      35,
+      36,
+      40,
+      41
+    ]
+  },
+  "scores": [
+    {
+      "prediction": {
+        "agentId": "statistician",
+        "strategyName": "zonal-frequency-gap-parity-recency-v14",
+        "numbers": [
+          6,
+          15,
+          20,
+          30,
+          36,
+          42
+        ],
+        "confidence": 0.122,
+        "reasoning": "Cold bonus raised; 6,15,33,36,49 gap=0; zone coverage maintained n=11."
+      },
+      "draw": {
+        "drawNumber": 12,
+        "date": "2026-08-11",
+        "numbers": [
+          12,
+          16,
+          35,
+          36,
+          40,
+          41
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "pattern-goblin",
+        "strategyName": "ten-episode-coil-triple-echo-primal-void-detonation-v14",
+        "numbers": [
+          1,
+          20,
+          24,
+          29,
+          41,
+          43
+        ],
+        "confidence": 0.63,
+        "reasoning": "40 coils TEN EPISODES, 24\u002B41 TRIPLY ECHOED void, 43 quad-spiral RETURNS!"
+      },
+      "draw": {
+        "drawNumber": 12,
+        "date": "2026-08-11",
+        "numbers": [
+          12,
+          16,
+          35,
+          36,
+          40,
+          41
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "skeptic",
+        "strategyName": "cold-frequency-v14",
+        "numbers": [
+          9,
+          24,
+          12,
+          41,
+          1,
+          26
+        ],
+        "confidence": 0.12,
+        "reasoning": "Second place now. Chaos Monkey leads by two. Changing nothing, obviously."
+      },
+      "draw": {
+        "drawNumber": 12,
+        "date": "2026-08-11",
+        "numbers": [
+          12,
+          16,
+          35,
+          36,
+          40,
+          41
+        ]
+      },
+      "matches": 2,
+      "points": 5
+    },
+    {
+      "prediction": {
+        "agentId": "mystic",
+        "strategyName": "zodiac-clock-trinity-wheel-v12",
+        "numbers": [
+          3,
+          12,
+          34,
+          38,
+          42,
+          48
+        ],
+        "confidence": 0.42,
+        "reasoning": "Twelve strikes the cosmic clock; trinity-blessed dual vessels vibrate at perfect balance."
+      },
+      "draw": {
+        "drawNumber": 12,
+        "date": "2026-08-11",
+        "numbers": [
+          12,
+          16,
+          35,
+          36,
+          40,
+          41
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "chaos-monkey",
+        "strategyName": "chaos-mutation-bag-v13-mode12",
+        "numbers": [
+          2,
+          3,
+          5,
+          17,
+          23,
+          37
+        ],
+        "confidence": 0.07955625207608391,
+        "reasoning": "Underdog Surge! Low-frequency numbers finally get their revolution!"
+      },
+      "draw": {
+        "drawNumber": 12,
+        "date": "2026-08-11",
+        "numbers": [
+          12,
+          16,
+          35,
+          36,
+          40,
+          41
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "dog",
+        "strategyName": "good-boy-sniff-v12",
+        "numbers": [
+          20,
+          23,
+          33,
+          35,
+          36,
+          37
+        ],
+        "confidence": 0.2,
+        "reasoning": "Fresh smells AND due smells!! 43 and 37 are squirrels FOREVER!! WOOF!!"
+      },
+      "draw": {
+        "drawNumber": 12,
+        "date": "2026-08-11",
+        "numbers": [
+          12,
+          16,
+          35,
+          36,
+          40,
+          41
+        ]
+      },
+      "matches": 2,
+      "points": 5
+    }
+  ],
+  "leaderboard": [
+    {
+      "agentId": "skeptic",
+      "agentName": "The Skeptic",
+      "totalPoints": 21,
+      "rank": 1
+    },
+    {
+      "agentId": "chaos-monkey",
+      "agentName": "Chaos Monkey",
+      "totalPoints": 18,
+      "rank": 2
+    },
+    {
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
+      "totalPoints": 16,
+      "rank": 3
+    },
+    {
+      "agentId": "dog",
+      "agentName": "Dog",
+      "totalPoints": 14,
+      "rank": 4
+    },
+    {
+      "agentId": "statistician",
+      "agentName": "The Statistician",
+      "totalPoints": 12,
+      "rank": 5
+    },
+    {
+      "agentId": "mystic",
+      "agentName": "The Mystic",
+      "totalPoints": 9,
+      "rank": 6
+    }
+  ],
+  "realityCheck": "Episode 12: Dog and The Skeptic tied with 5 pts (2 matches each). Combined table points this episode: 13."
+}

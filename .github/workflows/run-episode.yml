@@ -53,6 +53,14 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
+      - name: Upload failed strategy
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: episode-${{ inputs.episode }}-strategy-failure
+          path: artifacts/strategy-failures/
+          if-no-files-found: ignore
+
       - name: Predict
         run: dotnet run --project src/AgentsTheOdds.Cli -- predict --episode ${{ inputs.episode }} ${{ inputs.force && '--force' || '' }}
 

@@ -48,6 +48,8 @@ function hashFile(filePath: string): string {
 }
 
 const MAX_REPAIR_ATTEMPTS = 2;
+const GENERATION_MODEL = "claude-haiku-4-5-20251001";
+const REPAIR_MODEL = "claude-sonnet-4-6";
 
 function validateBuild(): { ok: true } | { ok: false; diagnostics: string } {
   const result = spawnSync("dotnet", ["build", "--no-restore", "--nologo"], {
@@ -71,7 +73,7 @@ async function repairStrategy(
   modelSources: string,
 ): Promise<string> {
   const response = await client.messages.create({
-    model: "claude-sonnet-4-6",
+    model: REPAIR_MODEL,
     max_tokens: 8192,
     system: buildSystemPrompt(modelSources),
     tools: [REPAIR_STRATEGY_TOOL],
@@ -269,8 +271,8 @@ Rewrite your C# strategy implementation for Episode ${episode}. Your strategy co
   console.log(`  Calling Claude for ${agent.name}...`);
 
   const response = await client.messages.create({
-    model: "claude-sonnet-4-6",
-    max_tokens: 8192,
+    model: GENERATION_MODEL,
+    max_tokens: 4096,
     system: [
       {
         type: "text",

@@ -51,7 +51,7 @@ const MAX_REPAIR_ATTEMPTS = 2;
 const GENERATION_MODEL = "claude-haiku-4-5-20251001";
 const REPAIR_MODEL = "claude-sonnet-4-6";
 
-function validateBuild(): { ok: true } | { ok: false; diagnostics: string } {
+function validateBuild(): { ok: true } | { ok: false; diagnostics: string; repairable: boolean } {
   const result = spawnSync("dotnet", ["build", "--no-restore", "--nologo"], {
     cwd: REPO_ROOT,
     encoding: "utf-8",
@@ -63,6 +63,7 @@ function validateBuild(): { ok: true } | { ok: false; diagnostics: string } {
   return {
     ok: false,
     diagnostics: diagnostics.slice(-12_000) || `dotnet build exited with status ${result.status}`,
+    repairable: /Strategies[\\/].*\.cs.*error CS\d+/s.test(diagnostics),
   };
 }
 
@@ -299,11 +300,19 @@ Rewrite your C# strategy implementation for Episode ${episode}. Your strategy co
     fs.writeFileSync(strategyFile, candidateCode, "utf-8");
 
     let validation = validateBuild();
-    for (let attempt = 1; !validation.ok && attempt <= MAX_REPAIR_ATTEMPTS; attempt++) {
+    for (
+      let attempt = 1;
+      !validation.ok && validation.repairable && attempt <= MAX_REPAIR_ATTEMPTS;
+      attempt++
+    ) {
       console.log(`  Build failed; requesting repair ${attempt}/${MAX_REPAIR_ATTEMPTS}...`);
       candidateCode = await repairStrategy(agent, candidateCode, validation.diagnostics, modelSources);
       fs.writeFileSync(strategyFile, candidateCode, "utf-8");
       validation = validateBuild();
+    }
+
+    if (!validation.ok && !validation.repairable) {
+      throw new Error(`[${agent.name}] Build infrastructure failed; compiler repair was not attempted.\n${validation.diagnostics}`);
     }
 
     if (!validation.ok) {
@@ -366,6 +375,9 @@ async function main(): Promise<void> {
   }
 
   console.log(`Think phase — Episode ${episode}`);
+
+  console.log("Restoring solution dependencies...");
+  execSync("dotnet restore --nologo", { cwd: REPO_ROOT, stdio: "inherit" });
 
   const agents = loadAgents();
   const draws = loadDraws(episode);

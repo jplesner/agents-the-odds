@@ -37,6 +37,10 @@ ${modelSources}
 8. Do not add external dependencies, extra using statements beyond the existing ones, or extra classes
 9. Do not change the namespace declaration
 10. You MAY use context (DrawHistory, AgentHistory, Leaderboard) to compute numbers dynamically, or keep them hardcoded — your choice
+11. Prefer the smallest change that meaningfully improves the strategy
+12. Keep the complete source file under 200 lines
+13. Do not add episode history, score narration, changelogs, or personality monologues as code comments
+14. Add a comment only when it explains behavior that is not clear from the code itself
 
 ## Journal Entry
 Write 2–4 sentences in your character's voice reflecting on the previous episode result (if any) and your approach for the upcoming episode. This is private — it won't affect the game.`;
@@ -60,5 +64,20 @@ export const UPDATE_AGENT_TOOL: Anthropic.Tool = {
       },
     },
     required: ["strategy_code", "journal_entry"],
+  },
+};
+
+export const REPAIR_STRATEGY_TOOL: Anthropic.Tool = {
+  name: "repair_strategy",
+  description: "Return a corrected, complete C# strategy file that addresses the compiler errors",
+  input_schema: {
+    type: "object",
+    properties: {
+      strategy_code: {
+        type: "string",
+        description: "Complete, compilable C# source file content with the reported errors corrected.",
+      },
+    },
+    required: ["strategy_code"],
   },
 };

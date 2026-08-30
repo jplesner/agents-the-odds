@@ -1,10 +1,10 @@
 import Anthropic from "@anthropic-ai/sdk";
 import crypto from "crypto";
-import { execSync } from "child_process";
+import { execSync, spawnSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { buildSystemPrompt, UPDATE_AGENT_TOOL } from "./prompt.js";
+import { buildSystemPrompt, REPAIR_STRATEGY_TOOL, UPDATE_AGENT_TOOL } from "./prompt.js";
 import type { AgentConfig, DrawResult, EpisodeResult, Leaderboard } from "./types.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -45,6 +45,51 @@ function padEpisode(n: number): string {
 
 function hashFile(filePath: string): string {
   return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex");
+}
+
+const MAX_REPAIR_ATTEMPTS = 2;
+
+function validateBuild(): { ok: true } | { ok: false; diagnostics: string } {
+  const result = spawnSync("dotnet", ["build", "--no-restore", "--nologo"], {
+    cwd: REPO_ROOT,
+    encoding: "utf-8",
+  });
+
+  if (result.status === 0) return { ok: true };
+
+  const diagnostics = `${result.stdout ?? ""}\n${result.stderr ?? ""}`.trim();
+  return {
+    ok: false,
+    diagnostics: diagnostics.slice(-12_000) || `dotnet build exited with status ${result.status}`,
+  };
+}
+
+async function repairStrategy(
+  agent: AgentConfig,
+  invalidCode: string,
+  diagnostics: string,
+  modelSources: string,
+): Promise<string> {
+  const response = await client.messages.create({
+    model: "claude-sonnet-4-6",
+    max_tokens: 8192,
+    system: buildSystemPrompt(modelSources),
+    tools: [REPAIR_STRATEGY_TOOL],
+    tool_choice: { type: "tool", name: "repair_strategy" },
+    messages: [
+      {
+        role: "user",
+        content: `The generated strategy for ${agent.name} does not compile. Return the complete corrected file. Make only the changes needed to fix the errors and keep the code concise.\n\nCompiler diagnostics:\n\`\`\`text\n${diagnostics}\n\`\`\`\n\nInvalid source:\n\`\`\`csharp\n${invalidCode}\n\`\`\``,
+      },
+    ],
+  });
+
+  const toolUse = response.content.find((b) => b.type === "tool_use");
+  if (!toolUse || toolUse.type !== "tool_use") {
+    throw new Error(`Expected repair_strategy response for ${agent.name}`);
+  }
+
+  return (toolUse.input as { strategy_code: string }).strategy_code;
 }
 
 function snapshotRelevantFiles(): Map<string, string> {
@@ -191,8 +236,8 @@ async function thinkForAgent(
 ## Personality
 ${personality}
 
-## Your Journal So Far
-${journal}
+## Recent Journal Entries
+${journal.split(/(?=^## )/m).filter((entry) => entry.trim()).slice(-3).join("\n").trim()}
 
 ## Current Strategy Code
 \`\`\`csharp
@@ -215,9 +260,10 @@ ${formatLatestEpisode(episodeResults)}
 
 ## Task
 Rewrite your C# strategy implementation for Episode ${episode}. Your strategy code is what runs at predict time — it must compute or select 6 numbers. Study the game state and evolve your code:
-- Update the strategy logic to reflect your personality and any new insights from the game state — dynamic computation is encouraged over hardcoded numbers
+- Make the smallest useful strategy change based on the new game state — dynamic computation is encouraged over hardcoded numbers
 - Bake your Reasoning (≤20 words, in your voice) directly into the strategy code
 - You MUST change the StrategyName to a new version string — even if the logic is unchanged, the version must differ from the current one
+- Keep code concise and omit historical narration, score summaries, changelogs, and decorative comments
 - Write a journal entry (2–4 sentences) in your character's voice`;
 
   console.log(`  Calling Claude for ${agent.name}...`);
@@ -246,12 +292,46 @@ Rewrite your C# strategy implementation for Episode ${episode}. Your strategy co
 
   const input = toolUse.input as { strategy_code: string; journal_entry: string };
 
-  fs.writeFileSync(strategyFile, input.strategy_code, "utf-8");
-  console.log(`  Updated: ${path.relative(REPO_ROOT, strategyFile)}`);
+  let candidateCode = input.strategy_code;
+  try {
+    fs.writeFileSync(strategyFile, candidateCode, "utf-8");
+
+    let validation = validateBuild();
+    for (let attempt = 1; !validation.ok && attempt <= MAX_REPAIR_ATTEMPTS; attempt++) {
+      console.log(`  Build failed; requesting repair ${attempt}/${MAX_REPAIR_ATTEMPTS}...`);
+      candidateCode = await repairStrategy(agent, candidateCode, validation.diagnostics, modelSources);
+      fs.writeFileSync(strategyFile, candidateCode, "utf-8");
+      validation = validateBuild();
+    }
+
+    if (!validation.ok) {
+      throw new Error(
+        `[${agent.name}] Strategy still failed to compile after ${MAX_REPAIR_ATTEMPTS} repairs.\n${validation.diagnostics}`,
+      );
+    }
+  } catch (err) {
+    const failureDir = path.join(REPO_ROOT, "artifacts", "strategy-failures");
+    fs.mkdirSync(failureDir, { recursive: true });
+    fs.writeFileSync(
+      path.join(failureDir, `${agent.id}-episode-${padEpisode(episode)}.cs`),
+      candidateCode,
+      "utf-8",
+    );
+    fs.writeFileSync(strategyFile, currentStrategy + "\n", "utf-8");
+    const message = err instanceof Error ? err.message : String(err);
+    fs.writeFileSync(
+      path.join(failureDir, `${agent.id}-episode-${padEpisode(episode)}.txt`),
+      message + "\n",
+      "utf-8",
+    );
+    throw new Error(`${message}\nPrevious strategy restored.`);
+  }
+
+  console.log(`  Updated and compiled: ${path.relative(REPO_ROOT, strategyFile)}`);
 
   const snapshotDir = path.join(REPO_ROOT, "data", "agents", agent.id, "strategies");
   fs.mkdirSync(snapshotDir, { recursive: true });
-  fs.writeFileSync(path.join(snapshotDir, `episode-${padEpisode(episode)}.cs`), input.strategy_code, "utf-8");
+  fs.writeFileSync(path.join(snapshotDir, `episode-${padEpisode(episode)}.cs`), candidateCode, "utf-8");
   console.log(`  Snapshot: data/agents/${agent.id}/strategies/episode-${padEpisode(episode)}.cs`);
 
   if (!journalAlreadyWritten) {

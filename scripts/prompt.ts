@@ -38,9 +38,10 @@ ${modelSources}
 9. Do not change the namespace declaration
 10. You MAY use context (DrawHistory, AgentHistory, Leaderboard) to compute numbers dynamically, or keep them hardcoded — your choice
 11. Prefer the smallest change that meaningfully improves the strategy
-12. Keep the complete source file under 200 lines
+12. Keep the complete source file at or below 150 lines; simplify or replace old logic as needed
 13. Do not add episode history, score narration, changelogs, or personality monologues as code comments
 14. Add a comment only when it explains behavior that is not clear from the code itself
+15. Always return both strategy_code and journal_entry completely; never omit or truncate either field
 
 ## Journal Entry
 Write 2–4 sentences in your character's voice reflecting on the previous episode result (if any) and your approach for the upcoming episode. This is private — it won't affect the game.`;

@@ -267,33 +267,46 @@ Rewrite your C# strategy implementation for Episode ${episode}. Your strategy co
 - Bake your Reasoning (≤20 words, in your voice) directly into the strategy code
 - You MUST change the StrategyName to a new version string — even if the logic is unchanged, the version must differ from the current one
 - Keep code concise and omit historical narration, score summaries, changelogs, and decorative comments
+- Return a complete strategy of at most 150 lines and a complete journal entry; simplify or replace old logic rather than truncating either field
 - Write a journal entry (2–4 sentences) in your character's voice`;
 
   console.log(`  Calling Claude for ${agent.name}...`);
 
-  const response = await client.messages.create({
-    model: GENERATION_MODEL,
-    max_tokens: 4096,
+  const requestStrategy = (model: string, maxTokens: number) => client.messages.create({
+    model,
+    max_tokens: maxTokens,
     system: [
       {
-        type: "text",
+        type: "text" as const,
         text: buildSystemPrompt(modelSources),
-        cache_control: { type: "ephemeral" },
+        cache_control: { type: "ephemeral" as const },
       },
     ],
     tools: [UPDATE_AGENT_TOOL],
-    tool_choice: { type: "tool", name: "update_agent" },
-    messages: [{ role: "user", content: userMessage }],
+    tool_choice: { type: "tool" as const, name: "update_agent" },
+    messages: [{ role: "user" as const, content: userMessage }],
   });
 
-  const toolUse = response.content.find((b) => b.type === "tool_use");
-  if (!toolUse || toolUse.type !== "tool_use") {
-    throw new Error(
-      `Expected tool_use response for ${agent.name}, got: ${JSON.stringify(response.content)}`,
-    );
+  let response = await requestStrategy(GENERATION_MODEL, 8192);
+  let toolUse = response.content.find((b) => b.type === "tool_use");
+  let input = toolUse?.type === "tool_use"
+    ? toolUse.input as Partial<{ strategy_code: string; journal_entry: string }>
+    : undefined;
+
+  if (typeof input?.strategy_code !== "string" || typeof input.journal_entry !== "string") {
+    console.log("  Generation output was incomplete; retrying once with the repair model...");
+    response = await requestStrategy(REPAIR_MODEL, 8192);
+    toolUse = response.content.find((b) => b.type === "tool_use");
+    input = toolUse?.type === "tool_use"
+      ? toolUse.input as Partial<{ strategy_code: string; journal_entry: string }>
+      : undefined;
   }
 
-  const input = toolUse.input as { strategy_code: string; journal_entry: string };
+  if (typeof input?.strategy_code !== "string" || typeof input.journal_entry !== "string") {
+    throw new Error(
+      `Expected complete update_agent output for ${agent.name}; stop reason: ${response.stop_reason}`,
+    );
+  }
 
   let candidateCode = input.strategy_code;
   try {
@@ -325,7 +338,7 @@ Rewrite your C# strategy implementation for Episode ${episode}. Your strategy co
     fs.mkdirSync(failureDir, { recursive: true });
     fs.writeFileSync(
       path.join(failureDir, `${agent.id}-episode-${padEpisode(episode)}.cs`),
-      candidateCode,
+      candidateCode || "No candidate strategy source was returned.\n",
       "utf-8",
     );
     fs.writeFileSync(strategyFile, currentStrategy + "\n", "utf-8");

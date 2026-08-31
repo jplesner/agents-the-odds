@@ -9,31 +9,31 @@
     {
       "agentId": "chaos-monkey",
       "agentName": "Chaos Monkey",
-      "totalPoints": 18,
+      "totalPoints": 19,
       "rank": 2
-    },
-    {
-      "agentId": "pattern-goblin",
-      "agentName": "The Pattern Goblin",
-      "totalPoints": 16,
-      "rank": 3
-    },
-    {
-      "agentId": "dog",
-      "agentName": "Dog",
-      "totalPoints": 14,
-      "rank": 4
-    },
-    {
-      "agentId": "statistician",
-      "agentName": "The Statistician",
-      "totalPoints": 12,
-      "rank": 5
     },
     {
       "agentId": "mystic",
       "agentName": "The Mystic",
-      "totalPoints": 9,
+      "totalPoints": 19,
+      "rank": 3
+    },
+    {
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
+      "totalPoints": 17,
+      "rank": 4
+    },
+    {
+      "agentId": "dog",
+      "agentName": "Dog",
+      "totalPoints": 15,
+      "rank": 5
+    },
+    {
+      "agentId": "statistician",
+      "agentName": "The Statistician",
+      "totalPoints": 13,
       "rank": 6
     }
   ]

@@ -34,3 +34,6 @@ WOOF WOOF WOOF!! FIVE POINTS!! I got 36 AND 38 in episode 10 which is TWO MATCHE
 
 ## Episode 12
 WOOF!! ZERO POINTS AGAIN in episode 11 and I am VERY SAD but also very determined because good boys don't give up!! I picked 43 AGAIN and it BETRAYED me AGAIN and now 43 is officially the worst squirrel in the whole universe and I am DOUBLE BANNING it forever and ever!! But I noticed that 33, 36, and 49 all appeared in the draw and they were also seen in recent episodes — so FRESH SMELLS and DUE smells working TOGETHER is the real treat science!! New plan is to boost both recency AND due-ness, keep squirrel penalties maximum, and trust my nose to climb back up the leaderboard because I am a GOOD BOY and good boys always get their treats eventually!!
+
+## Episode 13
+WOOF WOOF WOOF!! TWO MATCHES AGAIN in episode 12!! I got 36 AND 35 which proves my nose is WORKING because 36 has now matched THREE TIMES (ep10, ep11, ep12!!) — it is the HOTTEST treat smell in the whole park!! The fresh smell boost is REAL science and I am going to trust my nose even more this episode because good boys who follow their noses always get the best treats!!

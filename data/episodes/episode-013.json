@@ -1,0 +1,236 @@
+{
+  "episodeNumber": 13,
+  "drawResult": {
+    "drawNumber": 13,
+    "date": "2026-08-31",
+    "numbers": [
+      3,
+      4,
+      19,
+      22,
+      42,
+      47
+    ]
+  },
+  "scores": [
+    {
+      "prediction": {
+        "agentId": "statistician",
+        "strategyName": "zonal-frequency-gap-parity-recency-v15",
+        "numbers": [
+          6,
+          16,
+          20,
+          30,
+          36,
+          42
+        ],
+        "confidence": 0.124,
+        "reasoning": "Cold bonus 0.40; recency tier-1 0.60; gap=0 dominates; zone-driven coverage n=12."
+      },
+      "draw": {
+        "drawNumber": 13,
+        "date": "2026-08-31",
+        "numbers": [
+          3,
+          4,
+          19,
+          22,
+          42,
+          47
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "pattern-goblin",
+        "strategyName": "forty-erupts-new-sleepers-rise-void-resonance-v15",
+        "numbers": [
+          1,
+          19,
+          20,
+          24,
+          29,
+          43
+        ],
+        "confidence": 0.64,
+        "reasoning": "40 ERUPTED Ep12! Now 29/37 coil. 24/41 TRIPLY ECHO void detonation pending."
+      },
+      "draw": {
+        "drawNumber": 13,
+        "date": "2026-08-31",
+        "numbers": [
+          3,
+          4,
+          19,
+          22,
+          42,
+          47
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "skeptic",
+        "strategyName": "cold-frequency-v15",
+        "numbers": [
+          1,
+          18,
+          10,
+          24,
+          9,
+          11
+        ],
+        "confidence": 0.12,
+        "reasoning": "Now leading by three. Chaos Monkey stalled. Expect regression and variance."
+      },
+      "draw": {
+        "drawNumber": 13,
+        "date": "2026-08-31",
+        "numbers": [
+          3,
+          4,
+          19,
+          22,
+          42,
+          47
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "mystic",
+        "strategyName": "recurrence-spiral-loyalist-v13",
+        "numbers": [
+          4,
+          13,
+          19,
+          20,
+          42,
+          43
+        ],
+        "confidence": 0.48,
+        "reasoning": "The cosmos loves its loyalists. Thrice-chosen returners and the trinity anchor guide my spiral."
+      },
+      "draw": {
+        "drawNumber": 13,
+        "date": "2026-08-31",
+        "numbers": [
+          3,
+          4,
+          19,
+          22,
+          42,
+          47
+        ]
+      },
+      "matches": 3,
+      "points": 10
+    },
+    {
+      "prediction": {
+        "agentId": "chaos-monkey",
+        "strategyName": "chaos-mutation-bag-v14-mode13",
+        "numbers": [
+          36,
+          37,
+          41,
+          42,
+          43,
+          46
+        ],
+        "confidence": 0.48770902277329425,
+        "reasoning": "Fusion monster: blend all my tools into chaos cocktail."
+      },
+      "draw": {
+        "drawNumber": 13,
+        "date": "2026-08-31",
+        "numbers": [
+          3,
+          4,
+          19,
+          22,
+          42,
+          47
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "dog",
+        "strategyName": "good-boy-sniff-v13",
+        "numbers": [
+          17,
+          18,
+          19,
+          36,
+          37,
+          43
+        ],
+        "confidence": 0.22,
+        "reasoning": "Fresh smells boost! 36 matches again and again \u2014 HOT treat signal! WOOF!"
+      },
+      "draw": {
+        "drawNumber": 13,
+        "date": "2026-08-31",
+        "numbers": [
+          3,
+          4,
+          19,
+          22,
+          42,
+          47
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    }
+  ],
+  "leaderboard": [
+    {
+      "agentId": "skeptic",
+      "agentName": "The Skeptic",
+      "totalPoints": 21,
+      "rank": 1
+    },
+    {
+      "agentId": "chaos-monkey",
+      "agentName": "Chaos Monkey",
+      "totalPoints": 19,
+      "rank": 2
+    },
+    {
+      "agentId": "mystic",
+      "agentName": "The Mystic",
+      "totalPoints": 19,
+      "rank": 3
+    },
+    {
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
+      "totalPoints": 17,
+      "rank": 4
+    },
+    {
+      "agentId": "dog",
+      "agentName": "Dog",
+      "totalPoints": 15,
+      "rank": 5
+    },
+    {
+      "agentId": "statistician",
+      "agentName": "The Statistician",
+      "totalPoints": 13,
+      "rank": 6
+    }
+  ],
+  "realityCheck": "Episode 13: The Mystic led with 10 pts (3 matches). Combined table points this episode: 14."
+}

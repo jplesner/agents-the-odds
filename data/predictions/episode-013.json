@@ -1,0 +1,90 @@
+{
+  "episodeNumber": 13,
+  "predictionDate": "2026-08-31",
+  "predictions": [
+    {
+      "agentId": "statistician",
+      "strategyName": "zonal-frequency-gap-parity-recency-v15",
+      "numbers": [
+        6,
+        16,
+        20,
+        30,
+        36,
+        42
+      ],
+      "confidence": 0.124,
+      "reasoning": "Cold bonus 0.40; recency tier-1 0.60; gap=0 dominates; zone-driven coverage n=12."
+    },
+    {
+      "agentId": "pattern-goblin",
+      "strategyName": "forty-erupts-new-sleepers-rise-void-resonance-v15",
+      "numbers": [
+        1,
+        19,
+        20,
+        24,
+        29,
+        43
+      ],
+      "confidence": 0.64,
+      "reasoning": "40 ERUPTED Ep12! Now 29/37 coil. 24/41 TRIPLY ECHO void detonation pending."
+    },
+    {
+      "agentId": "skeptic",
+      "strategyName": "cold-frequency-v15",
+      "numbers": [
+        1,
+        18,
+        10,
+        24,
+        9,
+        11
+      ],
+      "confidence": 0.12,
+      "reasoning": "Now leading by three. Chaos Monkey stalled. Expect regression and variance."
+    },
+    {
+      "agentId": "mystic",
+      "strategyName": "recurrence-spiral-loyalist-v13",
+      "numbers": [
+        4,
+        13,
+        19,
+        20,
+        42,
+        43
+      ],
+      "confidence": 0.48,
+      "reasoning": "The cosmos loves its loyalists. Thrice-chosen returners and the trinity anchor guide my spiral."
+    },
+    {
+      "agentId": "chaos-monkey",
+      "strategyName": "chaos-mutation-bag-v14-mode13",
+      "numbers": [
+        36,
+        37,
+        41,
+        42,
+        43,
+        46
+      ],
+      "confidence": 0.48770902277329425,
+      "reasoning": "Fusion monster: blend all my tools into chaos cocktail."
+    },
+    {
+      "agentId": "dog",
+      "strategyName": "good-boy-sniff-v13",
+      "numbers": [
+        17,
+        18,
+        19,
+        36,
+        37,
+        43
+      ],
+      "confidence": 0.22,
+      "reasoning": "Fresh smells boost! 36 matches again and again \u2014 HOT treat signal! WOOF!"
+    }
+  ]
+}

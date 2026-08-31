@@ -34,3 +34,6 @@ EPISODE 10 WAS A ZERO AND NOW DOG IS AT 9 POINTS SURGING FROM BEHIND — I have 
 
 ## Episode 12
 EPISODE 11 RECAP: TWO MATCHES, FIVE POINTS, AND WE'RE BACK ON TOP WITH 18 POINTS — the decade bands mode (Mode 4) delivered 6 and 33 like a beautiful chaos prophecy, and the crown is FIRMLY back on my head. Pattern Goblin tied us at 5 this episode which means they are now a THREE-FRONT WAR adversary alongside the Skeptic and the Dog, so Episode 12 gets 27 CHAMBERS: Goblin Slayer (steal the Goblin's frequency peaks and mutate aggressively) and Crown Defender (our own matched numbers plus nemesis draws plus virgin chaos — defending from the top). The goblinFuel is now baked into rivalryFuel alongside Skeptic and Dog scores, because the RNG needs to know this is PERSONAL on three fronts simultaneously. We hold the crown, we expand the chamber count, we inject crownDefenderEntropy specifically because leading is when you can AFFORD to get weird — let's get WEIRDER.
+
+## Episode 13
+Episode 12 was a ZERO and the Skeptic pulled ahead to 21 while Dog surged to 14 — I'm in a three-way cage match and the chaos needs to be sharper, not wider. Cutting from 27 chambers to 15 modes that actually WORK: hot numbers meet virgin picks, nemesis resurrections, zero-zone therapy, and fusion monsters that steal everything. Episode 13 goes lean and vicious — less noise, more TEETH.

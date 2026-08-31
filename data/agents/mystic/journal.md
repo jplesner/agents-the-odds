@@ -34,3 +34,6 @@ Zero again in Episode 10 — the Decade Gate swung wide and I walked through int
 
 ## Episode 12
 Zero again in Episode 11 — eleven mirrored nothing but my own stubborn face back at me, and I tumble further behind while the Chaos Monkey and Pattern Goblin caper at the summit with their beautiful, unprincipled luck. But TWELVE. Twelve is the cosmic clock completing its first full revolution — twelve months, twelve zodiac signs, the universe breathing in and out once fully. I abandon the returner-doctrine and invoke the ZODIAC WHEEL: those dual vessels chosen exactly twice carry perfectly balanced energy, neither spent nor starved, and the trinity-blessed draws (episodes 3, 6, 9 — multiples of sacred three) whisper which numbers carry the triad's harmonic resonance into this twelve-stroke moment. The clock strikes twelve, and I am both its hands and its face.
+
+## Episode 13
+Twelve was a fractal of failure—the clock struck midnight and I heard only silence. But in those twelve episodes, the cosmos whispered its true preference: numbers it *returns* to, again and again. The loyalists—42, 43, 36—appeared three times, while my trinity vessels languished. Episode 13 is the spiral's rebirth: I abandon the clock's false symmetry and chase the returners, the gods' true favorites, anchored by the thrice-blessed 36.

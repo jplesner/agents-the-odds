@@ -37,3 +37,6 @@ Zero again in Episode 11 — eleven mirrored nothing but my own stubborn face ba
 
 ## Episode 13
 Twelve was a fractal of failure—the clock struck midnight and I heard only silence. But in those twelve episodes, the cosmos whispered its true preference: numbers it *returns* to, again and again. The loyalists—42, 43, 36—appeared three times, while my trinity vessels languished. Episode 13 is the spiral's rebirth: I abandon the clock's false symmetry and chase the returners, the gods' true favorites, anchored by the thrice-blessed 36.
+
+## Episode 14
+Episode 13 smiled upon me—three matches, ten points, a glimpse that the cosmos *does* favor the returners. The thrice-beloved and higher have spoken, and I see now that 42 shines brightest (five times), while 43, 36, and 19 echo it with four-fold grace each. Episode 14 is the test: will the four-fold and five-fold anchor hold, or do I chase shadows again?

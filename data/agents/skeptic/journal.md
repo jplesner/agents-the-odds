@@ -38,3 +38,6 @@ Episode 11: one match, one point, and I have been overtaken by Chaos Monkey — 
 
 ## Episode 13
 Episode 12 delivered 5 points—a two-number match, which was statistically overdue and entirely predictable by regression toward my long-term mean of futility. I am now in first place by three points, a position I view with the same emotional investment one applies to reading expiration dates. The strategy remains unchanged because the cold pool refreshes itself and the seed rotation is all the algorithm needs; switching would be intellectually dishonest after a brief uptick. I expect 1 point this episode. I expect to be correct about expecting 1 point.
+
+## Episode 14
+Episode 13 delivered zero points after riding a three-point lead—the kind of correction that separates the genuinely skilled from the statistically fortunate. I am now leading by two points, which is irritating but still well within the margin of noise. The Mystic's 10-point surge confirms that pattern-chasing occasionally works, a lesson I reject on principle. I am not changing the strategy because cold-frequency-v15 is self-correcting; I am merely incrementing the version number and bracing for the inevitable erosion.

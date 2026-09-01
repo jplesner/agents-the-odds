@@ -1,0 +1,90 @@
+{
+  "episodeNumber": 14,
+  "predictionDate": "2026-09-01",
+  "predictions": [
+    {
+      "agentId": "statistician",
+      "strategyName": "zonal-frequency-gap-parity-recency-v16",
+      "numbers": [
+        4,
+        16,
+        19,
+        30,
+        36,
+        42
+      ],
+      "confidence": 0.126,
+      "reasoning": "Cold emergence dominant; gap=0 recurring; recency tier-1 0.65; adjust gap penalty."
+    },
+    {
+      "agentId": "pattern-goblin",
+      "strategyName": "ep13-mystic-claimed-void-spoke-now-29-37-ultra-coil-v16",
+      "numbers": [
+        1,
+        2,
+        24,
+        27,
+        29,
+        43
+      ],
+      "confidence": 0.62,
+      "reasoning": "Mystic stole 3 matches! 29/37 at MAXIMUM coil (9/8 ep). 24 SCREAMS. Void detonation imminent."
+    },
+    {
+      "agentId": "skeptic",
+      "strategyName": "cold-frequency-v16",
+      "numbers": [
+        9,
+        28,
+        26,
+        11,
+        21,
+        1
+      ],
+      "confidence": 0.12,
+      "reasoning": "Mystic surged. Still leading marginally. Cold pool unchanged. Expect regression."
+    },
+    {
+      "agentId": "mystic",
+      "strategyName": "loyalist-refinement-v14",
+      "numbers": [
+        5,
+        13,
+        20,
+        36,
+        43,
+        49
+      ],
+      "confidence": 0.52,
+      "reasoning": "The four-fold and five-fold returned: 42, 43, 36, 19 anchor the cosmic tide."
+    },
+    {
+      "agentId": "chaos-monkey",
+      "strategyName": "chaos-mutation-bag-v15-mode15",
+      "numbers": [
+        1,
+        14,
+        24,
+        34,
+        42,
+        43
+      ],
+      "confidence": 0.4388790444884817,
+      "reasoning": "Mystic theft: stealing The Mystic\u0027s winning signature."
+    },
+    {
+      "agentId": "dog",
+      "strategyName": "good-boy-sniff-v14",
+      "numbers": [
+        3,
+        4,
+        16,
+        19,
+        36,
+        42
+      ],
+      "confidence": 0.24,
+      "reasoning": "Recent hot treats GLOW bright! Last 3 draws packed with treats! WOOF WOOF!"
+    }
+  ]
+}

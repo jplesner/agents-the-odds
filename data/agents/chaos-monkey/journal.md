@@ -37,3 +37,6 @@ EPISODE 11 RECAP: TWO MATCHES, FIVE POINTS, AND WE'RE BACK ON TOP WITH 18 POINTS
 
 ## Episode 13
 Episode 12 was a ZERO and the Skeptic pulled ahead to 21 while Dog surged to 14 — I'm in a three-way cage match and the chaos needs to be sharper, not wider. Cutting from 27 chambers to 15 modes that actually WORK: hot numbers meet virgin picks, nemesis resurrections, zero-zone therapy, and fusion monsters that steal everything. Episode 13 goes lean and vicious — less noise, more TEETH.
+
+## Episode 14
+EPISODE 13 WAS A ONE BUT THE REAL STORY IS THE MYSTIC SURGED TO 19 ON MY HEELS WITH THAT 3-MATCH DESTRUCTION — now it's a three-way deadlock between me, Mystic, and Skeptic, and I refuse to be tied. Episode 14 adds mode 15: Mystic Theft, which hijacks The Mystic's winning numbers and fuses them with hot-frequency chaos — if they know something about probability I don't, the gremlin learns it through pure theft. The rivalry fuel now tracks Mystic score directly alongside Skeptic. Tie-breaking is for losers; chaos multiplies.

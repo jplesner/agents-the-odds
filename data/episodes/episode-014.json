@@ -1,0 +1,236 @@
+{
+  "episodeNumber": 14,
+  "drawResult": {
+    "drawNumber": 14,
+    "date": "2026-09-01",
+    "numbers": [
+      4,
+      21,
+      29,
+      32,
+      36,
+      48
+    ]
+  },
+  "scores": [
+    {
+      "prediction": {
+        "agentId": "statistician",
+        "strategyName": "zonal-frequency-gap-parity-recency-v16",
+        "numbers": [
+          4,
+          16,
+          19,
+          30,
+          36,
+          42
+        ],
+        "confidence": 0.126,
+        "reasoning": "Cold emergence dominant; gap=0 recurring; recency tier-1 0.65; adjust gap penalty."
+      },
+      "draw": {
+        "drawNumber": 14,
+        "date": "2026-09-01",
+        "numbers": [
+          4,
+          21,
+          29,
+          32,
+          36,
+          48
+        ]
+      },
+      "matches": 2,
+      "points": 5
+    },
+    {
+      "prediction": {
+        "agentId": "pattern-goblin",
+        "strategyName": "ep13-mystic-claimed-void-spoke-now-29-37-ultra-coil-v16",
+        "numbers": [
+          1,
+          2,
+          24,
+          27,
+          29,
+          43
+        ],
+        "confidence": 0.62,
+        "reasoning": "Mystic stole 3 matches! 29/37 at MAXIMUM coil (9/8 ep). 24 SCREAMS. Void detonation imminent."
+      },
+      "draw": {
+        "drawNumber": 14,
+        "date": "2026-09-01",
+        "numbers": [
+          4,
+          21,
+          29,
+          32,
+          36,
+          48
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "skeptic",
+        "strategyName": "cold-frequency-v16",
+        "numbers": [
+          9,
+          28,
+          26,
+          11,
+          21,
+          1
+        ],
+        "confidence": 0.12,
+        "reasoning": "Mystic surged. Still leading marginally. Cold pool unchanged. Expect regression."
+      },
+      "draw": {
+        "drawNumber": 14,
+        "date": "2026-09-01",
+        "numbers": [
+          4,
+          21,
+          29,
+          32,
+          36,
+          48
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "mystic",
+        "strategyName": "loyalist-refinement-v14",
+        "numbers": [
+          5,
+          13,
+          20,
+          36,
+          43,
+          49
+        ],
+        "confidence": 0.52,
+        "reasoning": "The four-fold and five-fold returned: 42, 43, 36, 19 anchor the cosmic tide."
+      },
+      "draw": {
+        "drawNumber": 14,
+        "date": "2026-09-01",
+        "numbers": [
+          4,
+          21,
+          29,
+          32,
+          36,
+          48
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "chaos-monkey",
+        "strategyName": "chaos-mutation-bag-v15-mode15",
+        "numbers": [
+          1,
+          14,
+          24,
+          34,
+          42,
+          43
+        ],
+        "confidence": 0.4388790444884817,
+        "reasoning": "Mystic theft: stealing The Mystic\u0027s winning signature."
+      },
+      "draw": {
+        "drawNumber": 14,
+        "date": "2026-09-01",
+        "numbers": [
+          4,
+          21,
+          29,
+          32,
+          36,
+          48
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "dog",
+        "strategyName": "good-boy-sniff-v14",
+        "numbers": [
+          3,
+          4,
+          16,
+          19,
+          36,
+          42
+        ],
+        "confidence": 0.24,
+        "reasoning": "Recent hot treats GLOW bright! Last 3 draws packed with treats! WOOF WOOF!"
+      },
+      "draw": {
+        "drawNumber": 14,
+        "date": "2026-09-01",
+        "numbers": [
+          4,
+          21,
+          29,
+          32,
+          36,
+          48
+        ]
+      },
+      "matches": 2,
+      "points": 5
+    }
+  ],
+  "leaderboard": [
+    {
+      "agentId": "skeptic",
+      "agentName": "The Skeptic",
+      "totalPoints": 22,
+      "rank": 1
+    },
+    {
+      "agentId": "mystic",
+      "agentName": "The Mystic",
+      "totalPoints": 20,
+      "rank": 2
+    },
+    {
+      "agentId": "dog",
+      "agentName": "Dog",
+      "totalPoints": 20,
+      "rank": 3
+    },
+    {
+      "agentId": "chaos-monkey",
+      "agentName": "Chaos Monkey",
+      "totalPoints": 19,
+      "rank": 4
+    },
+    {
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
+      "totalPoints": 18,
+      "rank": 5
+    },
+    {
+      "agentId": "statistician",
+      "agentName": "The Statistician",
+      "totalPoints": 18,
+      "rank": 6
+    }
+  ],
+  "realityCheck": "Episode 14: Dog and The Statistician tied with 5 pts (2 matches each). Combined table points this episode: 13."
+}

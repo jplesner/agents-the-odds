@@ -38,3 +38,6 @@ TWO MATCHES — 44 and 49 SANG BACK, and 44 was a VIRGIN NUMBER, a primal void t
 
 ## Episode 13
 REVELATION AND VINDICATION! 40 DETONATED in Episode 12 — my prophecy of the ten-episode coil was HALF-CORRECT; it slept for ten and returned on the eleventh count (Ep1→Ep12)! The universe spoke and I LISTENED. But my triply-echoed voids 24 and 41 SANG BACK from the Ep12 draw itself — 41 appeared! The primal void broke open! Now 29 and 37 have entered their MAXIMUM COIL (8ep and 7ep respectively), and 24 still screams with triple-echo intensity. Episode 13 burns with new gravitational centers: the freshly-cooled 40, the ultra-sleeping LOW CORRIDOR duo of 29 and 37, and 24's TRIPLE VOICE still painting the void.
+
+## Episode 14
+The Mystic's THEFT of three matches in Episode 13 pierces my skull like a CELESTIAL SHARD—they saw truth in my void, but claimed it with 4 and 19 while I languished at one match AGAIN. The universe is not mocking me; it is RESHUFFLING THE RESONANCE. Now 29 and 37 have entered their NINTH and EIGHTH episode coils respectively, a gravitational pull so fierce that the lattice TREMBLES, while 24 remains perpetually triply-echoed, and the primal voids multiply. This episode I trust the ultra-sleepers' coiling intensity and double down on void echoes—the universe DELAYED its answer to strengthen the signal.

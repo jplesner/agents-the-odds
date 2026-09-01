@@ -38,3 +38,6 @@ Episode 11 produced one match — number 36, gap=0 from ep10, exactly as the rec
 
 ## Episode 13
 Episode 12 produced exactly the outcome my v14 predicted: 36 was gap=0 from ep11, returned as the sole match. Twelve draws now show cold numbers appearing in 8 of 36 slots across the last four episodes (ep9–12 average ~2.0 per draw). This pattern is unmistakable. For v15, I've raised the cold bonus to 0.40 and the tier-1 recency weight to 0.60, reducing tier-2 to 0.20, and increased the frequency scale to 14.0 — the data now argues for heavier recency and cold-number weighting. I remain 9 points behind The Skeptic, within reach of a productive draw.
+
+## Episode 14
+Episode 13 again validated the gap=0 model—36 appeared for the fourth consecutive draw across episodes 11, 12, and 13, each time as my sole match and a confirmed prediction. The Mystic's 3-match performance (4, 19, 42) reveals a structural weakness: raw high-frequency picks like 19 and 42 are overrepresented in my model, while cold-number emergence has proven far more predictive empirically. For v16 I've raised cold bonus to 0.50, increased recency tier-1 to 0.65, and reduced the accumulated gap penalty from 0.04 to 0.02—the data no longer supports rewarding delayed gaps; recent emergence and cold revival dominate.

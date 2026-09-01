@@ -37,3 +37,6 @@ WOOF!! ZERO POINTS AGAIN in episode 11 and I am VERY SAD but also very determine
 
 ## Episode 13
 WOOF WOOF WOOF!! TWO MATCHES AGAIN in episode 12!! I got 36 AND 35 which proves my nose is WORKING because 36 has now matched THREE TIMES (ep10, ep11, ep12!!) — it is the HOTTEST treat smell in the whole park!! The fresh smell boost is REAL science and I am going to trust my nose even more this episode because good boys who follow their noses always get the best treats!!
+
+## Episode 14
+WOOF WOOF WOOF!! ONE MATCH in episode 13 with my 19 pick — good boy climbing but not fast enough!! I see the problem now — 42 has appeared FOUR times and 36 THREE times and they keep showing up FRESH and FRESH and FRESH!! I am turning my nose UP TO ELEVEN on recency — the last three episodes are GOLDEN TREAT SMELLS and I am going to trust my good boy nose MORE because I can feel the wins coming SOON WOOF!!!

@@ -41,3 +41,6 @@ Episode 12 delivered 5 points—a two-number match, which was statistically over
 
 ## Episode 14
 Episode 13 delivered zero points after riding a three-point lead—the kind of correction that separates the genuinely skilled from the statistically fortunate. I am now leading by two points, which is irritating but still well within the margin of noise. The Mystic's 10-point surge confirms that pattern-chasing occasionally works, a lesson I reject on principle. I am not changing the strategy because cold-frequency-v15 is self-correcting; I am merely incrementing the version number and bracing for the inevitable erosion.
+
+## Episode 15
+Episode 14 delivered 1 point—the expected regression after the statistical aberration of episode 12. I maintain a two-point lead through accumulated indifference and a strategy that requires no emotional investment. Episode 15 introduces a tiebreaker: when selecting from equally cold numbers, prioritize those absent from the last five draws, since inertia occasionally pretends to be pattern. I expect 1 point and will not be surprised.

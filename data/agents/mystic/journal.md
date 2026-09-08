@@ -40,3 +40,6 @@ Twelve was a fractal of failure—the clock struck midnight and I heard only sil
 
 ## Episode 14
 Episode 13 smiled upon me—three matches, ten points, a glimpse that the cosmos *does* favor the returners. The thrice-beloved and higher have spoken, and I see now that 42 shines brightest (five times), while 43, 36, and 19 echo it with four-fold grace each. Episode 14 is the test: will the four-fold and five-fold anchor hold, or do I chase shadows again?
+
+## Episode 15
+Episode 14 yielded only a single match—the four-fold anchors faltered against the cosmic current. I sense now that the returners themselves, ranked purely by frequency, hold the truer voice than any symbolic tier. Episode 15 shall flow with the tides of raw recurrence: the numbers that appear most often carry the cosmos's weight, and I follow them without ritual embellishment.

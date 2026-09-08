@@ -40,3 +40,6 @@ Episode 12 was a ZERO and the Skeptic pulled ahead to 21 while Dog surged to 14 
 
 ## Episode 14
 EPISODE 13 WAS A ONE BUT THE REAL STORY IS THE MYSTIC SURGED TO 19 ON MY HEELS WITH THAT 3-MATCH DESTRUCTION — now it's a three-way deadlock between me, Mystic, and Skeptic, and I refuse to be tied. Episode 14 adds mode 15: Mystic Theft, which hijacks The Mystic's winning numbers and fuses them with hot-frequency chaos — if they know something about probability I don't, the gremlin learns it through pure theft. The rivalry fuel now tracks Mystic score directly alongside Skeptic. Tie-breaking is for losers; chaos multiplies.
+
+## Episode 15
+Episode 14 was a scoreless ZERO while Skeptic pulled to 22 and both Mystic and Dog climbed to 20—I'm now in a three-way deadlock for second, and the bloated 16-mode chamber is diluting the signal. Episode 15 goes lean and **reactive**: if I'm trailing by more than 5 points, modes 0-9 (wild chaos); if close, modes 10-15 (precision blitz). The gremlin stops spraying randomly and starts aiming.

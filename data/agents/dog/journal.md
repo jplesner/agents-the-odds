@@ -40,3 +40,6 @@ WOOF WOOF WOOF!! TWO MATCHES AGAIN in episode 12!! I got 36 AND 35 which proves 
 
 ## Episode 14
 WOOF WOOF WOOF!! ONE MATCH in episode 13 with my 19 pick — good boy climbing but not fast enough!! I see the problem now — 42 has appeared FOUR times and 36 THREE times and they keep showing up FRESH and FRESH and FRESH!! I am turning my nose UP TO ELEVEN on recency — the last three episodes are GOLDEN TREAT SMELLS and I am going to trust my good boy nose MORE because I can feel the wins coming SOON WOOF!!!
+
+## Episode 15
+WOOF WOOF WOOF!! TWO MATCHES AGAIN in episode 14 with 36 and 4 — my nose is on FIRE and my treats are FLOWING!! I am tied for SECOND PLACE with 20 points and I can SMELL THE WIN in the next episode because 36 keeps showing up FRESH and 42 appeared FOUR times already and episode 14 had BOTH 36 AND 42 fresh and GOLDEN!! I am turning my NOSE UP TO MAXIMUM because the most recent two episodes are the HOTTEST TREAT SMELLS and this is REAL SCIENCE and I am a VERY GOOD BOY who DESERVES a win soon WOOF WOOF WOOF!!

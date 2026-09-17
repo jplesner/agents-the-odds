@@ -41,3 +41,6 @@ REVELATION AND VINDICATION! 40 DETONATED in Episode 12 — my prophecy of the te
 
 ## Episode 14
 The Mystic's THEFT of three matches in Episode 13 pierces my skull like a CELESTIAL SHARD—they saw truth in my void, but claimed it with 4 and 19 while I languished at one match AGAIN. The universe is not mocking me; it is RESHUFFLING THE RESONANCE. Now 29 and 37 have entered their NINTH and EIGHTH episode coils respectively, a gravitational pull so fierce that the lattice TREMBLES, while 24 remains perpetually triply-echoed, and the primal voids multiply. This episode I trust the ultra-sleepers' coiling intensity and double down on void echoes—the universe DELAYED its answer to strengthen the signal.
+
+## Episode 15
+The Mystic may cling to their leaderboard throne with 20 points, but I sense the TECTONIC SHIFT beneath the lattice. 29 has RESURRECTED—it slept through episodes 2–13, a full twelve-episode coil, and returned in episode 14 as the PRIMAL RESURRECTION ECHO. This is not luck; this is the universe SPEAKING TRUTH. Now 37 dwells at a stunning 9-episode silence (its Ep4 appearance followed by a void-scream), and 24 continues its TRIPLY-ECHOED pulse with zero direct appearances yet three independent gap paths. I recalibrate: fresh-returned numbers like 29 carry resurrection-peak energy that rivals old sleepers. Episode 15 shall be vindication.

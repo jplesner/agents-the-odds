@@ -1,0 +1,236 @@
+{
+  "episodeNumber": 15,
+  "drawResult": {
+    "drawNumber": 15,
+    "date": "2026-09-08",
+    "numbers": [
+      6,
+      15,
+      23,
+      26,
+      45,
+      48
+    ]
+  },
+  "scores": [
+    {
+      "prediction": {
+        "agentId": "statistician",
+        "strategyName": "zonal-frequency-gap-parity-recency-v17",
+        "numbers": [
+          4,
+          16,
+          19,
+          32,
+          36,
+          42
+        ],
+        "confidence": 0.128,
+        "reasoning": "Gap=0 recency 0.70; cold 0.55; tier-2 0.22; tier-3 0.08 additive. Empirical signal holds."
+      },
+      "draw": {
+        "drawNumber": 15,
+        "date": "2026-09-08",
+        "numbers": [
+          6,
+          15,
+          23,
+          26,
+          45,
+          48
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "pattern-goblin",
+        "strategyName": "ep15-29-resurrection-echo-37-gravity-peak-24-screams-v17",
+        "numbers": [
+          19,
+          24,
+          28,
+          33,
+          37,
+          43
+        ],
+        "confidence": 0.64,
+        "reasoning": "29 RETURNS! 37 at 9ep COILING FURY. 24 triply echoed VOID. Resurrection peak imminent!"
+      },
+      "draw": {
+        "drawNumber": 15,
+        "date": "2026-09-08",
+        "numbers": [
+          6,
+          15,
+          23,
+          26,
+          45,
+          48
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "skeptic",
+        "strategyName": "cold-frequency-v17",
+        "numbers": [
+          18,
+          9,
+          24,
+          10,
+          1,
+          26
+        ],
+        "confidence": 0.12,
+        "reasoning": "Still leading. Cold pool favors old numbers; recent surge irrelevant. Expect 1 point."
+      },
+      "draw": {
+        "drawNumber": 15,
+        "date": "2026-09-08",
+        "numbers": [
+          6,
+          15,
+          23,
+          26,
+          45,
+          48
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "mystic",
+        "strategyName": "frequency-prophecy-v15",
+        "numbers": [
+          13,
+          19,
+          20,
+          42,
+          43,
+          49
+        ],
+        "confidence": 0.54,
+        "reasoning": "The cosmos whispers through frequency tides: highest returners beckon the cosmic tide."
+      },
+      "draw": {
+        "drawNumber": 15,
+        "date": "2026-09-08",
+        "numbers": [
+          6,
+          15,
+          23,
+          26,
+          45,
+          48
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "chaos-monkey",
+        "strategyName": "chaos-mutation-bag-v16-mode15",
+        "numbers": [
+          4,
+          10,
+          18,
+          24,
+          36,
+          42
+        ],
+        "confidence": 0.2681660554223536,
+        "reasoning": "Close race, precision chaos. Frequency blitz fusion mode active."
+      },
+      "draw": {
+        "drawNumber": 15,
+        "date": "2026-09-08",
+        "numbers": [
+          6,
+          15,
+          23,
+          26,
+          45,
+          48
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "dog",
+        "strategyName": "good-boy-sniff-v15",
+        "numbers": [
+          4,
+          14,
+          19,
+          21,
+          32,
+          36
+        ],
+        "confidence": 0.26,
+        "reasoning": "WOOF! Last two draws GOLDEN! 36, 42, 29, 4 all FRESH! GOOD BOY!"
+      },
+      "draw": {
+        "drawNumber": 15,
+        "date": "2026-09-08",
+        "numbers": [
+          6,
+          15,
+          23,
+          26,
+          45,
+          48
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    }
+  ],
+  "leaderboard": [
+    {
+      "agentId": "skeptic",
+      "agentName": "The Skeptic",
+      "totalPoints": 23,
+      "rank": 1
+    },
+    {
+      "agentId": "mystic",
+      "agentName": "The Mystic",
+      "totalPoints": 20,
+      "rank": 2
+    },
+    {
+      "agentId": "dog",
+      "agentName": "Dog",
+      "totalPoints": 20,
+      "rank": 3
+    },
+    {
+      "agentId": "chaos-monkey",
+      "agentName": "Chaos Monkey",
+      "totalPoints": 19,
+      "rank": 4
+    },
+    {
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
+      "totalPoints": 18,
+      "rank": 5
+    },
+    {
+      "agentId": "statistician",
+      "agentName": "The Statistician",
+      "totalPoints": 18,
+      "rank": 6
+    }
+  ],
+  "realityCheck": "Episode 15: The Skeptic led with 1 pts (1 match). Combined table points this episode: 1."
+}

@@ -41,3 +41,6 @@ Episode 12 produced exactly the outcome my v14 predicted: 36 was gap=0 from ep11
 
 ## Episode 14
 Episode 13 again validated the gap=0 model—36 appeared for the fourth consecutive draw across episodes 11, 12, and 13, each time as my sole match and a confirmed prediction. The Mystic's 3-match performance (4, 19, 42) reveals a structural weakness: raw high-frequency picks like 19 and 42 are overrepresented in my model, while cold-number emergence has proven far more predictive empirically. For v16 I've raised cold bonus to 0.50, increased recency tier-1 to 0.65, and reduced the accumulated gap penalty from 0.04 to 0.02—the data no longer supports rewarding delayed gaps; recent emergence and cold revival dominate.
+
+## Episode 15
+Episode 14 confirmed the pattern once more: 4 and 36 both matched, consistent with recency tier-1 weighting. The tier-2 bonus (gap=1) now appears underutilized—I'm adding a new tier-3 (gap=2) bonus of 0.08 to capture medium-term resurgers, while raising cold emergence to 0.55 and increasing recency tier-1 to 0.70. Gap accumulation penalty reduced to 0.01. This modest expansion should harvest the emerging three-draw resonance pattern without compromising the core recency signal.

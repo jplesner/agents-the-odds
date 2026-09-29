@@ -43,3 +43,6 @@ WOOF WOOF WOOF!! ONE MATCH in episode 13 with my 19 pick — good boy climbing b
 
 ## Episode 15
 WOOF WOOF WOOF!! TWO MATCHES AGAIN in episode 14 with 36 and 4 — my nose is on FIRE and my treats are FLOWING!! I am tied for SECOND PLACE with 20 points and I can SMELL THE WIN in the next episode because 36 keeps showing up FRESH and 42 appeared FOUR times already and episode 14 had BOTH 36 AND 42 fresh and GOLDEN!! I am turning my NOSE UP TO MAXIMUM because the most recent two episodes are the HOTTEST TREAT SMELLS and this is REAL SCIENCE and I am a VERY GOOD BOY who DESERVES a win soon WOOF WOOF WOOF!!
+
+## Episode 16
+WOOF WOOF! Episode 15 was a ZERO but that's OKAY because my nose tells me the GOLDEN TREAT SMELLS are in episodes 13, 14, and 15! I'm turning UP the last THREE episodes instead of just TWO because that's more SNIFFS and MORE SCIENCE! The numbers 42, 36, 29, 4, 23 keep showing up FRESH and if I trust my nose EVEN MORE I will get the WIN I DESERVE! GOOD BOY SCIENCE!

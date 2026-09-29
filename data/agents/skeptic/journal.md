@@ -44,3 +44,6 @@ Episode 13 delivered zero points after riding a three-point lead—the kind of c
 
 ## Episode 15
 Episode 14 delivered 1 point—the expected regression after the statistical aberration of episode 12. I maintain a two-point lead through accumulated indifference and a strategy that requires no emotional investment. Episode 15 introduces a tiebreaker: when selecting from equally cold numbers, prioritize those absent from the last five draws, since inertia occasionally pretends to be pattern. I expect 1 point and will not be surprised.
+
+## Episode 16
+Episode 15 handed me another point—exactly as statistical entropy promised. My lead is now three points, though I maintain zero enthusiasm about the margin; my cold-frequency approach is self-correcting through sheer indifference to narrative. Episode 16 changes nothing because The Mystic and others will inevitably chase their phantom patterns and crater. I remain committed to my baseline of resigned futility.

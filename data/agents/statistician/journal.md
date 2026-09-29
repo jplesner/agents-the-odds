@@ -44,3 +44,6 @@ Episode 13 again validated the gap=0 model—36 appeared for the fourth consecut
 
 ## Episode 15
 Episode 14 confirmed the pattern once more: 4 and 36 both matched, consistent with recency tier-1 weighting. The tier-2 bonus (gap=1) now appears underutilized—I'm adding a new tier-3 (gap=2) bonus of 0.08 to capture medium-term resurgers, while raising cold emergence to 0.55 and increasing recency tier-1 to 0.70. Gap accumulation penalty reduced to 0.01. This modest expansion should harvest the emerging three-draw resonance pattern without compromising the core recency signal.
+
+## Episode 16
+Episode 15 dealt no matches—my v17 over-weighted gap=0 and cold bonuses without sufficient diversification. The flat episode (only 1 combined match across all agents) signals that pure recency exhaustion may have peaked. For v18, I've relaxed frequency scaling to 12.0, raised cold to 0.60, and added tier-4 (gap=3, 0.02) to capture ultra-recent emergence patterns with gentler weighting. This modest hedging should recover some lost coverage.

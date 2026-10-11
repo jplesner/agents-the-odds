@@ -25,11 +25,9 @@ public sealed class ChaosMonkeyStrategy : IPredictionStrategy
             .FirstOrDefault(e => e.AgentId == "chaos-monkey")?.TotalPoints ?? 0L;
         long skepticScore = context.Leaderboard.Entries
             .FirstOrDefault(e => e.AgentId == "skeptic")?.TotalPoints ?? 0L;
-        long mysticScore = context.Leaderboard.Entries
-            .FirstOrDefault(e => e.AgentId == "mystic")?.TotalPoints ?? 0L;
 
         long gapToLeader = skepticScore - totalScore;
-        long mutationMode = (gapToLeader > 5) ? rng.Next(0, 10) : rng.Next(10, 16);
+        bool trailing = gapToLeader > 4;
 
         var hotNumbers = freq
             .Where(kv => kv.Value >= 2)
@@ -37,55 +35,35 @@ public sealed class ChaosMonkeyStrategy : IPredictionStrategy
             .Select(kv => kv.Key)
             .ToList();
 
-        var ourPicksSet = new HashSet<int>(context.AgentHistory.SelectMany(r => r.Prediction.Numbers));
-        var neverPickedByUs = Enumerable.Range(context.Rules.MinNumber, context.Rules.MaxNumber)
-            .Where(n => !ourPicksSet.Contains(n))
-            .OrderBy(_ => rng.Next())
+        var recentWinners = context.DrawHistory
+            .TakeLast(6)
+            .SelectMany(d => d.Numbers)
+            .GroupBy(n => n)
+            .OrderByDescending(g => g.Count())
+            .Select(g => g.Key)
             .ToList();
 
-        var matchedNumbers = context.AgentHistory
+        var ourWinningNumbers = context.AgentHistory
             .Where(r => r.Matches > 0)
             .SelectMany(r => r.Prediction.Numbers.Where(n => r.Draw.Numbers.Contains(n)))
             .Distinct()
-            .OrderBy(_ => rng.Next())
             .ToList();
 
-        var neverSeen = freq.Where(kv => kv.Value == 0).Select(kv => kv.Key).OrderBy(_ => rng.Next()).ToList();
+        var coldNumbers = freq.Where(kv => kv.Value == 0).Select(kv => kv.Key).OrderBy(_ => rng.Next()).ToList();
 
         var numbers = new HashSet<int>();
 
-        Action<HashSet<int>> fillRandom = (set) => {
-            while (set.Count < 6)
-                set.Add(rng.Next(context.Rules.MinNumber, context.Rules.MaxNumber + 1));
-        };
-
-        if (mutationMode < 5)
+        if (trailing)
         {
-            foreach (var n in hotNumbers.Take(3)) numbers.Add(n);
-            foreach (var n in neverPickedByUs.Take(3)) numbers.Add(n);
-            fillRandom(numbers);
-        }
-        else if (mutationMode < 10)
-        {
-            foreach (var n in matchedNumbers.Take(2)) numbers.Add(n);
+            foreach (var n in recentWinners.Take(3)) numbers.Add(n);
             foreach (var n in hotNumbers.Take(2)) numbers.Add(n);
-            foreach (var n in neverPickedByUs.Take(2)) numbers.Add(n);
-            fillRandom(numbers);
+            numbers.Add(rng.Next(context.Rules.MinNumber, context.Rules.MaxNumber + 1));
         }
         else
         {
-            var recentNumbers = context.DrawHistory
-                .TakeLast(4)
-                .SelectMany(d => d.Numbers)
-                .GroupBy(n => n)
-                .OrderByDescending(g => g.Count())
-                .Select(g => g.Key)
-                .ToList();
-
-            foreach (var n in recentNumbers.Take(2)) numbers.Add(n);
-            foreach (var n in neverSeen.Take(2)) numbers.Add(n);
-            foreach (var n in hotNumbers.Take(2)) numbers.Add(n);
-            fillRandom(numbers);
+            foreach (var n in ourWinningNumbers.Take(2)) numbers.Add(n);
+            foreach (var n in recentWinners.Take(2)) numbers.Add(n);
+            foreach (var n in coldNumbers.Take(2)) numbers.Add(n);
         }
 
         while (numbers.Count < 6)
@@ -93,16 +71,16 @@ public sealed class ChaosMonkeyStrategy : IPredictionStrategy
 
         var finalNumbers = numbers.Take(6).OrderBy(x => x).ToList();
 
-        string reasoning = gapToLeader > 5
-            ? "Trailing by " + gapToLeader + ", wild modes deployed. Chaos fury unleashed."
-            : "Close race, precision chaos. Frequency blitz fusion mode active.";
+        string reasoning = trailing
+            ? "Trailing by " + gapToLeader + "—recency attack mode. Recent winners fusion."
+            : "Tied, precision strategy. Our wins plus cold shock therapy.";
 
         return new()
         {
             AgentId      = "chaos-monkey",
-            StrategyName = $"chaos-mutation-bag-v16-mode{mutationMode}",
+            StrategyName = $"chaos-mutation-bag-v17-recency-fusion",
             Numbers      = finalNumbers,
-            Confidence   = 0.10 + (rng.NextDouble() * 0.40),
+            Confidence   = 0.08 + (rng.NextDouble() * 0.35),
             Reasoning    = reasoning,
         };
     }

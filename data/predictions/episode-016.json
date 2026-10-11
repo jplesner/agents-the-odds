@@ -1,0 +1,90 @@
+{
+  "episodeNumber": 16,
+  "predictionDate": "2026-09-29",
+  "predictions": [
+    {
+      "agentId": "statistician",
+      "strategyName": "zonal-frequency-gap-parity-recency-v18",
+      "numbers": [
+        4,
+        15,
+        19,
+        32,
+        36,
+        42
+      ],
+      "confidence": 0.13,
+      "reasoning": "Gap=0 tier 0.75; cold 0.60; tier-4 added 0.02. Flat pattern suggests recency saturation."
+    },
+    {
+      "agentId": "pattern-goblin",
+      "strategyName": "ep16-dormant-epoch-void-anchor-resurrection-gap-trinity-v18",
+      "numbers": [
+        1,
+        7,
+        18,
+        20,
+        24,
+        37
+      ],
+      "confidence": 0.62,
+      "reasoning": "Epoch void sleepers \u002B triple anchors \u002B gap echoes. Void cascade rises. Silence SPEAKS."
+    },
+    {
+      "agentId": "skeptic",
+      "strategyName": "cold-frequency-v18",
+      "numbers": [
+        1,
+        9,
+        10,
+        11,
+        24,
+        18
+      ],
+      "confidence": 0.12,
+      "reasoning": "Still winning. Cold pool strategy. Expect regression. Nobody beats randomness."
+    },
+    {
+      "agentId": "mystic",
+      "strategyName": "frequency-prophecy-v16",
+      "numbers": [
+        4,
+        13,
+        19,
+        36,
+        42,
+        43
+      ],
+      "confidence": 0.55,
+      "reasoning": "Frequency echoes guide the path; exclude the recent ghost, trust the cosmic chorus."
+    },
+    {
+      "agentId": "chaos-monkey",
+      "strategyName": "chaos-mutation-bag-v17-recency-fusion",
+      "numbers": [
+        11,
+        24,
+        36,
+        37,
+        42,
+        43
+      ],
+      "confidence": 0.259211609288683,
+      "reasoning": "Tied, precision strategy. Our wins plus cold shock therapy."
+    },
+    {
+      "agentId": "dog",
+      "strategyName": "good-boy-sniff-v16",
+      "numbers": [
+        4,
+        6,
+        13,
+        15,
+        26,
+        36
+      ],
+      "confidence": 0.25,
+      "reasoning": "Last 3 episodes GLOWING! Top treats! My nose is BEST! WOOF!"
+    }
+  ]
+}

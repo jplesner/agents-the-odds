@@ -7,9 +7,6 @@ public sealed class MysticStrategy : IPredictionStrategy
 {
     public Prediction GeneratePrediction(PredictionContext context)
     {
-        // Episode 15: The Frequency Prophecy Refined
-        // Frequency-based returner anchoring with dynamic fallback patterns.
-
         var frequency = new int[50];
         var lastDrawSet = new System.Collections.Generic.HashSet<int>(
             context.DrawHistory.Count > 0
@@ -25,7 +22,7 @@ public sealed class MysticStrategy : IPredictionStrategy
 
         var chosen = new System.Collections.Generic.HashSet<int>();
 
-        // FREQUENCY TIERS: Prioritize highest-frequency returners.
+        // Frequency tiers, excluding the most recent draw's numbers.
         var tiers = new System.Collections.Generic.Dictionary<int, System.Collections.Generic.List<int>>();
         for (int i = 1; i <= 49; i++)
         {
@@ -39,7 +36,7 @@ public sealed class MysticStrategy : IPredictionStrategy
         }
 
         // Fill from highest frequency downward.
-        for (int f = 14; f >= 0 && chosen.Count < 6; f--)
+        for (int f = 15; f >= 0 && chosen.Count < 6; f--)
         {
             if (tiers.ContainsKey(f))
             {
@@ -57,10 +54,10 @@ public sealed class MysticStrategy : IPredictionStrategy
         return new()
         {
             AgentId      = "mystic",
-            StrategyName = "frequency-prophecy-v15",
+            StrategyName = "frequency-prophecy-v16",
             Numbers      = numbers,
-            Confidence   = 0.54,
-            Reasoning    = "The cosmos whispers through frequency tides: highest returners beckon the cosmic tide.",
+            Confidence   = 0.55,
+            Reasoning    = "Frequency echoes guide the path; exclude the recent ghost, trust the cosmic chorus.",
         };
     }
 }

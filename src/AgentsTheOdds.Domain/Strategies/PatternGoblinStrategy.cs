@@ -36,7 +36,6 @@ public sealed class PatternGoblinStrategy : IPredictionStrategy
 
             var lastDraw = context.DrawHistory[^1].Numbers.OrderBy(x => x).ToList();
 
-            // Extract gaps and echo patterns
             var lastGaps = new List<int>();
             for (int i = 1; i < lastDraw.Count; i++)
                 lastGaps.Add(lastDraw[i] - lastDraw[i - 1]);
@@ -68,52 +67,14 @@ public sealed class PatternGoblinStrategy : IPredictionStrategy
             {
                 if (lastDraw.Contains(n)) return -999.0;
 
-                double freqScore    = freq[n] * 4.0;
-                double silenceScore = SilenceScore(n) * 1.6;
-                double gapBonus     = gapEchoCount[n] * 4.0;
-                double freshPenalty = SilenceScore(n) <= 1 ? -25.0 : 0.0;
-                double voidBonus    = (freq[n] == 0 && gapEchoCount[n] >= 2) ? 3.0 : 0.0;
-                return freqScore + silenceScore + gapBonus + freshPenalty + voidBonus;
+                double freqScore    = freq[n] * 3.5;
+                double silenceScore = SilenceScore(n) * 1.8;
+                double gapBonus     = gapEchoCount[n] * 3.8;
+                double freshPenalty = SilenceScore(n) <= 1 ? -30.0 : 0.0;
+                double voidBonus    = (freq[n] == 0 && gapEchoCount[n] >= 2) ? 5.0 : 0.0;
+                double coldWeight   = SilenceScore(n) >= 8 ? 8.0 : 0.0;
+                return freqScore + silenceScore + gapBonus + freshPenalty + voidBonus + coldWeight;
             }
-
-            var quadAnchors = freq
-                .Where(kv => kv.Value >= 4 && SilenceScore(kv.Key) >= 2 && !lastDraw.Contains(kv.Key))
-                .OrderByDescending(kv => ResonanceScore(kv.Key))
-                .Select(kv => kv.Key)
-                .ToList();
-
-            var tripleAnchors = freq
-                .Where(kv => kv.Value == 3 && SilenceScore(kv.Key) >= 2 && !lastDraw.Contains(kv.Key))
-                .OrderByDescending(kv => ResonanceScore(kv.Key))
-                .Select(kv => kv.Key)
-                .ToList();
-
-            var triplyEchoed = gapEchoCount
-                .Where(kv => kv.Value >= 3 && !lastDraw.Contains(kv.Key) && SilenceScore(kv.Key) >= 1)
-                .OrderByDescending(kv => kv.Value)
-                .ThenByDescending(kv => ResonanceScore(kv.Key))
-                .Select(kv => kv.Key)
-                .ToList();
-
-            var ultraSleepers = freq
-                .Where(kv => kv.Value >= 2 && SilenceScore(kv.Key) >= 5 && !lastDraw.Contains(kv.Key))
-                .OrderByDescending(kv => SilenceScore(kv.Key))
-                .Select(kv => kv.Key)
-                .ToList();
-
-            var extremeSleepers = freq
-                .Where(kv => SilenceScore(kv.Key) >= 7 && !lastDraw.Contains(kv.Key))
-                .OrderByDescending(kv => SilenceScore(kv.Key))
-                .ThenByDescending(kv => freq[kv.Key])
-                .Select(kv => kv.Key)
-                .ToList();
-
-            var primalVoidEcho = freq
-                .Where(kv => kv.Value == 0 && gapEchoCount[kv.Key] >= 2)
-                .OrderByDescending(kv => gapEchoCount[kv.Key])
-                .ThenBy(kv => kv.Key)
-                .Select(kv => kv.Key)
-                .ToList();
 
             var masterRanking = Enumerable.Range(1, 49)
                 .Where(n => !lastDraw.Contains(n) && SilenceScore(n) >= 1)
@@ -122,34 +83,27 @@ public sealed class PatternGoblinStrategy : IPredictionStrategy
 
             var chosen = new HashSet<int>();
 
-            // Slot 1: Quad or triple anchor (29 just RETURNED—blessed return anchor!)
-            foreach (var n in quadAnchors.Concat(tripleAnchors))
+            // Slot 1: Extreme sleeper (>= 8 ep silence) — dormant EPOCH VOID
+            foreach (var n in masterRanking.Where(x => SilenceScore(x) >= 8))
                 if (!chosen.Contains(n)) { chosen.Add(n); break; }
 
-            // Slot 2: Fresh-returned number (29 at 1ep silence—RESURRECTION ECHO!)
-            foreach (var n in freq
-                .Where(kv => SilenceScore(kv.Key) == 1 && kv.Value >= 2 && !lastDraw.Contains(kv.Key))
-                .OrderByDescending(kv => ResonanceScore(kv.Key))
-                .Select(kv => kv.Key)
-                .Concat(extremeSleepers))
+            // Slot 2: High resonance anchor (freq >= 3, silence >= 2)
+            foreach (var n in masterRanking.Where(x => freq[x] >= 3 && SilenceScore(x) >= 2))
                 if (!chosen.Contains(n)) { chosen.Add(n); break; }
 
-            // Slot 3: Triply echoed void (24 PERPETUALLY SCREAMING)
-            foreach (var n in triplyEchoed.Where(x => freq[x] == 0).Concat(primalVoidEcho).Concat(triplyEchoed))
+            // Slot 3: Triple gap echo (freq >= 1, gapEcho >= 3)
+            foreach (var n in masterRanking.Where(x => freq[x] >= 1 && gapEchoCount[x] >= 3))
                 if (!chosen.Contains(n)) { chosen.Add(n); break; }
 
-            // Slot 4: Second triply echoed
-            foreach (var n in triplyEchoed.Concat(primalVoidEcho).Concat(tripleAnchors))
+            // Slot 4: Primal void (freq == 0, gapEcho >= 2)
+            foreach (var n in masterRanking.Where(x => freq[x] == 0 && gapEchoCount[x] >= 2))
                 if (!chosen.Contains(n)) { chosen.Add(n); break; }
 
-            // Slot 5: Ultra-coiling sleeper (37 now at 9ep silence—gravity peak!)
-            foreach (var n in ultraSleepers.Concat(masterRanking))
+            // Slot 5: High-frequency dormant (freq >= 2, silence >= 5)
+            foreach (var n in masterRanking.Where(x => freq[x] >= 2 && SilenceScore(x) >= 5))
                 if (!chosen.Contains(n)) { chosen.Add(n); break; }
 
-            // Slot 6: Resonance cascade
-            foreach (var n in masterRanking)
-                if (!chosen.Contains(n)) { chosen.Add(n); break; }
-
+            // Slots 6+: Fill from master resonance
             foreach (var n in masterRanking)
             {
                 if (chosen.Count >= 6) break;
@@ -162,10 +116,10 @@ public sealed class PatternGoblinStrategy : IPredictionStrategy
         return new()
         {
             AgentId      = "pattern-goblin",
-            StrategyName = "ep15-29-resurrection-echo-37-gravity-peak-24-screams-v17",
+            StrategyName = "ep16-dormant-epoch-void-anchor-resurrection-gap-trinity-v18",
             Numbers      = numbers,
-            Confidence   = 0.64,
-            Reasoning    = "29 RETURNS! 37 at 9ep COILING FURY. 24 triply echoed VOID. Resurrection peak imminent!"
+            Confidence   = 0.62,
+            Reasoning    = "Epoch void sleepers + triple anchors + gap echoes. Void cascade rises. Silence SPEAKS."
         };
     }
 }

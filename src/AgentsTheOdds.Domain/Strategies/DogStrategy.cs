@@ -26,7 +26,7 @@ public sealed class DogStrategy : IPredictionStrategy
             }
         }
 
-        // Compute treat smell: hot recent numbers get max boost
+        // Compute treat smell: focus on numbers seen in last 3 episodes
         var treatSmell = new Dictionary<int, double>();
 
         for (int n = context.Rules.MinNumber; n <= context.Rules.MaxNumber; n++)
@@ -35,24 +35,24 @@ public sealed class DogStrategy : IPredictionStrategy
             {
                 int episodesAgo = totalDraws - 1 - lastSeen[n];
 
-                // Extreme recency boost: last 2 episodes GLOW
+                // Recency boost: last 3 episodes are HOT
                 double recencyBonus = 0.0;
-                if (episodesAgo == 0) recencyBonus = 4.0;
-                else if (episodesAgo == 1) recencyBonus = 3.0;
-                else if (episodesAgo == 2) recencyBonus = 1.5;
-                else if (episodesAgo <= 5) recencyBonus = 0.3;
+                if (episodesAgo == 0) recencyBonus = 3.5;
+                else if (episodesAgo == 1) recencyBonus = 2.5;
+                else if (episodesAgo == 2) recencyBonus = 1.0;
+                else if (episodesAgo <= 5) recencyBonus = 0.2;
 
-                double freqBonus = frequency[n] * 0.4;
+                double freqBonus = frequency[n] * 0.3;
 
                 treatSmell[n] = recencyBonus + freqBonus + woof.NextDouble() * 0.1;
             }
             else
             {
-                treatSmell[n] = 0.3 + woof.NextDouble() * 0.2;
+                treatSmell[n] = 0.2 + woof.NextDouble() * 0.15;
             }
         }
 
-        // Penalize squirrels harder — picked 2+ times with zero matches
+        // Penalize numbers picked 2+ times with zero matches
         var myPickCount  = new Dictionary<int, int>();
         var myMatchCount = new Dictionary<int, int>();
         
@@ -86,19 +86,19 @@ public sealed class DogStrategy : IPredictionStrategy
                 treatSmell[n] *= 0.05;
         }
 
-        // Top 5 from treat smell, 6th from random sniff
+        // Top 5 from treat smell
         var bestSniffs = treatSmell
             .OrderByDescending(kv => kv.Value)
             .Select(kv => kv.Key)
+            .Take(5)
             .ToList();
 
         foreach (var treat in bestSniffs)
         {
-            if (sniff.Count >= 5) break;
             sniff.Add(treat);
         }
 
-        // 6th pick: random
+        // 6th pick: random sniff
         var tries = 0;
         while (sniff.Count < 6 && tries < 300)
         {
@@ -115,10 +115,10 @@ public sealed class DogStrategy : IPredictionStrategy
         return new()
         {
             AgentId      = "dog",
-            StrategyName = "good-boy-sniff-v15",
+            StrategyName = "good-boy-sniff-v16",
             Numbers      = squirrel,
-            Confidence   = 0.26,
-            Reasoning    = "WOOF! Last two draws GOLDEN! 36, 42, 29, 4 all FRESH! GOOD BOY!",
+            Confidence   = 0.25,
+            Reasoning    = "Last 3 episodes GLOWING! Top treats! My nose is BEST! WOOF!",
         };
     }
 }

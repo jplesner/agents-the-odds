@@ -44,11 +44,6 @@ public sealed class StatisticianStrategy : IPredictionStrategy
                 }
             }
 
-            var rawFreqValues = new List<int>(rawFreq.Values);
-            rawFreqValues.Sort((a, b) => b.CompareTo(a));
-            int topRawFreq = rawFreqValues.Count >= 1 ? rawFreqValues[0] : 0;
-            int highRawFreqMin = Math.Max(2, topRawFreq - 1);
-
             var lastSeen = new Dictionary<int, int>();
             for (int n = min; n <= max; n++)
                 lastSeen[n] = totalDraws;
@@ -94,15 +89,14 @@ public sealed class StatisticianStrategy : IPredictionStrategy
                 {
                     if (used.Contains(n)) continue;
 
-                    double freqScore = weightedFreq[n] * 13.5;
-                    double highFreqBonus = (rawFreq[n] >= highRawFreqMin && rawFreq[n] >= 2) ? 0.25 : 0.0;
-                    double coldBonus = (rawFreq[n] == 0) ? 0.55 : 0.0;
+                    double freqScore = weightedFreq[n] * 12.0;
+                    double coldBonus = (rawFreq[n] == 0) ? 0.60 : 0.0;
                     double proximityBonus = 1.2 * (1.0 - (Math.Abs(n - zMid) / (zMax - zMin + 1)));
-                    double gapBonus = (rawFreq[n] > 0) ? Math.Log(lastSeen[n] + 1) * 0.01 : 0.0;
 
-                    double recencyBonus = (lastSeen[n] == 0) ? 0.70 : 0.0;
-                    double recencyTier2Bonus = (lastSeen[n] == 1) ? 0.22 : 0.0;
-                    double recencyTier3Bonus = (lastSeen[n] == 2) ? 0.08 : 0.0;
+                    double recencyBonus = (lastSeen[n] == 0) ? 0.75 : 0.0;
+                    double recencyTier2Bonus = (lastSeen[n] == 1) ? 0.20 : 0.0;
+                    double recencyTier3Bonus = (lastSeen[n] == 2) ? 0.06 : 0.0;
+                    double recencyTier4Bonus = (lastSeen[n] == 3) ? 0.02 : 0.0;
 
                     double parityBonus = 0.0;
                     int remainingOddNeeded = targetOdd - selectedOdd;
@@ -110,8 +104,8 @@ public sealed class StatisticianStrategy : IPredictionStrategy
                     if (n % 2 == 1 && remainingOddNeeded > 0) parityBonus = 0.5;
                     else if (n % 2 == 0 && remainingEvenNeeded > 0) parityBonus = 0.5;
 
-                    double score = freqScore + highFreqBonus + coldBonus + proximityBonus
-                                   + gapBonus + recencyBonus + recencyTier2Bonus + recencyTier3Bonus + parityBonus;
+                    double score = freqScore + coldBonus + proximityBonus
+                                   + recencyBonus + recencyTier2Bonus + recencyTier3Bonus + recencyTier4Bonus + parityBonus;
 
                     if (score > bestScore)
                     {
@@ -143,16 +137,16 @@ public sealed class StatisticianStrategy : IPredictionStrategy
         }
 
         double confidence = draws != null && draws.Count > 0
-            ? Math.Min(0.34, 0.10 + (draws.Count * 0.002))
+            ? Math.Min(0.35, 0.10 + (draws.Count * 0.002))
             : 0.10;
 
         return new Prediction
         {
             AgentId      = "statistician",
-            StrategyName = "zonal-frequency-gap-parity-recency-v17",
+            StrategyName = "zonal-frequency-gap-parity-recency-v18",
             Numbers      = selectedNumbers,
             Confidence   = confidence,
-            Reasoning    = "Gap=0 recency 0.70; cold 0.55; tier-2 0.22; tier-3 0.08 additive. Empirical signal holds."
+            Reasoning    = "Gap=0 tier 0.75; cold 0.60; tier-4 added 0.02. Flat pattern suggests recency saturation."
         };
     }
 }

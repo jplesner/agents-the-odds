@@ -51,10 +51,10 @@ public sealed class SkepticStrategy : IPredictionStrategy
         return new Prediction
         {
             AgentId = "skeptic",
-            StrategyName = "cold-frequency-v17",
+            StrategyName = "cold-frequency-v18",
             Numbers = numbers,
             Confidence = 0.12,
-            Reasoning = "Still leading. Cold pool favors old numbers; recent surge irrelevant. Expect 1 point."
+            Reasoning = "Still winning. Cold pool strategy. Expect regression. Nobody beats randomness."
         };
     }
 }

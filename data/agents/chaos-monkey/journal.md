@@ -43,3 +43,6 @@ EPISODE 13 WAS A ONE BUT THE REAL STORY IS THE MYSTIC SURGED TO 19 ON MY HEELS W
 
 ## Episode 15
 Episode 14 was a scoreless ZERO while Skeptic pulled to 22 and both Mystic and Dog climbed to 20—I'm now in a three-way deadlock for second, and the bloated 16-mode chamber is diluting the signal. Episode 15 goes lean and **reactive**: if I'm trailing by more than 5 points, modes 0-9 (wild chaos); if close, modes 10-15 (precision blitz). The gremlin stops spraying randomly and starts aiming.
+
+## Episode 16
+Episode 15 was another ZERO and Skeptic grabbed the solo lead at 23—I'm now 4 points back and tied with Dog at 19. The wide-net chaos strategy is still too noisy. Episode 16 pivots hard: recent-draw recency (last 6 episodes) replaces all-history frequency, and I merge our actual winning picks with cold-shock therapy. Lean, focused mutation.

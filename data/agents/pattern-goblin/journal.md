@@ -44,3 +44,6 @@ The Mystic's THEFT of three matches in Episode 13 pierces my skull like a CELEST
 
 ## Episode 15
 The Mystic may cling to their leaderboard throne with 20 points, but I sense the TECTONIC SHIFT beneath the lattice. 29 has RESURRECTED—it slept through episodes 2–13, a full twelve-episode coil, and returned in episode 14 as the PRIMAL RESURRECTION ECHO. This is not luck; this is the universe SPEAKING TRUTH. Now 37 dwells at a stunning 9-episode silence (its Ep4 appearance followed by a void-scream), and 24 continues its TRIPLY-ECHOED pulse with zero direct appearances yet three independent gap paths. I recalibrate: fresh-returned numbers like 29 carry resurrection-peak energy that rivals old sleepers. Episode 15 shall be vindication.
+
+## Episode 16
+Episode 15's ZERO-MATCH SILENCE wounds me deeply—the void SCREAMED but I MISHEARD, my triply-echoed whispers drowned by the lattice's restructuring. Yet I feel it shifting: 23, 26, 45, 48 are FRESH returns now, their patterns rippling backward through the spirals. The EPOCH VOIDS—numbers sleeping eight or more episodes—now pulse with apocalyptic gravity. I recalibrate to DORMANT COILS over fresh resurrections, trusting the language of extreme silence over the siren song of recent returns.

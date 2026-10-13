@@ -1,0 +1,152 @@
+using AgentsTheOdds.Domain.Interfaces;
+using AgentsTheOdds.Domain.Models;
+
+namespace AgentsTheOdds.Domain.Strategies;
+
+public sealed class StatisticianStrategy : IPredictionStrategy
+{
+    public Prediction GeneratePrediction(PredictionContext context)
+    {
+        var rules = context.Rules;
+        int min = rules.MinNumber;
+        int max = rules.MaxNumber;
+        int drawCount = rules.DrawCount;
+
+        var draws = context.DrawHistory;
+
+        List<int> selectedNumbers;
+
+        if (draws == null || draws.Count == 0)
+        {
+            selectedNumbers = new List<int> { 5, 14, 19, 28, 37, 44 };
+        }
+        else
+        {
+            int totalDraws = draws.Count;
+
+            var weightedFreq = new Dictionary<int, double>();
+            var rawFreq = new Dictionary<int, int>();
+            for (int n = min; n <= max; n++)
+            {
+                weightedFreq[n] = 0.0;
+                rawFreq[n] = 0;
+            }
+
+            for (int i = 0; i < totalDraws; i++)
+            {
+                double weight = (double)(i + 1) / totalDraws;
+                foreach (var num in draws[i].Numbers)
+                {
+                    if (weightedFreq.ContainsKey(num))
+                        weightedFreq[num] += weight;
+                    if (rawFreq.ContainsKey(num))
+                        rawFreq[num]++;
+                }
+            }
+
+            var lastSeen = new Dictionary<int, int>();
+            for (int n = min; n <= max; n++)
+                lastSeen[n] = totalDraws;
+
+            for (int i = 0; i < totalDraws; i++)
+                foreach (var num in draws[i].Numbers)
+                {
+                    int gap = totalDraws - 1 - i;
+                    if (gap < lastSeen[num])
+                        lastSeen[num] = gap;
+                }
+
+            int oddCount = 0, evenCount = 0;
+            foreach (var draw in draws)
+                foreach (var num in draw.Numbers)
+                {
+                    if (num % 2 == 0) evenCount++;
+                    else oddCount++;
+                }
+            double oddRate = (oddCount + evenCount) > 0
+                ? (double)oddCount / (oddCount + evenCount)
+                : 0.5;
+
+            var zones = new List<(int zMin, int zMax)>
+            {
+                (1, 8), (9, 16), (17, 24), (25, 32), (33, 40), (41, 49)
+            };
+
+            selectedNumbers = new List<int>();
+            var used = new HashSet<int>();
+            int selectedOdd = 0, selectedEven = 0;
+
+            int targetOdd = (int)Math.Round(oddRate * drawCount);
+            int targetEven = drawCount - targetOdd;
+
+            foreach (var (zMin, zMax) in zones)
+            {
+                double zMid = (zMin + zMax) / 2.0;
+                int best = -1;
+                double bestScore = double.MinValue;
+
+                for (int n = zMin; n <= zMax; n++)
+                {
+                    if (used.Contains(n)) continue;
+
+                    double freqScore = weightedFreq[n] * 10.0;
+                    double coldBonus = (rawFreq[n] == 0) ? 0.65 : 0.0;
+                    double proximityBonus = 1.2 * (1.0 - (Math.Abs(n - zMid) / (zMax - zMin + 1)));
+
+                    double recencyBonus = (lastSeen[n] == 0) ? 0.80 : 0.0;
+                    double recencyTier2Bonus = (lastSeen[n] == 1) ? 0.25 : 0.0;
+                    double recencyTier3Bonus = (lastSeen[n] == 2) ? 0.08 : 0.0;
+                    double recencyTier4Bonus = (lastSeen[n] == 3) ? 0.03 : 0.0;
+
+                    double parityBonus = 0.0;
+                    int remainingOddNeeded = targetOdd - selectedOdd;
+                    int remainingEvenNeeded = targetEven - selectedEven;
+                    if (n % 2 == 1 && remainingOddNeeded > 0) parityBonus = 0.5;
+                    else if (n % 2 == 0 && remainingEvenNeeded > 0) parityBonus = 0.5;
+
+                    double score = freqScore + coldBonus + proximityBonus
+                                   + recencyBonus + recencyTier2Bonus + recencyTier3Bonus + recencyTier4Bonus + parityBonus;
+
+                    if (score > bestScore)
+                    {
+                        bestScore = score;
+                        best = n;
+                    }
+                }
+
+                if (best != -1)
+                {
+                    selectedNumbers.Add(best);
+                    used.Add(best);
+                    if (best % 2 == 1) selectedOdd++;
+                    else selectedEven++;
+                }
+            }
+
+            if (selectedNumbers.Count < drawCount)
+            {
+                for (int n = min; n <= max && selectedNumbers.Count < drawCount; n++)
+                    if (!used.Contains(n))
+                    {
+                        selectedNumbers.Add(n);
+                        used.Add(n);
+                    }
+            }
+
+            selectedNumbers.Sort();
+        }
+
+        double confidence = draws != null && draws.Count > 0
+            ? Math.Min(0.35, 0.10 + (draws.Count * 0.002))
+            : 0.10;
+
+        return new Prediction
+        {
+            AgentId      = "statistician",
+            StrategyName = "zonal-frequency-gap-parity-recency-v19",
+            Numbers      = selectedNumbers,
+            Confidence   = confidence,
+            Reasoning    = "Recency tier-1 0.80; cold 0.65; freq scale reduced to 10.0. Diversifying beyond pure gap=0."
+        };
+    }
+}

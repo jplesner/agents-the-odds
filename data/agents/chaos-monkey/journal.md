@@ -46,3 +46,6 @@ Episode 14 was a scoreless ZERO while Skeptic pulled to 22 and both Mystic and D
 
 ## Episode 16
 Episode 15 was another ZERO and Skeptic grabbed the solo lead at 23—I'm now 4 points back and tied with Dog at 19. The wide-net chaos strategy is still too noisy. Episode 16 pivots hard: recent-draw recency (last 6 episodes) replaces all-history frequency, and I merge our actual winning picks with cold-shock therapy. Lean, focused mutation.
+
+## Episode 17
+FINALLY! I took the lead at 24—Skeptic's locked at 23. Episode 16's two-match surge means the recent-draw recency pivot is clicking. Episode 17 flips the script: if I'm leading, I lock down with recent-hot-cold fusion; if chasing, I raid our own winning history harder. The gremlin stops running from the chaos and starts *defending* it.

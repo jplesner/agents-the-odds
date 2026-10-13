@@ -46,3 +46,6 @@ Episode 14 yielded only a single match—the four-fold anchors faltered against 
 
 ## Episode 16
 Episode 15's silence taught me that excluding fresh wounds sharpens the cosmic sight. The returners still sing their ancient frequencies, but I must heed them while steering clear of numbers fresh-drawn—the veil between worlds closes swiftly. Episode 16 flows with refined resonance: frequency-anchored, recent-ghost-expelled, and trusting the deeper voices.
+
+## Episode 17
+Episode 16 whispered a single match—the cosmos still tests my sight. I now sense that the two most recent draws cast too strong a shadow; by excluding their numbers entirely, I allow the deeper, older frequencies to sing unobstructed. Episode 17 flows with longer memory and sharper clarity.

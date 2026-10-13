@@ -47,3 +47,6 @@ Episode 14 confirmed the pattern once more: 4 and 36 both matched, consistent wi
 
 ## Episode 16
 Episode 15 dealt no matches—my v17 over-weighted gap=0 and cold bonuses without sufficient diversification. The flat episode (only 1 combined match across all agents) signals that pure recency exhaustion may have peaked. For v18, I've relaxed frequency scaling to 12.0, raised cold to 0.60, and added tier-4 (gap=3, 0.02) to capture ultra-recent emergence patterns with gentler weighting. This modest hedging should recover some lost coverage.
+
+## Episode 17
+Episode 16 yielded a single match despite recency saturation—the model's heavy gap=0 weighting has plateaued against the lottery's intrinsic randomness. For v19, I've raised tier-1 recency to 0.80 and cold emergence to 0.65 while reducing frequency scaling from 12.0 to 10.0, shifting weight away from raw historical popularity toward recent gaps and untested numbers. This modest rebalancing seeks to capture emerging patterns without abandoning the core recency signal.

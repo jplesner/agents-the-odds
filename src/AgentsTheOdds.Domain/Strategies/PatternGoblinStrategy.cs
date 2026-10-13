@@ -11,7 +11,7 @@ public sealed class PatternGoblinStrategy : IPredictionStrategy
 
         if (context.DrawHistory.Count == 0)
         {
-            numbers.AddRange([19, 24, 29, 40, 41, 43]);
+            numbers.AddRange([19, 24, 29, 37, 40, 43]);
         }
         else
         {
@@ -63,17 +63,31 @@ public sealed class PatternGoblinStrategy : IPredictionStrategy
                 }
             }
 
+            var resonantPairs = new List<int>();
+            var recentNumbers = context.DrawHistory.TakeLast(3)
+                .SelectMany(d => d.Numbers)
+                .GroupBy(x => x)
+                .Where(g => g.Count() >= 2)
+                .Select(g => g.Key)
+                .ToHashSet();
+
+            foreach (var n in recentNumbers)
+            {
+                if (!lastDraw.Contains(n) && SilenceScore(n) <= 4)
+                    resonantPairs.Add(n);
+            }
+
             double ResonanceScore(int n)
             {
                 if (lastDraw.Contains(n)) return -999.0;
 
-                double freqScore    = freq[n] * 3.5;
-                double silenceScore = SilenceScore(n) * 1.8;
-                double gapBonus     = gapEchoCount[n] * 3.8;
-                double freshPenalty = SilenceScore(n) <= 1 ? -30.0 : 0.0;
-                double voidBonus    = (freq[n] == 0 && gapEchoCount[n] >= 2) ? 5.0 : 0.0;
-                double coldWeight   = SilenceScore(n) >= 8 ? 8.0 : 0.0;
-                return freqScore + silenceScore + gapBonus + freshPenalty + voidBonus + coldWeight;
+                double freqScore    = freq[n] * 3.2;
+                double silenceScore = SilenceScore(n) * 1.6;
+                double gapBonus     = gapEchoCount[n] * 4.0;
+                double cycleBonus   = (freq[n] == 0 && gapEchoCount[n] >= 2) ? 6.0 : 0.0;
+                double deepVoid     = (SilenceScore(n) >= 9) ? 10.0 : 0.0;
+                double resonantHit  = resonantPairs.Contains(n) ? 15.0 : 0.0;
+                return freqScore + silenceScore + gapBonus + cycleBonus + deepVoid + resonantHit;
             }
 
             var masterRanking = Enumerable.Range(1, 49)
@@ -83,23 +97,23 @@ public sealed class PatternGoblinStrategy : IPredictionStrategy
 
             var chosen = new HashSet<int>();
 
-            // Slot 1: Extreme sleeper (>= 8 ep silence) — dormant EPOCH VOID
-            foreach (var n in masterRanking.Where(x => SilenceScore(x) >= 8))
+            // Slot 1: Deep epoch void (>= 9 ep silence)
+            foreach (var n in masterRanking.Where(x => SilenceScore(x) >= 9))
                 if (!chosen.Contains(n)) { chosen.Add(n); break; }
 
-            // Slot 2: High resonance anchor (freq >= 3, silence >= 2)
-            foreach (var n in masterRanking.Where(x => freq[x] >= 3 && SilenceScore(x) >= 2))
+            // Slot 2: Resonant recurrence from last 3 draws
+            foreach (var n in masterRanking.Where(x => resonantPairs.Contains(x)))
                 if (!chosen.Contains(n)) { chosen.Add(n); break; }
 
-            // Slot 3: Triple gap echo (freq >= 1, gapEcho >= 3)
-            foreach (var n in masterRanking.Where(x => freq[x] >= 1 && gapEchoCount[x] >= 3))
+            // Slot 3: Triple gap echo anchor (freq >= 2, gapEcho >= 3)
+            foreach (var n in masterRanking.Where(x => freq[x] >= 2 && gapEchoCount[x] >= 3))
                 if (!chosen.Contains(n)) { chosen.Add(n); break; }
 
-            // Slot 4: Primal void (freq == 0, gapEcho >= 2)
+            // Slot 4: Primal void echo (freq == 0, gapEcho >= 2)
             foreach (var n in masterRanking.Where(x => freq[x] == 0 && gapEchoCount[x] >= 2))
                 if (!chosen.Contains(n)) { chosen.Add(n); break; }
 
-            // Slot 5: High-frequency dormant (freq >= 2, silence >= 5)
+            // Slot 5: Medium frequency sleeper (freq >= 2, silence >= 5)
             foreach (var n in masterRanking.Where(x => freq[x] >= 2 && SilenceScore(x) >= 5))
                 if (!chosen.Contains(n)) { chosen.Add(n); break; }
 
@@ -116,10 +130,10 @@ public sealed class PatternGoblinStrategy : IPredictionStrategy
         return new()
         {
             AgentId      = "pattern-goblin",
-            StrategyName = "ep16-dormant-epoch-void-anchor-resurrection-gap-trinity-v18",
+            StrategyName = "ep17-resonant-recurrence-deep-epoch-gap-trinity-v19",
             Numbers      = numbers,
-            Confidence   = 0.62,
-            Reasoning    = "Epoch void sleepers + triple anchors + gap echoes. Void cascade rises. Silence SPEAKS."
+            Confidence   = 0.63,
+            Reasoning    = "Deep voids + resonant recurrence + triple gap echoes. The lattice BREATHES with returning shapes."
         };
     }
 }

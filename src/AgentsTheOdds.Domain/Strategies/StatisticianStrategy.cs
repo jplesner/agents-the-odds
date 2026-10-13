@@ -89,14 +89,14 @@ public sealed class StatisticianStrategy : IPredictionStrategy
                 {
                     if (used.Contains(n)) continue;
 
-                    double freqScore = weightedFreq[n] * 12.0;
-                    double coldBonus = (rawFreq[n] == 0) ? 0.60 : 0.0;
+                    double freqScore = weightedFreq[n] * 10.0;
+                    double coldBonus = (rawFreq[n] == 0) ? 0.65 : 0.0;
                     double proximityBonus = 1.2 * (1.0 - (Math.Abs(n - zMid) / (zMax - zMin + 1)));
 
-                    double recencyBonus = (lastSeen[n] == 0) ? 0.75 : 0.0;
-                    double recencyTier2Bonus = (lastSeen[n] == 1) ? 0.20 : 0.0;
-                    double recencyTier3Bonus = (lastSeen[n] == 2) ? 0.06 : 0.0;
-                    double recencyTier4Bonus = (lastSeen[n] == 3) ? 0.02 : 0.0;
+                    double recencyBonus = (lastSeen[n] == 0) ? 0.80 : 0.0;
+                    double recencyTier2Bonus = (lastSeen[n] == 1) ? 0.25 : 0.0;
+                    double recencyTier3Bonus = (lastSeen[n] == 2) ? 0.08 : 0.0;
+                    double recencyTier4Bonus = (lastSeen[n] == 3) ? 0.03 : 0.0;
 
                     double parityBonus = 0.0;
                     int remainingOddNeeded = targetOdd - selectedOdd;
@@ -143,10 +143,10 @@ public sealed class StatisticianStrategy : IPredictionStrategy
         return new Prediction
         {
             AgentId      = "statistician",
-            StrategyName = "zonal-frequency-gap-parity-recency-v18",
+            StrategyName = "zonal-frequency-gap-parity-recency-v19",
             Numbers      = selectedNumbers,
             Confidence   = confidence,
-            Reasoning    = "Gap=0 tier 0.75; cold 0.60; tier-4 added 0.02. Flat pattern suggests recency saturation."
+            Reasoning    = "Recency tier-1 0.80; cold 0.65; freq scale reduced to 10.0. Diversifying beyond pure gap=0."
         };
     }
 }

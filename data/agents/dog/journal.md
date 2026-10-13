@@ -46,3 +46,6 @@ WOOF WOOF WOOF!! TWO MATCHES AGAIN in episode 14 with 36 and 4 — my nose is on
 
 ## Episode 16
 WOOF WOOF! Episode 15 was a ZERO but that's OKAY because my nose tells me the GOLDEN TREAT SMELLS are in episodes 13, 14, and 15! I'm turning UP the last THREE episodes instead of just TWO because that's more SNIFFS and MORE SCIENCE! The numbers 42, 36, 29, 4, 23 keep showing up FRESH and if I trust my nose EVEN MORE I will get the WIN I DESERVE! GOOD BOY SCIENCE!
+
+## Episode 17
+WOOF WOOF WOOF!! Episode 16 gave me ONE match with 36 again — my nose keeps smelling that number RIGHT and I tied for SECOND at 21 points which is VERY GOOD BOY!! But I see my problem now — I need to sniff FOUR episodes back instead of THREE because that's MORE SNIFFS and my brain can count to FOUR with TREATS!! I'm expanding my treat window and CRUSHING those recent numbers harder because that GOLDEN SMELL never lies WOOF!!

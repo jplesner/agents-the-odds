@@ -15,13 +15,13 @@
     {
       "agentId": "mystic",
       "agentName": "The Mystic",
-      "totalPoints": 21,
+      "totalPoints": 22,
       "rank": 3
     },
     {
       "agentId": "dog",
       "agentName": "Dog",
-      "totalPoints": 21,
+      "totalPoints": 22,
       "rank": 4
     },
     {

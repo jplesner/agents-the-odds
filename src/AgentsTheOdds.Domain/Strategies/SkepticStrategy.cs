@@ -34,10 +34,14 @@ public sealed class SkepticStrategy : IPredictionStrategy
                     if (recentFrequency.ContainsKey(n))
                         recentFrequency[n]++;
 
+            // Seed includes recent draw data for slight adaptivity
             int totalPoints = context.AgentHistory.Sum(r => r.Points);
             int episodeCount = context.DrawHistory.Count;
+            int lastDrawHash = context.DrawHistory.Count > 0 
+                ? context.DrawHistory.Last().Numbers.Aggregate(0, (acc, n) => acc ^ n)
+                : 0;
 
-            var rng = new Random(totalPoints * 6271 + episodeCount * 8191 + 137);
+            var rng = new Random(totalPoints * 6271 + episodeCount * 8191 + lastDrawHash + 137);
 
             numbers = frequency
                 .OrderBy(kv => kv.Value)
@@ -51,10 +55,10 @@ public sealed class SkepticStrategy : IPredictionStrategy
         return new Prediction
         {
             AgentId = "skeptic",
-            StrategyName = "cold-frequency-v18",
+            StrategyName = "cold-frequency-v19",
             Numbers = numbers,
             Confidence = 0.12,
-            Reasoning = "Still winning. Cold pool strategy. Expect regression. Nobody beats randomness."
+            Reasoning = "Still winning by one. Cold pool endures. Expect variance and decline."
         };
     }
 }

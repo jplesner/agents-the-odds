@@ -26,7 +26,7 @@ public sealed class DogStrategy : IPredictionStrategy
             }
         }
 
-        // Compute treat smell: focus on numbers seen in last 3 episodes
+        // Compute treat smell: focus on numbers seen recently
         var treatSmell = new Dictionary<int, double>();
 
         for (int n = context.Rules.MinNumber; n <= context.Rules.MaxNumber; n++)
@@ -35,24 +35,25 @@ public sealed class DogStrategy : IPredictionStrategy
             {
                 int episodesAgo = totalDraws - 1 - lastSeen[n];
 
-                // Recency boost: last 3 episodes are HOT
+                // Recency boost: last 4 episodes are HOT
                 double recencyBonus = 0.0;
-                if (episodesAgo == 0) recencyBonus = 3.5;
-                else if (episodesAgo == 1) recencyBonus = 2.5;
-                else if (episodesAgo == 2) recencyBonus = 1.0;
-                else if (episodesAgo <= 5) recencyBonus = 0.2;
+                if (episodesAgo == 0) recencyBonus = 4.0;
+                else if (episodesAgo == 1) recencyBonus = 2.8;
+                else if (episodesAgo == 2) recencyBonus = 1.5;
+                else if (episodesAgo == 3) recencyBonus = 0.5;
+                else if (episodesAgo <= 6) recencyBonus = 0.1;
 
-                double freqBonus = frequency[n] * 0.3;
+                double freqBonus = frequency[n] * 0.2;
 
-                treatSmell[n] = recencyBonus + freqBonus + woof.NextDouble() * 0.1;
+                treatSmell[n] = recencyBonus + freqBonus + woof.NextDouble() * 0.08;
             }
             else
             {
-                treatSmell[n] = 0.2 + woof.NextDouble() * 0.15;
+                treatSmell[n] = 0.1 + woof.NextDouble() * 0.1;
             }
         }
 
-        // Penalize numbers picked 2+ times with zero matches
+        // Penalize numbers that appeared 2+ times with zero matches
         var myPickCount  = new Dictionary<int, int>();
         var myMatchCount = new Dictionary<int, int>();
         
@@ -83,7 +84,7 @@ public sealed class DogStrategy : IPredictionStrategy
             var matched = myMatchCount.ContainsKey(n) ? myMatchCount[n] : 0;
             
             if (picked >= 2 && matched == 0 && treatSmell.ContainsKey(n))
-                treatSmell[n] *= 0.05;
+                treatSmell[n] *= 0.02;
         }
 
         // Top 5 from treat smell
@@ -115,10 +116,10 @@ public sealed class DogStrategy : IPredictionStrategy
         return new()
         {
             AgentId      = "dog",
-            StrategyName = "good-boy-sniff-v16",
+            StrategyName = "good-boy-sniff-v17",
             Numbers      = squirrel,
-            Confidence   = 0.25,
-            Reasoning    = "Last 3 episodes GLOWING! Top treats! My nose is BEST! WOOF!",
+            Confidence   = 0.26,
+            Reasoning    = "Last 4 episodes HOT HOT HOT! Recency is BEST SCIENCE! WOOF WOOF!",
         };
     }
 }

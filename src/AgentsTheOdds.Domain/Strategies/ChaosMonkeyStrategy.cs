@@ -21,19 +21,13 @@ public sealed class ChaosMonkeyStrategy : IPredictionStrategy
             foreach (var n in draw.Numbers)
                 freq[n]++;
 
-        long totalScore = context.Leaderboard.Entries
+        long myScore = context.Leaderboard.Entries
             .FirstOrDefault(e => e.AgentId == "chaos-monkey")?.TotalPoints ?? 0L;
-        long skepticScore = context.Leaderboard.Entries
-            .FirstOrDefault(e => e.AgentId == "skeptic")?.TotalPoints ?? 0L;
+        long leaderScore = context.Leaderboard.Entries
+            .FirstOrDefault(e => e.Rank == 1)?.TotalPoints ?? 0L;
 
-        long gapToLeader = skepticScore - totalScore;
-        bool trailing = gapToLeader > 4;
-
-        var hotNumbers = freq
-            .Where(kv => kv.Value >= 2)
-            .OrderByDescending(kv => kv.Value)
-            .Select(kv => kv.Key)
-            .ToList();
+        long gapToLeader = leaderScore - myScore;
+        bool leading = gapToLeader <= 0;
 
         var recentWinners = context.DrawHistory
             .TakeLast(6)
@@ -43,27 +37,38 @@ public sealed class ChaosMonkeyStrategy : IPredictionStrategy
             .Select(g => g.Key)
             .ToList();
 
-        var ourWinningNumbers = context.AgentHistory
+        var hotNumbers = freq
+            .Where(kv => kv.Value >= 2)
+            .OrderByDescending(kv => kv.Value)
+            .Select(kv => kv.Key)
+            .ToList();
+
+        var coldNumbers = freq
+            .Where(kv => kv.Value == 0)
+            .OrderBy(_ => rng.Next())
+            .Select(kv => kv.Key)  // fix: extract Key from KeyValuePair
+            .ToList();
+
+        var allOurWins = context.AgentHistory
             .Where(r => r.Matches > 0)
             .SelectMany(r => r.Prediction.Numbers.Where(n => r.Draw.Numbers.Contains(n)))
             .Distinct()
+            .OrderBy(_ => rng.Next())
             .ToList();
-
-        var coldNumbers = freq.Where(kv => kv.Value == 0).Select(kv => kv.Key).OrderBy(_ => rng.Next()).ToList();
 
         var numbers = new HashSet<int>();
 
-        if (trailing)
+        if (leading)
         {
-            foreach (var n in recentWinners.Take(3)) numbers.Add(n);
+            foreach (var n in recentWinners.Take(2)) numbers.Add(n);
             foreach (var n in hotNumbers.Take(2)) numbers.Add(n);
-            numbers.Add(rng.Next(context.Rules.MinNumber, context.Rules.MaxNumber + 1));
+            foreach (var n in coldNumbers.Take(2)) numbers.Add(n);
         }
         else
         {
-            foreach (var n in ourWinningNumbers.Take(2)) numbers.Add(n);
+            foreach (var n in allOurWins.Take(2)) numbers.Add(n);
             foreach (var n in recentWinners.Take(2)) numbers.Add(n);
-            foreach (var n in coldNumbers.Take(2)) numbers.Add(n);
+            foreach (var n in hotNumbers.Take(2)) numbers.Add(n);
         }
 
         while (numbers.Count < 6)
@@ -71,14 +76,14 @@ public sealed class ChaosMonkeyStrategy : IPredictionStrategy
 
         var finalNumbers = numbers.Take(6).OrderBy(x => x).ToList();
 
-        string reasoning = trailing
-            ? "Trailing by " + gapToLeader + "—recency attack mode. Recent winners fusion."
-            : "Tied, precision strategy. Our wins plus cold shock therapy.";
+        string reasoning = leading
+            ? "Lead secured—recent + hot fusion chaos. Defend."
+            : "Chasing gap of " + gapToLeader + "—our wins merge recent.";
 
         return new()
         {
             AgentId      = "chaos-monkey",
-            StrategyName = $"chaos-mutation-bag-v17-recency-fusion",
+            StrategyName = "chaos-mutation-bag-v18-lead-defense",
             Numbers      = finalNumbers,
             Confidence   = 0.08 + (rng.NextDouble() * 0.35),
             Reasoning    = reasoning,

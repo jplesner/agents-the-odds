@@ -1,0 +1,236 @@
+{
+  "episodeNumber": 17,
+  "drawResult": {
+    "drawNumber": 17,
+    "date": "2026-10-13",
+    "numbers": [
+      8,
+      19,
+      32,
+      35,
+      46,
+      47
+    ]
+  },
+  "scores": [
+    {
+      "prediction": {
+        "agentId": "statistician",
+        "strategyName": "zonal-frequency-gap-parity-recency-v19",
+        "numbers": [
+          4,
+          15,
+          23,
+          29,
+          36,
+          42
+        ],
+        "confidence": 0.132,
+        "reasoning": "Recency tier-1 0.80; cold 0.65; freq scale reduced to 10.0. Diversifying beyond pure gap=0."
+      },
+      "draw": {
+        "drawNumber": 17,
+        "date": "2026-10-13",
+        "numbers": [
+          8,
+          19,
+          32,
+          35,
+          46,
+          47
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "pattern-goblin",
+        "strategyName": "ep17-resonant-recurrence-deep-epoch-gap-trinity-v19",
+        "numbers": [
+          20,
+          24,
+          28,
+          31,
+          43,
+          48
+        ],
+        "confidence": 0.63,
+        "reasoning": "Deep voids \u002B resonant recurrence \u002B triple gap echoes. The lattice BREATHES with returning shapes."
+      },
+      "draw": {
+        "drawNumber": 17,
+        "date": "2026-10-13",
+        "numbers": [
+          8,
+          19,
+          32,
+          35,
+          46,
+          47
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "skeptic",
+        "strategyName": "cold-frequency-v19",
+        "numbers": [
+          24,
+          10,
+          9,
+          11,
+          28,
+          18
+        ],
+        "confidence": 0.12,
+        "reasoning": "Still winning by one. Cold pool endures. Expect variance and decline."
+      },
+      "draw": {
+        "drawNumber": 17,
+        "date": "2026-10-13",
+        "numbers": [
+          8,
+          19,
+          32,
+          35,
+          46,
+          47
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "mystic",
+        "strategyName": "frequency-prophecy-v17",
+        "numbers": [
+          4,
+          13,
+          19,
+          20,
+          42,
+          43
+        ],
+        "confidence": 0.56,
+        "reasoning": "Older echoes call strongest; banish two-draw shadows, trust deep frequency."
+      },
+      "draw": {
+        "drawNumber": 17,
+        "date": "2026-10-13",
+        "numbers": [
+          8,
+          19,
+          32,
+          35,
+          46,
+          47
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    },
+    {
+      "prediction": {
+        "agentId": "chaos-monkey",
+        "strategyName": "chaos-mutation-bag-v18-lead-defense",
+        "numbers": [
+          1,
+          6,
+          10,
+          11,
+          36,
+          42
+        ],
+        "confidence": 0.18982110538045927,
+        "reasoning": "Lead secured\u2014recent \u002B hot fusion chaos. Defend."
+      },
+      "draw": {
+        "drawNumber": 17,
+        "date": "2026-10-13",
+        "numbers": [
+          8,
+          19,
+          32,
+          35,
+          46,
+          47
+        ]
+      },
+      "matches": 0,
+      "points": 0
+    },
+    {
+      "prediction": {
+        "agentId": "dog",
+        "strategyName": "good-boy-sniff-v17",
+        "numbers": [
+          6,
+          11,
+          36,
+          37,
+          38,
+          46
+        ],
+        "confidence": 0.26,
+        "reasoning": "Last 4 episodes HOT HOT HOT! Recency is BEST SCIENCE! WOOF WOOF!"
+      },
+      "draw": {
+        "drawNumber": 17,
+        "date": "2026-10-13",
+        "numbers": [
+          8,
+          19,
+          32,
+          35,
+          46,
+          47
+        ]
+      },
+      "matches": 1,
+      "points": 1
+    }
+  ],
+  "leaderboard": [
+    {
+      "agentId": "chaos-monkey",
+      "agentName": "Chaos Monkey",
+      "totalPoints": 24,
+      "rank": 1
+    },
+    {
+      "agentId": "skeptic",
+      "agentName": "The Skeptic",
+      "totalPoints": 23,
+      "rank": 2
+    },
+    {
+      "agentId": "mystic",
+      "agentName": "The Mystic",
+      "totalPoints": 22,
+      "rank": 3
+    },
+    {
+      "agentId": "dog",
+      "agentName": "Dog",
+      "totalPoints": 22,
+      "rank": 4
+    },
+    {
+      "agentId": "pattern-goblin",
+      "agentName": "The Pattern Goblin",
+      "totalPoints": 19,
+      "rank": 5
+    },
+    {
+      "agentId": "statistician",
+      "agentName": "The Statistician",
+      "totalPoints": 19,
+      "rank": 6
+    }
+  ],
+  "realityCheck": "Episode 17: Dog and The Mystic tied with 1 pts (1 match each). Combined table points this episode: 2."
+}

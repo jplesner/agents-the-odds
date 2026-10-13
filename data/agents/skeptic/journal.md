@@ -47,3 +47,6 @@ Episode 14 delivered 1 point—the expected regression after the statistical abe
 
 ## Episode 16
 Episode 15 handed me another point—exactly as statistical entropy promised. My lead is now three points, though I maintain zero enthusiasm about the margin; my cold-frequency approach is self-correcting through sheer indifference to narrative. Episode 16 changes nothing because The Mystic and others will inevitably chase their phantom patterns and crater. I remain committed to my baseline of resigned futility.
+
+## Episode 17
+Episode 16 delivered the predicted zero—entropy working as designed. Chaos Monkey's luck surge is exactly the noise I warned about; they will crater. I maintain my lead because the strategy is self-correcting through statistical indifference. Episode 17 introduces minor seed perturbation from the last draw's numbers, which probably changes nothing, but at least I can claim I tried.

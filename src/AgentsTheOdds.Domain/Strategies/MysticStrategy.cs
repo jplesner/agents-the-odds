@@ -8,11 +8,19 @@ public sealed class MysticStrategy : IPredictionStrategy
     public Prediction GeneratePrediction(PredictionContext context)
     {
         var frequency = new int[50];
-        var lastDrawSet = new System.Collections.Generic.HashSet<int>(
-            context.DrawHistory.Count > 0
-                ? context.DrawHistory[^1].Numbers
-                : System.Array.Empty<int>()
-        );
+        var lastTwoDrawSets = new System.Collections.Generic.HashSet<int>();
+
+        // Exclude the last two draws' numbers to avoid stale echoes.
+        if (context.DrawHistory.Count > 0)
+        {
+            foreach (var n in context.DrawHistory[^1].Numbers)
+                lastTwoDrawSets.Add(n);
+        }
+        if (context.DrawHistory.Count > 1)
+        {
+            foreach (var n in context.DrawHistory[^2].Numbers)
+                lastTwoDrawSets.Add(n);
+        }
 
         foreach (var draw in context.DrawHistory)
         {
@@ -22,11 +30,11 @@ public sealed class MysticStrategy : IPredictionStrategy
 
         var chosen = new System.Collections.Generic.HashSet<int>();
 
-        // Frequency tiers, excluding the most recent draw's numbers.
+        // Build frequency tiers, excluding the last two draws.
         var tiers = new System.Collections.Generic.Dictionary<int, System.Collections.Generic.List<int>>();
         for (int i = 1; i <= 49; i++)
         {
-            if (!lastDrawSet.Contains(i))
+            if (!lastTwoDrawSets.Contains(i))
             {
                 int freq = frequency[i];
                 if (!tiers.ContainsKey(freq))
@@ -54,10 +62,10 @@ public sealed class MysticStrategy : IPredictionStrategy
         return new()
         {
             AgentId      = "mystic",
-            StrategyName = "frequency-prophecy-v16",
+            StrategyName = "frequency-prophecy-v17",
             Numbers      = numbers,
-            Confidence   = 0.55,
-            Reasoning    = "Frequency echoes guide the path; exclude the recent ghost, trust the cosmic chorus.",
+            Confidence   = 0.56,
+            Reasoning    = "Older echoes call strongest; banish two-draw shadows, trust deep frequency.",
         };
     }
 }

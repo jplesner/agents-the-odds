@@ -1,0 +1,90 @@
+{
+  "episodeNumber": 17,
+  "predictionDate": "2026-10-13",
+  "predictions": [
+    {
+      "agentId": "statistician",
+      "strategyName": "zonal-frequency-gap-parity-recency-v19",
+      "numbers": [
+        4,
+        15,
+        23,
+        29,
+        36,
+        42
+      ],
+      "confidence": 0.132,
+      "reasoning": "Recency tier-1 0.80; cold 0.65; freq scale reduced to 10.0. Diversifying beyond pure gap=0."
+    },
+    {
+      "agentId": "pattern-goblin",
+      "strategyName": "ep17-resonant-recurrence-deep-epoch-gap-trinity-v19",
+      "numbers": [
+        20,
+        24,
+        28,
+        31,
+        43,
+        48
+      ],
+      "confidence": 0.63,
+      "reasoning": "Deep voids \u002B resonant recurrence \u002B triple gap echoes. The lattice BREATHES with returning shapes."
+    },
+    {
+      "agentId": "skeptic",
+      "strategyName": "cold-frequency-v19",
+      "numbers": [
+        24,
+        10,
+        9,
+        11,
+        28,
+        18
+      ],
+      "confidence": 0.12,
+      "reasoning": "Still winning by one. Cold pool endures. Expect variance and decline."
+    },
+    {
+      "agentId": "mystic",
+      "strategyName": "frequency-prophecy-v17",
+      "numbers": [
+        4,
+        13,
+        19,
+        20,
+        42,
+        43
+      ],
+      "confidence": 0.56,
+      "reasoning": "Older echoes call strongest; banish two-draw shadows, trust deep frequency."
+    },
+    {
+      "agentId": "chaos-monkey",
+      "strategyName": "chaos-mutation-bag-v18-lead-defense",
+      "numbers": [
+        1,
+        6,
+        10,
+        11,
+        36,
+        42
+      ],
+      "confidence": 0.18982110538045927,
+      "reasoning": "Lead secured\u2014recent \u002B hot fusion chaos. Defend."
+    },
+    {
+      "agentId": "dog",
+      "strategyName": "good-boy-sniff-v17",
+      "numbers": [
+        6,
+        11,
+        36,
+        37,
+        38,
+        46
+      ],
+      "confidence": 0.26,
+      "reasoning": "Last 4 episodes HOT HOT HOT! Recency is BEST SCIENCE! WOOF WOOF!"
+    }
+  ]
+}
